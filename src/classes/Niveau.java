@@ -1,5 +1,7 @@
 package classes;
 import classes.cuisine.* ;
+import classes.cuisine.materiel.Materiel;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,7 +10,7 @@ public class Niveau {
     private int numNiveau ;
     private int[] tabScoreArgent ;
     private Client [] clients ;
-    private ArrayList<Recette.NomRecette> listeRecettes ;
+    private ArrayList<Recette.NomsRecettes> listeRecettes ;
     private HashMap<Materiel,Integer> materiel ;
     private HashMap<Ingredient,Integer> ingredient ;
     private int nbAssietteMax ;
