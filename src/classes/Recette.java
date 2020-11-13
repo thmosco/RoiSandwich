@@ -24,24 +24,22 @@ public class Recette {
             case FRITES:
                 recetteFrites();
                 break;
-            case SIMPLE:
             case MAXI:
-                recetteBurger(this.viande);
+                recetteBurger(2, this.viande);
                 break;
             case MENU:
                 recetteFrites();
-                recetteBurger(this.viande);
-
+            case SIMPLE:
+                recetteBurger(1, this.viande);
         }
     }
 
-    private void recetteBurger (Viandes viande) {
+    private void recetteBurger (int nbSteak, Viandes viande) {
         this.ingredients.put(Ingredient.Nom.SALADE,1) ;
         this.ingredients.put(Ingredient.Nom.TOMATE,1) ;
         this.ingredients.put(Ingredient.Nom.OIGNON,1) ;
         this.ingredients.put(Ingredient.Nom.PAIN,1) ;
         this.ingredients.put(Ingredient.Nom.FROMAGE,1) ;
-        int nbSteaks = 0 ;
         Ingredient.Nom typeSteak ;
         if (viande == Viandes.BOEUF) {
             typeSteak = Ingredient.Nom.STEAK_DE_BOEUF ;
@@ -50,13 +48,7 @@ public class Recette {
         } else {
             typeSteak = Ingredient.Nom.STEAK_DE_SOJA ;
         }
-        switch (this.nom) {
-            case SIMPLE:
-                this.ingredients.put(typeSteak,1) ;
-                break;
-            case MAXI :
-                this.ingredients.put(typeSteak,2) ;
-        }
+        this.ingredients.put(typeSteak,nbSteak) ;
     }
 
     private void recetteFrites () {
