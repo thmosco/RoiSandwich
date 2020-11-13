@@ -1,12 +1,15 @@
 package classes;
+import classes.cuisine.* ;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Niveau {
 
     private int numNiveau ;
     private static final int DUREE = 180000 ;
     private int[] tabScoreArgent ;
-    private Client[] clients ;
-    private ArrayList<NomRecette> listeRecettes ;
+    private Client [] clients ;
+    private ArrayList<Recette.NomRecette> listeRecettes ;
     private HashMap<Materiel,Integer> materiel ;
     private HashMap<Ingredient,Integer> ingredient ;
     private int nbAssietteMax ;
@@ -17,7 +20,7 @@ public class Niveau {
 
         switch (this.numNiveau) {
             case 1 :
-                this.nbAssietteMax = null ;
+                this.nbAssietteMax = -1 ;
                 this.clients = new Client[25] ;
 
                 this.ingredient = null ;
