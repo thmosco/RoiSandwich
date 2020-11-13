@@ -1,4 +1,4 @@
-package classes.cuisine;
+package classes.cuisine.materiel;
 
 public class Materiel {
 

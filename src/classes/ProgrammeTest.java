@@ -1,5 +1,5 @@
 package classes;
-import classes.cuisine.*;
+import classes.cuisine.materiel.Assiette;
 
 public class ProgrammeTest {
 

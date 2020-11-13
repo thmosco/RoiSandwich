@@ -1,15 +1,16 @@
 package classes;
 import classes.cuisine.* ;
+import classes.cuisine.materiel.Materiel;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Niveau {
 
     private int numNiveau ;
-    private static final int DUREE = 180000 ;
     private int[] tabScoreArgent ;
     private Client [] clients ;
-    private ArrayList<Recette.NomRecette> listeRecettes ;
+    private ArrayList<Recette.NomsRecettes> listeRecettes ;
     private HashMap<Materiel,Integer> materiel ;
     private HashMap<Ingredient,Integer> ingredient ;
     private int nbAssietteMax ;
@@ -26,10 +27,12 @@ public class Niveau {
                 this.ingredient = null ;
 
                 this.materiel = new HashMap<Materiel,Integer>() ;
+                /*
                 this.materiel.put(new Evier(),1) ;
                 this.materiel.put(new Decoupe(),1) ;
                 this.materiel.put(new PlaqueCuisson(),1) ;
                 this.materiel.put(new Poubelle(),1) ;
+                 */
 
                 break ;
 
@@ -40,10 +43,12 @@ public class Niveau {
                 this.ingredient = null ;
 
                 this.materiel = new HashMap<Materiel,Integer>() ;
+                /*
                 this.materiel.put(new Evier(),1) ;
                 this.materiel.put(new Decoupe(),1) ;
                 this.materiel.put(new PlaqueCuisson(),1) ;
                 this.materiel.put(new Poubelle(),1) ;
+                 */
 
                 break ;
 
@@ -54,10 +59,12 @@ public class Niveau {
                 this.ingredient = null ;
 
                 this.materiel = new HashMap<Materiel,Integer>() ;
+                /*
                 this.materiel.put(new Evier(),1) ;
                 this.materiel.put(new Decoupe(),1) ;
                 this.materiel.put(new PlaqueCuisson(),1) ;
                 this.materiel.put(new Poubelle(),1) ;
+                 */
         }
     }
 
