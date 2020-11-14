@@ -1,20 +1,51 @@
 package classes;
 import classes.cuisine.* ;
 import classes.cuisine.materiel.Materiel;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Commentaire de documentation de la classe
+ * @version 1.0
+ * @author Maïa DA SILVA
+ */
 public class Niveau {
 
+    // Variables de classe
+
+    /**
+     * Numéro du niveau
+     */
     private int numNiveau ;
+    /**
+     * Tableau permettant de stocker le score et l'argent obtenus à l'issu du niveau
+     */
     private int[] tabScoreArgent ;
+    /**
+     * Tableau des clients qui apparaitront au cours de la partie
+     */
     private Client [] clients ;
+    /**
+     * Liste des recettes disponibles dans le niveau
+     */
     private ArrayList<Recette.NomsRecettes> listeRecettes ;
+    /**
+     * Liste du matériel et leur nombre disponible dans le niveau
+     */
     private HashMap<Materiel,Integer> materiel ;
+    /**
+     * Liste des ingrédients et leur quantité disponibles dans le niveau
+     */
     private HashMap<Ingredient,Integer> ingredient ;
+    /**
+     * Nombre d'assiettes maximale mise à disposition du joueur dans le niveau
+     */
     private int nbAssietteMax ;
 
+    /**
+     * Constructeur
+     * @param numNiveau
+     */
     public Niveau(int numNiveau) {
         this.numNiveau = numNiveau;
         this.tabScoreArgent = new int [2];
@@ -68,6 +99,9 @@ public class Niveau {
         }
     }
 
+    /**
+     * Permet de remplir le tableau de client avec des clients et leur commande
+     */
     public void creerClients () {
         for (int i = 0 ; i < this.clients.length ; i++) {
             for (int j = 0 ; i < this.listeRecettes.size() ; j++) {
@@ -76,6 +110,11 @@ public class Niveau {
         }
     }
 
+    /**
+     * Permet de stocker le score et l'argent obtenus dans le tableau à la fin de la partie
+     * @param score
+     * @param argent
+     */
     public void setScoreArgent (int score, int argent) {
         this.tabScoreArgent[1] = score ;
         this.tabScoreArgent[2] = argent ;
