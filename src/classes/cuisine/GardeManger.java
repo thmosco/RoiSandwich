@@ -1,3 +1,9 @@
+/**
+ * Commentaire de documentation de la classe GardeManger
+ * @version 1.0
+ * @author Thomas MOSCONI
+ */
+
 package classes.cuisine;
 
 import classes.cuisine.Ingredient.Nom;

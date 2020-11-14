@@ -1,3 +1,9 @@
+/**
+ * Commentaire de documentation de la classe Ingredient
+ * @version 1.0
+ * @author Thomas MOSCONI
+ */
+
 package classes.cuisine;
 
 public class Ingredient {
