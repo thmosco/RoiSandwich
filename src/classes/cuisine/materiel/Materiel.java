@@ -14,6 +14,12 @@ public class Materiel {
         objetsContenus = new ArrayList();
     }
 
+    /**
+     * Permet de placer un objet dans un matériel
+     * @param objet
+     * @throws IllegalAccessException
+     * @version 2.0
+     */
     public void ajouterObjet (Object objet) throws IllegalAccessException {
         if (this.objetsContenus.size() == this.capaciteMax) {
             throw new IllegalAccessException("plein");
