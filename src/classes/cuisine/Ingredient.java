@@ -17,13 +17,12 @@ public class Ingredient {
 		CRU, CUIT, BRULE
 	}
 
-	public enum Nom {
-		POMME_DE_TERRE, SALADE, OIGNON, PAIN, FROMAGE, STEAK_DE_SOJA, STEAK_DE_POULET, STEAK_DE_BOEUF, TOMATE
-	}
+    public enum Nom{POMME_DE_TERRE, SALADE, TOMATE, OIGNON, PAIN, FROMAGE, STEAK_DE_SOJA, STEAK_DE_POULET, STEAK_DE_BOEUF}
 
 	public Ingredient(Nom nom) {
 		this.nom = nom;
 		this.etat = Etat.CRU;
+    this.transformer = false ;
 	}
 
 	public Etat getEtat() {
