@@ -1,32 +1,30 @@
 package classes.cuisine.materiel;
 
+import java.util.ArrayList;
+
 public class Materiel {
 
+    private int capaciteMax ;
     private int tempsExecution;
-    private Object[] tableauMaterielContenu;
+    private ArrayList objetsContenus;
 
     public Materiel(int capaciteMax, int tempsExecution) {
+        this.capaciteMax = capaciteMax ;
         this.tempsExecution = tempsExecution;
-        tableauMaterielContenu = new Object[capaciteMax];
+        objetsContenus = new ArrayList();
     }
 
-    public void ajouterIngredient(Object ingredient) throws IllegalAccessException {
-        int plein = 0;
-        for (int i = 0; i < tableauMaterielContenu.length; i++) {
-            if (tableauMaterielContenu[i] == null) {
-                plein = 0;
-                tableauMaterielContenu[i] = ingredient;
-                i = tableauMaterielContenu.length;
-                System.out.println(ingredient.toString() + " ajout�");
-
-            } else {
-                plein = 1;
-            }
-        }
-
-        if (plein == 1) {
+    /**
+     * Permet de placer un objet dans un matériel
+     * @param objet
+     * @throws IllegalAccessException
+     * @version 2.0
+     */
+    public void ajouterObjet (Object objet) throws IllegalAccessException {
+        if (this.objetsContenus.size() == this.capaciteMax) {
             throw new IllegalAccessException("plein");
         }
+        this.objetsContenus.add(objet) ;
+        System.out.println(objet.toString() + " ajouté");
     }
-
 }
