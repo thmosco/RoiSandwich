@@ -1,3 +1,8 @@
+/**
+ * Commentaire de documentation de la classe Stock
+ * @version 1.0
+ * @author Thomas MOSCONI
+ */
 package classes.cuisine;
 
 import classes.cuisine.materiel.Assiette;
