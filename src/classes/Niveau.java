@@ -120,4 +120,24 @@ public class Niveau {
         this.tabScoreArgent[2] = argent ;
     }
 
+    /**
+     * @return liste du matériel et quantité disponible dans le niveau
+     */
+    public HashMap<Materiel, Integer> getMateriel() {
+        return materiel;
+    }
+
+    /**
+     * @return liste des ingrédient et quantité disponibles dans le niveau
+     */
+    public HashMap<Ingredient, Integer> getIngredient() {
+        return ingredient;
+    }
+
+    /**
+     * @return nombre d'assiettes max disponbles dans le niveau
+     */
+    public int getNbAssietteMax() {
+        return nbAssietteMax;
+    }
 }
