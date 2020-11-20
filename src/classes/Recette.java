@@ -22,32 +22,33 @@ public class Recette {
     }
 
     // Nom de la recette
-    private NomsRecettes nom ;
+    private NomsRecettes nom;
 
     // Steak choisit
-    private Steaks viande ;
+    private Steaks viande;
 
     // Liste des ingrédients et de leur quantité nécéssaire à la recette
-    private HashMap<Ingredient.Nom, Integer> ingredients ;
+    public HashMap<Ingredient, Integer> ingredients;
 
     /**
      * Constructeur
+     *
      * @param nom
      * @param viande
      */
-    public Recette (NomsRecettes nom, Steaks viande) {
-        this.nom = nom ;
-        this.viande = viande ;
-        this.ingredients = new HashMap<>() ;
+    public Recette(NomsRecettes nom, Steaks viande) {
+        this.nom = nom;
+        this.viande = viande;
+        this.ingredients = new HashMap<>();
         switch (this.nom) {
             case FRITES:
-                recetteFrites();
+                this.ingredients.put(new Ingredient(Ingredient.Nom.POMME_DE_TERRE), 1);
                 break;
             case MAXI:
                 recetteBurger(2, this.viande);
                 break;
             case MENU:
-                recetteFrites();
+                this.ingredients.put(new Ingredient(Ingredient.Nom.POMME_DE_TERRE), 1);
             case SIMPLE:
                 recetteBurger(1, this.viande);
         }
@@ -55,30 +56,24 @@ public class Recette {
 
     /**
      * Permet d'obtenir la liste des ingrédient pour la réalisation d'un burger
+     *
      * @param nbSteak
      * @param viande
      */
-    private void recetteBurger (int nbSteak, Steaks viande) {
-        this.ingredients.put(Ingredient.Nom.SALADE,1) ;
-        this.ingredients.put(Ingredient.Nom.TOMATE,1) ;
-        this.ingredients.put(Ingredient.Nom.OIGNON,1) ;
-        this.ingredients.put(Ingredient.Nom.PAIN,1) ;
-        this.ingredients.put(Ingredient.Nom.FROMAGE,1) ;
-        Ingredient.Nom typeSteak ;
+    private void recetteBurger(int nbSteak, Steaks viande) {
+        this.ingredients.put(new Ingredient(Ingredient.Nom.SALADE), 1);
+        this.ingredients.put(new Ingredient(Ingredient.Nom.TOMATE), 1);
+        this.ingredients.put(new Ingredient(Ingredient.Nom.OIGNON), 1);
+        this.ingredients.put(new Ingredient(Ingredient.Nom.PAIN), 1);
+        this.ingredients.put(new Ingredient(Ingredient.Nom.FROMAGE), 1);
+        Ingredient.Nom typeSteak;
         if (viande == Steaks.BOEUF) {
-            typeSteak = Ingredient.Nom.STEAK_DE_BOEUF ;
+            typeSteak = Ingredient.Nom.STEAK_DE_BOEUF;
         } else if (this.viande == Steaks.POULET) {
-            typeSteak = Ingredient.Nom.STEAK_DE_POULET ;
+            typeSteak = Ingredient.Nom.STEAK_DE_POULET;
         } else {
-            typeSteak = Ingredient.Nom.STEAK_DE_SOJA ;
+            typeSteak = Ingredient.Nom.STEAK_DE_SOJA;
         }
-        this.ingredients.put(typeSteak,nbSteak) ;
-    }
-
-    /**
-     * Permet d'obtenir la liste des ingrédient nécéssaire à la réalisation des frites
-     */
-    private void recetteFrites () {
-        this.ingredients.put(Ingredient.Nom.POMME_DE_TERRE,1) ;
+        this.ingredients.put(new Ingredient(typeSteak), nbSteak);
     }
 }

@@ -6,7 +6,7 @@ public class Materiel {
 
     private int capaciteMax ;
     private int tempsExecution;
-    private ArrayList objetsContenus;
+    protected ArrayList objetsContenus;
 
     public Materiel(int capaciteMax, int tempsExecution) {
         this.capaciteMax = capaciteMax ;
