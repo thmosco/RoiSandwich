@@ -5,24 +5,22 @@ import classes.cuisine.Ingredient;
 
 public class Evier extends Materiel {
 
-    public Evier(int capaciteMax, int tempsExecution) {
-        super(capaciteMax, tempsExecution);
+    public Evier() {
+        super(2, 10);
     }
 
-    public void ajouterObjet (Assiette assiette) throws IllegalAccessException {
-        super.ajouterObjet(assiette);
-    }
-
-    public boolean nettoyage() {
-        Assiette assiette ;
-        for (int i = 0 ; i < this.objetsContenus.size() ; i++) {
-            assiette = (Assiette) this.objetsContenus.get(i);
-            if (assiette.objetsContenus.get(0) instanceof Recette) {
-                // envoyer message de confirmation au jouer
-                // > proposer de stocker le plat
-            }
-            assiette.objetsContenus.clear();
+    public boolean ajouterObjet (Assiette assiette) throws IllegalAccessException {
+        if (assiette.objetsContenus.get(0) instanceof Recette) {
+            // envoyer message de confirmation au jouer
+            // > proposer de stocker le plat
+            return false ;
         }
-        return true ;
+        super.ajouterObjet(assiette);
+        if (super.ajouterObjet(assiette)) {
+            assiette.objetsContenus.clear();
+            return true ;
+        } else {
+            return false ;
+        }
     }
 }

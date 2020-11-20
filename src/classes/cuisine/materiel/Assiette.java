@@ -4,8 +4,8 @@ import java.util.Collections;
 
 public class Assiette extends Materiel {
 
-    public Assiette(int capaciteMax, int tempsExecution) {
-        super(capaciteMax, tempsExecution);
+    public Assiette() {
+        super(10, 0);
     }
 
     public boolean fairePlat(Recette recette) throws IllegalAccessException {

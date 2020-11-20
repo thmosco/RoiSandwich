@@ -1,14 +1,19 @@
 package classes.cuisine.materiel;
 
-public class Friteuse extends Materiel{
+import classes.Recette;
+import classes.cuisine.Ingredient;
+import classes.cuisine.IngredientCuit;
 
-    public Friteuse(int capaciteMax, int tempsExecution) {
-        super(capaciteMax, tempsExecution);
-        // TODO Auto-generated constructor stub
+public class Friteuse extends MaterielDeCuisson {
+
+    public Friteuse() {
+        super();
     }
-
-    public void frire() {
-
+    public boolean ajouterObjet (IngredientCuit ingredient) throws IllegalAccessException {
+        if (!(ingredient.getNom().equals(Ingredient.Nom.POMME_DE_TERRE)) && ingredient.getTransformer() == false) {
+            // exception
+        }
+        super.ajouterObjet(ingredient);
     }
 
 }

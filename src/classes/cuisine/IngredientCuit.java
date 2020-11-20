@@ -17,4 +17,8 @@ public class IngredientCuit extends Ingredient {
 		super(nom);
 		this.tempsCuisson = temps_de_cuisson;
 	}
+
+	public int getTempsCuisson() {
+		return tempsCuisson;
+	}
 }

@@ -4,25 +4,20 @@ import classes.cuisine.Ingredient;
 
 public class Decoupe extends Materiel {
 
-    public Decoupe(int capaciteMax, int tempsExecution) {
-        super(capaciteMax, tempsExecution);
+    public Decoupe() {
+        super(1, 10);
     }
 
-    public void ajouterObjet (Ingredient ingredient) throws IllegalAccessException {
-        super.ajouterObjet(ingredient);
-    }
-
-    public boolean couper() {
-        Ingredient ingredient ;
-        for (int i = 0 ; i < this.objetsContenus.size() ; i++) {
-            ingredient = (Ingredient) this.objetsContenus.get(i);
-            if (ingredient.isSteak()) {
-                //throw exception
-                return false ;
-            }
-            ingredient.setTransformer(true) ;
+    public boolean ajouterObjet (Ingredient ingredient) throws IllegalAccessException {
+        if (ingredient.isSteak()) {
+            return false ;
         }
-        return true ;
+        super.ajouterObjet(ingredient);
+        if (super.ajouterObjet(ingredient)) {
+            ingredient.setTransformer(true) ;
+            return true ;
+        } else {
+            return false ;
+        }
     }
-
 }

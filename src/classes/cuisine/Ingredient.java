@@ -47,6 +47,7 @@ public class Ingredient {
 		this.transformer = etat ;
 	}
 
-
-
+	public void setEtat(Etat etat) {
+		this.etat = etat;
+	}
 }
