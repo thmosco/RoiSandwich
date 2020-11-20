@@ -8,19 +8,19 @@ public class Decoupe extends Materiel {
         super(capaciteMax, tempsExecution);
     }
 
+    public void ajouterObjet (Ingredient ingredient) throws IllegalAccessException {
+        super.ajouterObjet(ingredient);
+    }
+
     public boolean couper() {
-        Ingredient objet ;
+        Ingredient ingredient ;
         for (int i = 0 ; i < this.objetsContenus.size() ; i++) {
-            if (!(this.objetsContenus.get(i) instanceof Ingredient)) {
+            ingredient = (Ingredient) this.objetsContenus.get(i);
+            if (ingredient.isSteak()) {
                 //throw exception
                 return false ;
             }
-            objet = (Ingredient) this.objetsContenus.get(i);
-            if (objet.isSteak()) {
-                //throw exception
-                return false ;
-            }
-            objet.setTransformer(true) ;
+            ingredient.setTransformer(true) ;
         }
         return true ;
     }
