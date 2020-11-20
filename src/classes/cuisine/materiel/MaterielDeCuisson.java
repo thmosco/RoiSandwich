@@ -7,7 +7,7 @@ public class MaterielDeCuisson extends Materiel {
     public MaterielDeCuisson() {
             super(1, 10);
         }
-        
+
     public boolean ajouterObjet (IngredientCuit ingredient) throws IllegalAccessException {
         super.ajouterObjet(ingredient);
         if (super.ajouterObjet(ingredient)) {
