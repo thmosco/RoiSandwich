@@ -1,15 +1,18 @@
 package classes.cuisine.materiel;
 
-public class PlaqueCuisson extends Materiel {
+import classes.cuisine.Ingredient;
+import classes.cuisine.IngredientCuit;
 
-    public PlaqueCuisson(int capaciteMax, int tempsExecution) {
-        super(capaciteMax, tempsExecution);
-        // TODO Auto-generated constructor stub
+public class PlaqueCuisson extends MaterielDeCuisson {
+
+    public PlaqueCuisson() {
+        super();
     }
 
-    public void cuire() {
-
+    public boolean ajouterObjet (IngredientCuit ingredient) throws IllegalAccessException {
+        if (ingredient.isSteak() == false) {
+            // exception
+        }
+        super.ajouterObjet(ingredient);
     }
-
-
 }

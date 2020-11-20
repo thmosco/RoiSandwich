@@ -6,7 +6,7 @@ public class Materiel {
 
     private int capaciteMax ;
     private int tempsExecution;
-    private ArrayList objetsContenus;
+    protected ArrayList objetsContenus;
 
     public Materiel(int capaciteMax, int tempsExecution) {
         this.capaciteMax = capaciteMax ;
@@ -20,11 +20,14 @@ public class Materiel {
      * @throws IllegalAccessException
      * @version 2.0
      */
-    public void ajouterObjet (Object objet) throws IllegalAccessException {
+    public boolean ajouterObjet (Object objet) throws IllegalAccessException {
         if (this.objetsContenus.size() == this.capaciteMax) {
             throw new IllegalAccessException("plein");
         }
-        this.objetsContenus.add(objet) ;
-        System.out.println(objet.toString() + " ajouté");
+        return this.objetsContenus.add(objet) ;
+    }
+
+    public boolean retirerObjet(Object objet) {
+        return this.objetsContenus.remove(objet) ;
     }
 }
