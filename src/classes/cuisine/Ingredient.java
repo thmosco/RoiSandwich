@@ -22,7 +22,7 @@ public class Ingredient {
 	public Ingredient(Nom nom) {
 		this.nom = nom;
 		this.etat = Etat.CRU;
-    this.transformer = false ;
+    	this.transformer = false ;
 	}
 
 	public Etat getEtat() {
@@ -32,5 +32,21 @@ public class Ingredient {
 	public boolean getTransformer() {
     	return transformer;
     }
+
+	public Nom getNom() {
+		return nom;
+	}
+
+	public boolean isSteak () {
+		return (this.getNom() == Nom.STEAK_DE_BOEUF
+				|| this.getNom() == Nom.STEAK_DE_POULET
+				|| this.getNom() == Nom.STEAK_DE_SOJA) ;
+	}
+
+	public void setTransformer(boolean etat) {
+		this.transformer = etat ;
+	}
+
+
 
 }
