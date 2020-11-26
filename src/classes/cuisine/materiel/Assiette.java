@@ -1,11 +1,17 @@
 package classes.cuisine.materiel;
 import classes.Recette;
+import classes.cuisine.Ingredient;
+
 import java.util.Collections;
 
 public class Assiette extends Materiel {
 
     public Assiette() {
         super(10, 0);
+    }
+
+    public boolean ajouterObjet (Ingredient ingredient) throws IllegalAccessException {
+        return super.ajouterObjet(assiette) ;
     }
 
     public boolean fairePlat(Recette recette) throws IllegalAccessException {
