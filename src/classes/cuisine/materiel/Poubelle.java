@@ -14,7 +14,10 @@ import classes.cuisine.IngredientCuit;
  */
 public class Poubelle extends Materiel {
 
-    public Poubelle(int capaciteMax, int tempsExecution) {
+    /**
+     * Constructeur
+     */
+    public Poubelle() {
         super(10, 0);
     }
 
@@ -38,18 +41,27 @@ public class Poubelle extends Materiel {
 
     /**
      * @Override méthode ajouterObjet(Objet objet) de la classe Matériel
-     * Permet d'ajouter une recette dans la poubelle
-     * @param recette
-     * @return true si la recette a bien été ajouté
+     * Permet d'ajouter le contenu d'une assiette dans la poubelle
+     * @param assiette
+     * @return true si le contenu d'une assiette a bien été ajouté
      * @throws IllegalAccessException
      */
     public boolean ajouterObjet (Assiette assiette) throws IllegalAccessException {
         // pop up de confirmation
-        return super.ajouterObjet(assiette.objetsContenus);
+        // ...
+        super.ajouterObjet(assiette.objetsContenus);
+        // ajouter l'assiette à l'évier
+        // ...
+        return true ;
     }
 
+    /**
+     * Permet de "détruire" les aliments jetés dans la poubelle
+     * @return true si la poubelle a été vidée
+     */
     public boolean detruire() {
         this.objetsContenus.clear();
+        return true ;
     }
 
 }
