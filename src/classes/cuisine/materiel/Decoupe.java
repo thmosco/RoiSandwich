@@ -12,7 +12,9 @@ import classes.cuisine.Ingredient;
  */
 public class Decoupe extends Materiel {
 
-    // Constructeur
+    /**
+     * Constructeur
+     */
     public Decoupe() {
         super(1, 10);
     }

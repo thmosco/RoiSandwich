@@ -7,7 +7,10 @@ package classes.cuisine.materiel;
  */
 public class Assemblage extends Materiel {
 
-    // Constructeur
+    /**
+     * Constructeur
+     * @param capaciteMax
+     */
     public Assemblage(int capaciteMax) {
         super(capaciteMax, 10);
     }

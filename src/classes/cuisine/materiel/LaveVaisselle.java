@@ -12,7 +12,10 @@ import classes.Recette;
  */
 public class LaveVaisselle extends Materiel {
 
-    // Constructeur
+    /**
+     * Constructeur
+     * @param capaciteMax
+     */
     public LaveVaisselle(int capaciteMax) {
         super(capaciteMax, 10);
     }
@@ -27,11 +30,6 @@ public class LaveVaisselle extends Materiel {
      * @throws IllegalAccessException
      */
     public boolean ajouterObjet (Assiette assiette) throws IllegalAccessException {
-        if (assiette.objetsContenus.get(0) instanceof Recette) {
-            // envoyer message de confirmation au jouer
-            // > proposer de stocker le plat
-            return false ;
-        }
         return super.ajouterObjet(assiette);
     }
 

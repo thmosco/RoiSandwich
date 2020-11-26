@@ -3,7 +3,7 @@ package classes.cuisine.materiel;
 import java.util.ArrayList;
 
 /**
- * Classe parents des différents outils utilisés pour la réalisation d'un plat
+ * Classe parent des outils
  * @version 1.0
  * @author Mickeal PIRRES
  */
@@ -24,7 +24,11 @@ public class Materiel {
      */
     protected ArrayList objetsContenus;
 
-    // Constructeur
+    /**
+     * Constructeur
+     * @param capaciteMax
+     * @param tempsExecution
+     */
     public Materiel(int capaciteMax, int tempsExecution) {
         this.capaciteMax = capaciteMax ;
         this.tempsExecution = tempsExecution;
