@@ -54,6 +54,10 @@ public class Recette {
         }
     }
 
+    public NomsRecettes getNom() {
+        return nom;
+    }
+
     /**
      * Permet d'obtenir la liste des ingrédient pour la réalisation d'un burger
      *

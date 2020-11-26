@@ -7,11 +7,20 @@ package classes.cuisine.materiel;
  */
 public class Assemblage extends Materiel {
 
-    // Constructeur 
+    // Constructeur
     public Assemblage(int capaciteMax) {
         super(capaciteMax, 10);
     }
 
+    // Méthodes
+
+    /**
+     * @Override méthode ajouterObjet(Objet objet) de la classe Matériel
+     * Permet d'ajouter une assiette sur la station d'assemblage
+     * @param assiette
+     * @return true si l'assiette a bien été ajouté
+     * @throws IllegalAccessException
+     */
     public boolean ajouterObjet (Assiette assiette) throws IllegalAccessException {
         return super.ajouterObjet(assiette) ;
     }

@@ -27,8 +27,8 @@ public class Cuisine {
                 for (int i = 0 ; i < niveau.getMateriel().get(iterator.next()); i++) {
                     //decoupes.add(new Decoupe()) ;
                 }
-            } else if (iterator.next() instanceof Evier) {
-                ArrayList eviers = new ArrayList<Evier>() ;
+            } else if (iterator.next() instanceof LaveVaisselle) {
+                ArrayList eviers = new ArrayList<LaveVaisselle>() ;
                 for (int i = 0 ; i < niveau.getMateriel().get(iterator.next()); i++) {
                     //eviers.add(new Evier()) ;
                 }
