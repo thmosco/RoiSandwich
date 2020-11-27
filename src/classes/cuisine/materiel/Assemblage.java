@@ -9,10 +9,9 @@ public class Assemblage extends Materiel {
 
     /**
      * Constructeur
-     * @param capaciteMax
      */
-    public Assemblage(int capaciteMax) {
-        super(capaciteMax, 10);
+    public Assemblage() {
+        super(1, 10);
     }
 
     // Méthodes
