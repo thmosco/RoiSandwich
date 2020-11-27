@@ -1,6 +1,7 @@
 package classes;
 import classes.cuisine.* ;
-import classes.cuisine.materiel.Materiel;
+import classes.cuisine.materiel.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -42,6 +43,10 @@ public class Niveau {
      */
     private int nbAssietteMax ;
 
+    private Comptoir comptoir ;
+    private GardeManger gardeManger ;
+    private Cuisine cuisine ;
+
     /**
      * Constructeur
      * @param numNiveau
@@ -49,21 +54,40 @@ public class Niveau {
     public Niveau(int numNiveau) {
         this.numNiveau = numNiveau;
         this.tabScoreArgent = new int [2];
+        this.comptoir = new Comptoir() ;
+        this.gardeManger = new GardeManger(this) ;
+        this.cuisine = new Cuisine(this) ;
 
         switch (this.numNiveau) {
             case 1 :
-                this.nbAssietteMax = -1 ;
+                this.nbAssietteMax = 25 ;
                 this.clients = new Client[25] ;
 
-                this.ingredient = null ;
+                this.ingredient = new HashMap<Ingredient,Integer>() ;
+                // quantité des ingrédients
+                int quantite = 50 ;
+                // définition de la liste d'ingrédients disponibles
+                this.ingredient.put(new Ingredient(Ingredient.Nom.PATATE),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.SALADE),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.TOMATE),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.OIGNON),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.PAIN),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.FROMAGE),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_SOJA),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_POULET),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_BOEUF),quantite) ;
 
                 this.materiel = new HashMap<Materiel,Integer>() ;
-                /*
-                this.materiel.put(new Evier(),1) ;
+                // définition d'outils associés à leur quantité
+                this.materiel.put(new Assemblage(),1) ;
                 this.materiel.put(new Decoupe(),1) ;
+                this.materiel.put(new Friteuse(),1) ;
                 this.materiel.put(new PlaqueCuisson(),1) ;
                 this.materiel.put(new Poubelle(),1) ;
-                 */
+                // définition de la station d'assemblage associée à sa capacité maximum
+                this.materiel.put(new Assemblage(),1) ;
+                // définition du lave vaisselle associé à sa capacité maximum
+                this.materiel.put(new LaveVaisselle(),2) ;
 
                 break ;
 
@@ -71,15 +95,31 @@ public class Niveau {
                 this.nbAssietteMax = 9 ;
                 this.clients = new Client[50] ;
 
-                this.ingredient = null ;
+                this.ingredient = new HashMap<Ingredient,Integer>() ;
+                // quantité des ingrédients
+                quantite = 100 ;
+                // définition de la liste d'ingrédients disponibles
+                this.ingredient.put(new Ingredient(Ingredient.Nom.PATATE),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.SALADE),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.TOMATE),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.OIGNON),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.PAIN),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.FROMAGE),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_SOJA),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_POULET),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_BOEUF),quantite) ;
 
                 this.materiel = new HashMap<Materiel,Integer>() ;
-                /*
-                this.materiel.put(new Evier(),1) ;
+                // définition d'outils associés à leur quantité
+                this.materiel.put(new Assemblage(),1) ;
                 this.materiel.put(new Decoupe(),1) ;
+                this.materiel.put(new Friteuse(),1) ;
                 this.materiel.put(new PlaqueCuisson(),1) ;
                 this.materiel.put(new Poubelle(),1) ;
-                 */
+                // définition de la station d'assemblage associée à sa capacité maximum
+                this.materiel.put(new Assemblage(),1) ;
+                // définition du lave vaisselle associé à sa capacité maximum
+                this.materiel.put(new LaveVaisselle(),2) ;
 
                 break ;
 
@@ -87,15 +127,33 @@ public class Niveau {
                 this.nbAssietteMax = 6 ;
                 this.clients = new Client[75] ;
 
-                this.ingredient = null ;
+                this.ingredient = new HashMap<Ingredient,Integer>() ;
+                // quantité des ingrédients
+                quantite = 150 ;
+                // définition de la liste d'ingrédients disponibles
+                this.ingredient.put(new Ingredient(Ingredient.Nom.PATATE),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.SALADE),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.TOMATE),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.OIGNON),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.PAIN),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.FROMAGE),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_SOJA),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_POULET),quantite) ;
+                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_BOEUF),quantite) ;
 
                 this.materiel = new HashMap<Materiel,Integer>() ;
-                /*
-                this.materiel.put(new Evier(),1) ;
+                // définition d'outils associés à leur quantité
+                this.materiel.put(new Assemblage(),1) ;
                 this.materiel.put(new Decoupe(),1) ;
+                this.materiel.put(new Friteuse(),1) ;
                 this.materiel.put(new PlaqueCuisson(),1) ;
                 this.materiel.put(new Poubelle(),1) ;
-                 */
+                // définition de la station d'assemblage associée à sa capacité maximum
+                this.materiel.put(new Assemblage(),1) ;
+                // définition du lave vaisselle associé à sa capacité maximum
+                this.materiel.put(new LaveVaisselle(),2) ;
+
+                break ;
         }
     }
 
