@@ -58,6 +58,10 @@ public class Recette {
         return nom;
     }
 
+    public Steaks getViande() {
+        return viande;
+    }
+
     /**
      * Permet d'obtenir la liste des ingrédient pour la réalisation d'un burger
      *
