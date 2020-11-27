@@ -30,5 +30,18 @@ public class Assiette extends Materiel {
         return super.ajouterObjet(ingredient) ;
     }
 
+    /**
+     * @Override méthode retirerObjet(Objet objet) de la classe Matériel
+     * Permet de retirer un ingredient de l'assiette
+     * @param ingredient
+     * @return true si la l'ingredient a bien été retiré
+     *
+     * @version 1.0
+     * @author Maia DA SILVA
+     */
+    public boolean retirerObjet(Ingredient ingredient) {
+        return this.objetsContenus.remove(ingredient) ;
+    }
+
 }
 

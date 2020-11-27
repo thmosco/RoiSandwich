@@ -7,7 +7,7 @@ import classes.cuisine.Ingredient;
  * @version 1.0
  * @author Mickeal PIRRES
  *
- * @version 2.0
+ * @version 3.0
  * @author Maïa DA SILVA
  */
 public class Decoupe extends Materiel {
@@ -22,24 +22,11 @@ public class Decoupe extends Materiel {
     // Méthodes
 
     /**
-     * @Override méthode ajouterObjet(Objet objet) de la classe Matériel
-     * Permet d'ajouter un ingrédient sur la station de découpe
-     * @param ingredient
-     * @return true si l'ingrédient a bien été ajouté
-     * @throws IllegalAccessException
-     */
-    public boolean ajouterObjet (Ingredient ingredient) throws IllegalAccessException {
-        if (ingredient.isSteak()) {
-            return false ;
-        }
-        return super.ajouterObjet(ingredient);
-    }
-
-    /**
      * @return true si l'ingrédient a bien été découpé
      */
     public boolean decouper () {
         Ingredient ingredient = (Ingredient) this.objetsContenus.get(0);
+        // gestion du temps ...
         ingredient.setTransformer(true) ;
         return true ;
     }

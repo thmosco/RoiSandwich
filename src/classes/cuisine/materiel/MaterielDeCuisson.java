@@ -20,17 +20,6 @@ public class MaterielDeCuisson extends Materiel {
     // Méthodes
 
     /**
-     * @Override méthode ajouterObjet(Objet objet) de la classe Matériel
-     * Permet d'ajouter un ingrédient cuisable "dans" l'outil
-     * @param ingredient
-     * @return true si l'ingrédient a bien été ajouté
-     * @throws IllegalAccessException
-     */
-    public boolean ajouterObjet (IngredientCuit ingredient) throws IllegalAccessException {
-        return super.ajouterObjet(ingredient);
-    }
-
-    /**
      * Permet de démarrer la cuisson des ingrédients contenus dans l'outil
      * @return true si la cuisson a bien été démarrée
      */

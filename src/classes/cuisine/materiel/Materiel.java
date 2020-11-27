@@ -22,7 +22,7 @@ public class Materiel {
     /**
      * liste des objets contenus dans l'outil, sa taille ne doit pas dépasser la capacité maximum
      */
-    protected ArrayList objetsContenus;
+    public ArrayList objetsContenus;
 
     /**
      * Constructeur

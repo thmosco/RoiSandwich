@@ -21,46 +21,17 @@ public class Poubelle extends Materiel {
         super(10, 0);
     }
 
-    /**
-     * @Override méthode ajouterObjet(Objet objet) de la classe Matériel
-     * Permet d'ajouter un ingrédient dans la poubelle
-     * @param ingredient
-     * @return true si l'ingrédient a bien été ajouté
-     * @throws IllegalAccessException
-     */
-    public boolean ajouterObjet (Ingredient ingredient) throws IllegalAccessException {
-        if (!(ingredient instanceof IngredientCuit)) {
-            // message d'erreur : pas un ingredient cuisable > pas utile de le jeter
-            return false ;
-        } else if (ingredient.getEtat() != Ingredient.Etat.BRULE) {
-            // message d'erreur : ingredient pas brulé
-            return false ;
-        }
-        return super.ajouterObjet(ingredient);
-    }
-
-    /**
-     * @Override méthode ajouterObjet(Objet objet) de la classe Matériel
-     * Permet d'ajouter le contenu d'une assiette dans la poubelle
-     * @param assiette
-     * @return true si le contenu d'une assiette a bien été ajouté
-     * @throws IllegalAccessException
-     */
-    public boolean ajouterObjet (Assiette assiette) throws IllegalAccessException {
-        // pop up de confirmation
-        // ...
-        super.ajouterObjet(assiette.objetsContenus);
-        // ajouter l'assiette à l'évier
-        // ...
-        return true ;
-    }
+    // Méthodes
 
     /**
      * Permet de "détruire" les aliments jetés dans la poubelle
      * @return true si la poubelle a été vidée
      */
     public boolean detruire() {
+        // pop up de confirmation
+        // ...
         this.objetsContenus.clear();
+        // si this = assiette > envoyer l'assiette à l'évier
         return true ;
     }
 

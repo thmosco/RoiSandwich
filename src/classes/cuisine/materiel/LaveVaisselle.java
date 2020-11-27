@@ -34,6 +34,19 @@ public class LaveVaisselle extends Materiel {
     }
 
     /**
+     * @Override méthode retirerObjet(Objet objet) de la classe Matériel
+     * Permet de retirer une assiette du lave vaisselle
+     * @param assiette
+     * @return true si la l'assiette a bien été retirée
+     *
+     * @version 1.0
+     * @author Maia DA SILVA
+     */
+    public boolean retirerObjet(Assiette assiette) {
+        return this.objetsContenus.remove(assiette) ;
+    }
+
+    /**
      * Permet de nettoyer l'ensemble des objets placés dans le lave vaisselle
      * @return true si la méthode a bien été effectuée
      */

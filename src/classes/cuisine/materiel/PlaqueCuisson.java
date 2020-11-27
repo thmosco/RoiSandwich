@@ -19,17 +19,4 @@ public class PlaqueCuisson extends MaterielDeCuisson {
         super();
     }
 
-    /**
-     * @Override méthode ajouterObjet(Objet objet) de la classe MatérielDeCuisson
-     * Permet d'ajouter un steak sur la plaque de cuisson
-     * @param ingredient
-     * @return true si le steak a bien été ajouté
-     * @throws IllegalAccessException
-     */
-    public boolean ajouterObjet (IngredientCuit ingredient) throws IllegalAccessException {
-        if (!ingredient.isSteak()) {
-            return false ;
-        }
-        return super.ajouterObjet(ingredient);
-    }
 }

@@ -105,7 +105,7 @@ public class Niveau {
     public void creerClients () {
         for (int i = 0 ; i < this.clients.length ; i++) {
             for (int j = 0 ; i < this.listeRecettes.size() ; j++) {
-                this.clients[i] = new Client () ;
+                //this.clients[i] = new Client () ;
             }
         }
     }

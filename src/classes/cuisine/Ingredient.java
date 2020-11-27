@@ -43,6 +43,14 @@ public class Ingredient {
 				|| this.getNom() == Nom.STEAK_DE_SOJA) ;
 	}
 
+	public boolean isDecoupable () {
+		return (this.getNom() == Nom.PATATE
+				|| this.getNom() == Nom.TOMATE
+				|| this.getNom() == Nom.OIGNON
+				|| this.getNom() == Nom.FROMAGE
+				|| this.getNom() == Nom.SALADE) ;
+	}
+
 	public void setTransformer(boolean etat) {
 		this.transformer = etat ;
 	}
