@@ -47,7 +47,6 @@ public class Ingredient {
 		return (this.getNom() == Nom.PATATE
 				|| this.getNom() == Nom.TOMATE
 				|| this.getNom() == Nom.OIGNON
-				|| this.getNom() == Nom.FROMAGE
 				|| this.getNom() == Nom.SALADE) ;
 	}
 
