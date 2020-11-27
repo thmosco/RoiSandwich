@@ -35,6 +35,12 @@ public class Materiel {
         objetsContenus = new ArrayList();
     }
 
+    // Setteur
+
+    public void setCapaciteMax(int capaciteMax) {
+        this.capaciteMax = capaciteMax;
+    }
+
     // Méthodes
 
     /**
