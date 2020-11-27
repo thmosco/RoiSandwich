@@ -1,5 +1,6 @@
 package classes.cuisine;
 
+import classes.Niveau;
 import classes.Recette;
 import classes.cuisine.materiel.Assiette;
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class Client {
      * représente la commande du client
      */
     private Recette commande ;
+
+    private Niveau niveau ;
 
     /**
      * Constructeur
