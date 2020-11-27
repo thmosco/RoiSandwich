@@ -69,11 +69,13 @@ public class Cuisine {
 
             // Création de la station d'assemblage et définition de sa capacité max d'accueil (selon le niveau)
             } else if (iterator.next() instanceof Assemblage) {
-                this.assemblage = new Assemblage(niveau.getMateriel().get(iterator.next())) ;
+                this.assemblage = new Assemblage() ;
+                this.laveVaisselle.setCapaciteMax(niveau.getMateriel().get(iterator.next())) ;
 
             // Création du lave vaisselle et définition de sa capacité max d'accueil (selon le niveau)
             } else if (iterator.next() instanceof LaveVaisselle) {
-                this.laveVaisselle = new LaveVaisselle(niveau.getMateriel().get(iterator.next())) ;
+                this.laveVaisselle = new LaveVaisselle() ;
+                this.laveVaisselle.setCapaciteMax(niveau.getMateriel().get(iterator.next())) ;
 
             // Création des friteuses dans la quantité indiquée par le niveau
             } else if (iterator.next() instanceof Friteuse) {
