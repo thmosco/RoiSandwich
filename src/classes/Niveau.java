@@ -19,6 +19,10 @@ public class Niveau {
      */
     private int numNiveau ;
     /**
+     * Score minimum nécessaire pour débloqué le niveau
+     */
+    private int scoreMin ;
+    /**
      * Tableau permettant de stocker le score et l'argent obtenus à l'issu du niveau
      */
     private int[] tabScoreArgent ;
@@ -26,6 +30,10 @@ public class Niveau {
      * Tableau des clients qui apparaitront au cours de la partie
      */
     private Client [] clients ;
+    /**
+     * Tableau des clients qui apparaitront au cours de la partie
+     */
+    private int [] tmpsAttente ;
     /**
      * Liste des recettes disponibles dans le niveau
      */
@@ -46,6 +54,7 @@ public class Niveau {
     private Comptoir comptoir ;
     private GardeManger gardeManger ;
     private Cuisine cuisine ;
+    private Stock stock ;
 
     /**
      * Constructeur
@@ -54,129 +63,114 @@ public class Niveau {
     public Niveau(int numNiveau) {
         this.numNiveau = numNiveau;
         this.tabScoreArgent = new int [2];
+
         this.comptoir = new Comptoir() ;
         this.gardeManger = new GardeManger(this) ;
         this.cuisine = new Cuisine(this) ;
+        this.stock = new Stock() ;
 
+        this.tmpsAttente = new int [3] ;
+        int tempsMin ;
+
+        this.ingredient = new HashMap<Ingredient,Integer>() ;
+        this.materiel = new HashMap<Materiel,Integer>() ;
+
+        int quantiteIngredient ;
+        int capaciteAssemblage ;
+        int capaciteLaveVaisselle ;
+        int quantiteOutilsCuisson ;
+        int quantiteDecoupe ;
+
+        this.listeRecettes = new ArrayList<Recette.NomsRecettes>() ;
+        this.listeRecettes.add(Recette.NomsRecettes.FRITES) ;
+        this.listeRecettes.add(Recette.NomsRecettes.SIMPLE) ;
+
+        // Réglages du niveau
         switch (this.numNiveau) {
-            case 1 :
+            // niveau 1 (par défaut)
+            default:
+                this.scoreMin = 0 ;
                 this.nbAssietteMax = 25 ;
                 this.clients = new Client[25] ;
 
-                this.ingredient = new HashMap<Ingredient,Integer>() ;
+                // définition du temps d'attente maximum
+                tempsMin = 30 ;
+
                 // quantité des ingrédients
-                int quantite = 50 ;
-                // définition de la liste d'ingrédients disponibles
-                this.ingredient.put(new Ingredient(Ingredient.Nom.PATATE),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.SALADE),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.TOMATE),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.OIGNON),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.PAIN),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.FROMAGE),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_SOJA),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_POULET),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_BOEUF),quantite) ;
+                quantiteIngredient = 50 ;
 
-                this.materiel = new HashMap<Materiel,Integer>() ;
-                // définition d'outils associés à leur quantité
-                this.materiel.put(new Assemblage(),1) ;
-                this.materiel.put(new Decoupe(),1) ;
-                this.materiel.put(new Friteuse(),1) ;
-                this.materiel.put(new PlaqueCuisson(),1) ;
-                this.materiel.put(new Poubelle(),1) ;
-                // définition de la station d'assemblage associée à sa capacité maximum
-                this.materiel.put(new Assemblage(),1) ;
-                // définition du lave vaisselle associé à sa capacité maximum
-                this.materiel.put(new LaveVaisselle(),2) ;
-
+                // définition  de la quantité des outils
+                capaciteAssemblage = 1 ;
+                capaciteLaveVaisselle = 2 ;
+                quantiteOutilsCuisson = 1 ;
+                quantiteDecoupe = 1 ;
                 break ;
-
+            // niveau 2
             case 2 :
+                this.scoreMin = 300 ;
                 this.nbAssietteMax = 9 ;
                 this.clients = new Client[50] ;
 
-                this.ingredient = new HashMap<Ingredient,Integer>() ;
-                // quantité des ingrédients
-                quantite = 100 ;
-                // définition de la liste d'ingrédients disponibles
-                this.ingredient.put(new Ingredient(Ingredient.Nom.PATATE),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.SALADE),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.TOMATE),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.OIGNON),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.PAIN),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.FROMAGE),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_SOJA),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_POULET),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_BOEUF),quantite) ;
+                // définition du temps d'attente maximum
+                tempsMin = 20 ;
 
-                this.materiel = new HashMap<Materiel,Integer>() ;
-                // définition d'outils associés à leur quantité
-                this.materiel.put(new Assemblage(),1) ;
-                this.materiel.put(new Decoupe(),1) ;
-                this.materiel.put(new Friteuse(),1) ;
-                this.materiel.put(new PlaqueCuisson(),1) ;
-                this.materiel.put(new Poubelle(),1) ;
-                // définition de la station d'assemblage associée à sa capacité maximum
-                this.materiel.put(new Assemblage(),1) ;
-                // définition du lave vaisselle associé à sa capacité maximum
-                this.materiel.put(new LaveVaisselle(),2) ;
+                /// quantité des ingrédients
+                quantiteIngredient = 100 ;
+
+                // définition  de la quantité des outils
+                capaciteAssemblage = 2 ;
+                capaciteLaveVaisselle = 4 ;
+                quantiteOutilsCuisson = 2 ;
+                quantiteDecoupe = 2 ;
+
+                // ajout d'une nouvelle recette
+                this.listeRecettes.add(Recette.NomsRecettes.MAXI) ;
 
                 break ;
-
+            // niveau 3
             case 3 :
+                this.scoreMin = 600 ;
                 this.nbAssietteMax = 6 ;
                 this.clients = new Client[75] ;
 
-                this.ingredient = new HashMap<Ingredient,Integer>() ;
+                // définition du temps d'attente maximum
+                tempsMin = 20 ;
+
                 // quantité des ingrédients
-                quantite = 150 ;
-                // définition de la liste d'ingrédients disponibles
-                this.ingredient.put(new Ingredient(Ingredient.Nom.PATATE),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.SALADE),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.TOMATE),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.OIGNON),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.PAIN),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.FROMAGE),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_SOJA),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_POULET),quantite) ;
-                this.ingredient.put(new Ingredient(Ingredient.Nom.STEAK_DE_BOEUF),quantite) ;
+                quantiteIngredient = 150 ;
 
-                this.materiel = new HashMap<Materiel,Integer>() ;
-                // définition d'outils associés à leur quantité
-                this.materiel.put(new Assemblage(),1) ;
-                this.materiel.put(new Decoupe(),1) ;
-                this.materiel.put(new Friteuse(),1) ;
-                this.materiel.put(new PlaqueCuisson(),1) ;
-                this.materiel.put(new Poubelle(),1) ;
-                // définition de la station d'assemblage associée à sa capacité maximum
-                this.materiel.put(new Assemblage(),1) ;
-                // définition du lave vaisselle associé à sa capacité maximum
-                this.materiel.put(new LaveVaisselle(),2) ;
+                // définition  de la quantité des outils
+                capaciteAssemblage = 3 ;
+                capaciteLaveVaisselle = 4 ;
+                quantiteOutilsCuisson = 2 ;
+                quantiteDecoupe = 2 ;
 
-                break ;
+                // ajout d'une nouvelle recette
+                this.listeRecettes.add(Recette.NomsRecettes.MENU) ;
         }
-    }
 
-    /**
-     * Permet de remplir le tableau de client avec des clients et leur commande
-     */
-    public void creerClients () {
-        for (int i = 0 ; i < this.clients.length ; i++) {
-            for (int j = 0 ; i < this.listeRecettes.size() ; j++) {
-                //this.clients[i] = new Client () ;
-            }
+        this.tmpsAttente[0] = tempsMin ;
+        this.tmpsAttente[1] = tempsMin + tempsMin / 2 ;
+        this.tmpsAttente[3] = tempsMin * 2 ;
+
+        // définition des ingrédients associés à leur quantité
+        Ingredient.Nom [] ingredients = Ingredient.Nom.values() ;
+        for (int i = 0 ; i < ingredients.length ; i++) {
+            this.ingredient.put(new Ingredient(ingredients[i]), quantiteIngredient) ;
         }
+
+        // définition d'outils associés à leur quantité
+        this.materiel.put(new Decoupe(),quantiteDecoupe) ;
+        this.materiel.put(new Friteuse(),quantiteOutilsCuisson) ;
+        this.materiel.put(new PlaqueCuisson(),quantiteOutilsCuisson) ;
+        this.materiel.put(new Poubelle(),1) ;
+        // définition de la station d'assemblage associée à sa capacité maximum
+        this.materiel.put(new Assemblage(),capaciteAssemblage) ;
+        // définition du lave vaisselle associé à sa capacité maximum
+        this.materiel.put(new LaveVaisselle(),capaciteLaveVaisselle) ;
     }
 
-    /**
-     * Permet de stocker le score et l'argent obtenus dans le tableau à la fin de la partie
-     * @param score
-     * @param argent
-     */
-    public void setScoreArgent (int score, int argent) {
-        this.tabScoreArgent[1] = score ;
-        this.tabScoreArgent[2] = argent ;
-    }
+    // Getteurs
 
     /**
      * @return liste du matériel et quantité disponible dans le niveau
@@ -197,5 +191,47 @@ public class Niveau {
      */
     public int getNbAssietteMax() {
         return nbAssietteMax;
+    }
+
+    // Setteurs
+
+    /**
+     * Permet de stocker le score et l'argent obtenus dans le tableau à la fin de la partie
+     * @param score
+     * @param argent
+     */
+    public void setScoreArgent (int score, int argent) {
+        this.tabScoreArgent[1] = score ;
+        this.tabScoreArgent[2] = argent ;
+    }
+
+    // Méthodes
+
+    /**
+     * Permet de remplir le tableau de client avec des clients et leur commande
+     * @return true si les clients ont bien été créés
+     */
+    public boolean creerClients () {
+        int attente ;
+        Recette recette ;
+        // Pour chaque client
+        for (int a = 0 ; a < this.clients.length ; a++) {
+            // Pour chaque temps d'attente
+            for (int b = 0 ; b < this.tmpsAttente.length ; b++) {
+                // Pour chaque recette
+                for (int c = 0 ; c < this.listeRecettes.size() ; c++) {
+                    // Pour chaque viande
+                    for (int d = 0 ; d < Recette.Steaks.values().length ; d++) {
+                        // définition du temps d'attente propre au client
+                        attente = this.tmpsAttente[b] ;
+                        // définition de la commande propre au client
+                        recette = new Recette(this.listeRecettes.get(c),Recette.Steaks.values()[d]) ;
+                        // création du client
+                        this.clients[a] = new Client (attente,recette) ;
+                    }
+                }
+            }
+        }
+        return true ;
     }
 }
