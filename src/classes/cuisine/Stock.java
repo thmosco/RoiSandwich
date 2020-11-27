@@ -5,17 +5,16 @@
  */
 package classes.cuisine;
 
-import classes.cuisine.materiel.Assiette;
 
+/**
+ * Commentaire de documentation de la classe GardeManger
+ * @version 1.0
+ * @author Thomas MOSCONI
+ *
+ * @version 2.0
+ * @author Maia DA SILVA
+ */
 public class Stock {
-	private Assiette[] stockassiette;
-	
-	public Stock(int  taille_du_stock) {
-		this.stockassiette = new Assiette[taille_du_stock];
-	}
-	private Assiette prendreAssiette() {
-		return stockassiette[stockassiette.length+1];
-		// à modifier lorsqu'on commencera javafx
-	}
+
 	
 }
