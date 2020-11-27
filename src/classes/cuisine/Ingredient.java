@@ -17,7 +17,7 @@ public class Ingredient {
 		CRU, CUIT, BRULE
 	}
 
-    public enum Nom{PATATE, SALADE, TOMATE, OIGNON, PAIN, FROMAGE, STEAK_DE_SOJA, STEAK_DE_POULET, STEAK_DE_BOEUF}
+    public enum Nom{POMME_DE_TERRE, SALADE, TOMATE, OIGNON, PAIN, FROMAGE, STEAK_DE_SOJA, STEAK_DE_POULET, STEAK_DE_BOEUF}
 
 	public Ingredient(Nom nom) {
 		this.nom = nom;
@@ -41,13 +41,6 @@ public class Ingredient {
 		return (this.getNom() == Nom.STEAK_DE_BOEUF
 				|| this.getNom() == Nom.STEAK_DE_POULET
 				|| this.getNom() == Nom.STEAK_DE_SOJA) ;
-	}
-
-	public boolean isDecoupable () {
-		return (this.getNom() == Nom.PATATE
-				|| this.getNom() == Nom.TOMATE
-				|| this.getNom() == Nom.OIGNON
-				|| this.getNom() == Nom.SALADE) ;
 	}
 
 	public void setTransformer(boolean etat) {

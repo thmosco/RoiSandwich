@@ -11,87 +11,42 @@ import java.util.Iterator;
  */
 public class Cuisine {
 
-    // Variables de classe
-
-    /**
-     * liste des assiettes disponibles dans la cuisine
-     */
-    private ArrayList assiettes ;
-    /**
-     * liste des planches à découper disponibles dans la cuisine
-     */
-    private ArrayList planchesDecoupe ;
-    /**
-     * station d'assemblage disponible dans la cuisine
-     */
-    private Assemblage assemblage;
-    /**
-     * lave vaisselle disponible dans la cuisine
-     */
-    private LaveVaisselle laveVaisselle ;
-    /**
-     * liste des friteuses à découper disponibles dans la cuisine
-     */
-    private ArrayList friteuses ;
-    /**
-     * liste des plaques de cuisson à découper disponibles dans la cuisine
-     */
-    private ArrayList plaquesCuisson ;
-    /**
-     * poubelle disponible dans la cuisine
-     */
-    private Poubelle poubelle ;
-
     /**
      * Constructeur
      * @param niveau
      */
     public Cuisine (Niveau niveau) {
-        // Initialisation des listes
-        this.assiettes = new ArrayList<Assiette>() ;
-        this.planchesDecoupe = new ArrayList<Decoupe>() ;
-        this.friteuses = new ArrayList<Friteuse>();
-        this.plaquesCuisson = new ArrayList<PlaqueCuisson>();
-
-        // Création des assiettes dans la quantité indiquée par le niveau
+        ArrayList assiettes = new ArrayList<Assiette>() ;
         for (int i = 0 ; i < niveau.getNbAssietteMax() ; i++) {
-           this.assiettes.add(new Assiette()) ;
+           //assiettes.add(new Assiette()) ;
         }
-
-        // Création des outils dans la cuisine
         Iterator iterator = niveau.getMateriel().keySet().iterator() ;
         while (iterator.hasNext()) {
-            // Création des planches à découper dans la quantité indiquée par le niveau
             if (iterator.next() instanceof Decoupe) {
+                ArrayList decoupes = new ArrayList<Decoupe>() ;
                 for (int i = 0 ; i < niveau.getMateriel().get(iterator.next()); i++) {
-                    this.planchesDecoupe.add(new Decoupe()) ;
+                    //decoupes.add(new Decoupe()) ;
                 }
-
-            // Création de la station d'assemblage et définition de sa capacité max d'accueil (selon le niveau)
-            } else if (iterator.next() instanceof Assemblage) {
-                this.assemblage = new Assemblage() ;
-                this.laveVaisselle.setCapaciteMax(niveau.getMateriel().get(iterator.next())) ;
-
-            // Création du lave vaisselle et définition de sa capacité max d'accueil (selon le niveau)
-            } else if (iterator.next() instanceof LaveVaisselle) {
-                this.laveVaisselle = new LaveVaisselle() ;
-                this.laveVaisselle.setCapaciteMax(niveau.getMateriel().get(iterator.next())) ;
-
-            // Création des friteuses dans la quantité indiquée par le niveau
+            } else if (iterator.next() instanceof Evier) {
+                ArrayList eviers = new ArrayList<Evier>() ;
+                for (int i = 0 ; i < niveau.getMateriel().get(iterator.next()); i++) {
+                    //eviers.add(new Evier()) ;
+                }
             } else if (iterator.next() instanceof Friteuse) {
+                ArrayList friteuses = new ArrayList<Friteuse>();
                 for (int i = 0; i < niveau.getMateriel().get(iterator.next()); i++) {
-                    this.friteuses.add(new Friteuse());
+                    //friteuses.add(new Friteuse());
                 }
-
-            // Création des plaques de cuisson dans la quantité indiquée par le niveau
             } else if (iterator.next() instanceof PlaqueCuisson) {
+                ArrayList plaques = new ArrayList<PlaqueCuisson>();
                 for (int i = 0; i < niveau.getMateriel().get(iterator.next()); i++) {
-                    this.plaquesCuisson.add(new PlaqueCuisson());
+                    //plaques.add(new PlaqueCuisson());
                 }
-
-            // Création de la poubelle
             } else if (iterator.next() instanceof Poubelle) {
-                this.poubelle = new Poubelle() ;
+                ArrayList poubelles = new ArrayList<Poubelle>();
+                for (int i = 0; i < niveau.getMateriel().get(iterator.next()); i++) {
+                    //poubelles.add(new Poubelle());
+                }
             }
         }
     }

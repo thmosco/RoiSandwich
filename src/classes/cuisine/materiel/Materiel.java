@@ -3,7 +3,7 @@ package classes.cuisine.materiel;
 import java.util.ArrayList;
 
 /**
- * Classe parent des outils
+ * Classe parents des différents outils utilisés pour la réalisation d'un plat
  * @version 1.0
  * @author Mickeal PIRRES
  */
@@ -24,21 +24,11 @@ public class Materiel {
      */
     public ArrayList objetsContenus;
 
-    /**
-     * Constructeur
-     * @param capaciteMax
-     * @param tempsExecution
-     */
+    // Constructeur
     public Materiel(int capaciteMax, int tempsExecution) {
         this.capaciteMax = capaciteMax ;
         this.tempsExecution = tempsExecution;
         objetsContenus = new ArrayList();
-    }
-
-    // Setteur
-
-    public void setCapaciteMax(int capaciteMax) {
-        this.capaciteMax = capaciteMax;
     }
 
     // Méthodes
@@ -56,11 +46,9 @@ public class Materiel {
      * @author Maia DA SILVA
      */
     public boolean ajouterObjet (Object objet) throws IllegalAccessException {
-        // Vérifier que le matériel n'a pas atteint sa capacité max
         if (this.objetsContenus.size() == this.capaciteMax) {
-            throw new IllegalArgumentException("plein");
+            throw new IllegalAccessException("plein");
         }
-        // Ajouter l'objet
         return this.objetsContenus.add(objet) ;
     }
 

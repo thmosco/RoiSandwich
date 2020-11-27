@@ -1,46 +1,39 @@
 package classes.cuisine.materiel;
-
 import classes.Recette;
 import classes.cuisine.Ingredient;
 
-/**
- * Classe enfant de matériel, assiette contenant des ingrédients / un plat
- * @version 1.0
- * @author Mickeal PIRRES
- */
+import java.util.Collections;
+
 public class Assiette extends Materiel {
 
-    /**
-     * Constructeur
-     */
     public Assiette() {
         super(10, 0);
     }
 
-    // Méthodes
-
-    /**
-     * @Override méthode ajouterObjet(Objet objet) de la classe Matériel
-     * Permet d'ajouter un ingrédient "dans" l'assiette
-     * @param ingredient
-     * @return true si l'ingrédient a bien été ajouté
-     * @throws IllegalAccessException
-     */
     public boolean ajouterObjet (Ingredient ingredient) throws IllegalAccessException {
-        return super.ajouterObjet(ingredient) ;
+        return super.ajouterObjet(assiette) ;
     }
 
-    /**
-     * @Override méthode retirerObjet(Objet objet) de la classe Matériel
-     * Permet de retirer un ingredient de l'assiette
-     * @param ingredient
-     * @return true si la l'ingredient a bien été retiré
-     *
-     * @version 1.0
-     * @author Maia DA SILVA
-     */
-    public boolean retirerObjet(Ingredient ingredient) {
-        return this.objetsContenus.remove(ingredient) ;
+    public boolean fairePlat(Recette recette) throws IllegalAccessException {
+        boolean checked = true ;
+        int quantite = 0 ;
+        for (int i = 0 ; i < this.objetsContenus.size() ; i++) {
+            if (recette.ingredients.containsKey(this.objetsContenus.get(i))) {
+                quantite = recette.ingredients.get(this.objetsContenus.get(i));
+                if (Collections.frequency(this.objetsContenus, this.objetsContenus.get(i)) != quantite) {
+                    checked = false ;
+                }
+            } else {
+                checked = false ;
+            }
+        }
+        if (checked) {
+            this.objetsContenus.clear();
+            this.ajouterObjet(recette);
+            return true ;
+        } else {
+            return false ;
+        }
     }
 
 }
