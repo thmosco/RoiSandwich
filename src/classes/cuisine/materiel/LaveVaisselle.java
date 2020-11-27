@@ -14,10 +14,9 @@ public class LaveVaisselle extends Materiel {
 
     /**
      * Constructeur
-     * @param capaciteMax
      */
-    public LaveVaisselle(int capaciteMax) {
-        super(capaciteMax, 10);
+    public LaveVaisselle() {
+        super(1, 10);
     }
 
     // Méthodes
