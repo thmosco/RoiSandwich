@@ -75,7 +75,7 @@ public class Controller implements Initializable {
 
 	public void prendreIngredient(MouseEvent event) {
 		// Niveau.getIngredient();
-		Ingredient ingredient = new Ingredient(Nom.POMME_DE_TERRE);
+		Ingredient ingredient = new Ingredient(Nom.PATATE);
 		this.container = ingredient;
 	}
 
@@ -94,7 +94,7 @@ public class Controller implements Initializable {
 
 	public void interagirDansFriteuse(MouseEvent event) {
 		if (container instanceof Ingredient) {
-			if (((Ingredient) container).getNom() == Nom.POMME_DE_TERRE) {
+			if (((Ingredient) container).getNom() == Nom.PATATE) {
 				((Ingredient) container).setEtat(Etat.CUIT);
 				System.out.println("Ingredient cuit");
 			} else {
