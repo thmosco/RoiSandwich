@@ -97,18 +97,17 @@ public class Controller implements Initializable {
 			if (((Ingredient) container).getNom() == Nom.POMME_DE_TERRE) {
 				((Ingredient) container).setEtat(Etat.CUIT);
 				System.out.println("Ingredient cuit");
-			}
-			else {
+			} else {
 				System.out.println("Cette ingredient ne peut pas aller dans la friteuse");
-				}
-			
+			}
+
 		}
 	}
 
 	public void interagirDansLaveVaisselle(MouseEvent event) {
 		if (container != null) {
 			if (container instanceof Assiette) {
-					System.out.println("Assiette dans Lave Vaiselle");
+				System.out.println("Assiette dans Lave Vaiselle");
 			} else {
 				System.out.println("Ceci n'est pas une assiette");
 			}
@@ -119,10 +118,11 @@ public class Controller implements Initializable {
 
 	public void interagirPlaqueCuisson(MouseEvent event) {
 		if (container instanceof IngredientCuit) {
-				((Ingredient) container).setEtat(Etat.CUIT);
-				System.out.println(((Ingredient) container).getEtat());
-			}
-		else { System.out.println("Cette ingredient ne peut pas aller sur les plaque de cuisson");}
+			((Ingredient) container).setEtat(Etat.CUIT);
+			System.out.println(((Ingredient) container).getEtat());
+		} else {
+			System.out.println("Cette ingredient ne peut pas aller sur les plaque de cuisson");
+		}
 	}
 
 	public void interagirAssemblage(MouseEvent event) {
