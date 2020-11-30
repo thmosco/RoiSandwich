@@ -4,8 +4,8 @@ import classes.cuisine.materiel.Assiette;
 import java.util.HashMap;
 
 /**
- * Commentaire de documentation de la classe
- * @version 1.0
+ * Comptoir qui accueille jusqu'à 3 clients et leur commande
+ * @version 2.0
  * @author Maïa DA SILVA
  */
 public class Comptoir {
@@ -13,11 +13,13 @@ public class Comptoir {
     // Variables de classes
 
     /**
-     *
+     * liste représentant le comptoir
      */
     private HashMap<Client, Assiette> comptoir ;
 
-    // Constructeur
+    /**
+     * Constructeur
+     */
     public Comptoir () {
         this.comptoir = new HashMap<Client,Assiette>() ;
     }
