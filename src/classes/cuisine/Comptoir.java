@@ -56,6 +56,21 @@ public class Comptoir {
     }
 
     /**
+     * Permet de débarrasser un client du comptoir
+     * @param client
+     * @return true si le client a été débarrassé
+     */
+    public boolean servirClient (Client client) {
+        if (this.comptoir.get(client) == null ) {
+            // client pas servit
+            return false ;
+        }
+        this.comptoir.replace(client,null) ;
+        return true ;
+    }
+
+
+    /**
      * Retirer un client du comptoir
      * @param client
      * @return true si le client a bien été retirer
