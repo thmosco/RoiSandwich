@@ -1,10 +1,6 @@
 package classes;
 import classes.cuisine.* ;
-import classes.cuisine.materiel.Decoupe;
-import classes.cuisine.materiel.Evier;
-import classes.cuisine.materiel.Materiel;
-import classes.cuisine.materiel.PlaqueCuisson;
-import classes.cuisine.materiel.Poubelle;
+import classes.cuisine.materiel.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,7 +41,7 @@ public class Niveau {
     /**
      * Liste du matériel et leur nombre disponible dans le niveau
      */
-    private static HashMap<Materiel,Integer> materiel ;
+    private HashMap<Materiel,Integer> materiel ;
     /**
      * Liste des ingrédients et leur quantité disponibles dans le niveau
      */
@@ -109,7 +105,6 @@ public class Niveau {
                 quantiteOutilsCuisson = 1 ;
                 quantiteDecoupe = 1 ;
                 break ;
-            
             // niveau 2
             case 2 :
                 this.scoreMin = 300 ;
@@ -132,7 +127,6 @@ public class Niveau {
                 this.listeRecettes.add(Recette.NomsRecettes.MAXI) ;
 
                 break ;
-            
             // niveau 3
             case 3 :
                 this.scoreMin = 600 ;
@@ -181,7 +175,7 @@ public class Niveau {
     /**
      * @return liste du matériel et quantité disponible dans le niveau
      */
-    public static HashMap<Materiel, Integer> getMateriel() {
+    public HashMap<Materiel, Integer> getMateriel() {
         return materiel;
     }
 

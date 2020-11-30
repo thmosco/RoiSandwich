@@ -42,13 +42,13 @@ public class Recette {
         this.ingredients = new HashMap<>();
         switch (this.nom) {
             case FRITES:
-                this.ingredients.put(new Ingredient(Ingredient.Nom.POMME_DE_TERRE), 1);
+                this.ingredients.put(new Ingredient(Ingredient.Nom.PATATE), 1);
                 break;
             case MAXI:
                 recetteBurger(2, this.viande);
                 break;
             case MENU:
-                this.ingredients.put(new Ingredient(Ingredient.Nom.POMME_DE_TERRE), 1);
+                this.ingredients.put(new Ingredient(Ingredient.Nom.PATATE), 1);
             case SIMPLE:
                 recetteBurger(1, this.viande);
         }
