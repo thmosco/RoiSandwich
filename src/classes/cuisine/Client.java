@@ -53,35 +53,48 @@ public class Client {
      * @throws IllegalAccessException
      */
     public boolean verifierPlat(Assiette assiette) throws IllegalAccessException {
-        ArrayList<Boolean> checked = new ArrayList<Boolean>() ;
-        boolean check = true ;
-        int quantite = 0 ;
+        // vérifier que le nom du plat servit est le bon
+        if (verifierNomRecette(assiette)) {
+            ArrayList<Boolean> checked = new ArrayList<Boolean>() ;
+            boolean check = true ;
+            int quantite = 0 ;
 
-        // Récupération des ingrédient de la recette
-        Set<Ingredient> listeIngredient = this.commande.ingredients.keySet() ;
-        Iterator iterator = listeIngredient.iterator() ;
+            // Récupération des ingrédient de la recette
+            Set<Ingredient> listeIngredient = this.commande.ingredients.keySet() ;
+            Iterator iterator = listeIngredient.iterator() ;
 
-        // Pour chaque ingrédient de la recette
-        while (iterator.hasNext()) {
-            // Vérifier qu'il est présent dans l'assiette
-            if (assiette.objetsContenus.contains(iterator.next())) {
-                Ingredient ingredient = (Ingredient) iterator.next();
-                // Vérifier qu'il est présent en bonne quantité dans l'assiette
-                quantite = this.commande.ingredients.get(iterator.next());
-                check = verifierQuantite(assiette.objetsContenus,ingredient,quantite) ;
-                // S'il s'agit d'un steak ou d'une patate : vérifier la cuisson
-                check = verifierCuisson(ingredient) ;
-                // S'il s'agit d'un ingrédient découpable : vérifier qu'il est découpé
-                check = verifierDecoupage(ingredient) ;
-            } else {
-                check = false ;
+            // Pour chaque ingrédient de la recette
+            while (iterator.hasNext()) {
+                // Vérifier qu'il est présent dans l'assiette
+                if (assiette.objetsContenus.contains(iterator.next())) {
+                    Ingredient ingredient = (Ingredient) iterator.next();
+                    // Vérifier qu'il est présent en bonne quantité dans l'assiette
+                    quantite = this.commande.ingredients.get(iterator.next());
+                    check = verifierQuantite(assiette.objetsContenus,ingredient,quantite) ;
+                    // S'il s'agit d'un steak ou d'une patate : vérifier la cuisson
+                    check = verifierCuisson(ingredient) ;
+                    // S'il s'agit d'un ingrédient découpable : vérifier qu'il est découpé
+                    check = verifierDecoupage(ingredient) ;
+                } else {
+                    check = false ;
+                }
+                // Ajouter le résultat de la vérification de l'ingrédient à la liste des vérifications
+                checked.add(check) ;
             }
-            // Ajouter le résultat de la vérification de l'ingrédient à la liste des vérifications
-            checked.add(check) ;
-        }
 
-        // Si un aliment a un résultat négatif alors la commande n'a pas été respectée
-        return !(checked.contains(false)) ;
+            // Si un aliment a un résultat négatif alors la commande n'a pas été respectée
+            return !(checked.contains(false)) ;
+        }
+        return false ;
+    }
+
+    /**
+     * Permet de vérifié que le nom plat annoncé lors du service correspond à la commande
+     * @param assiette
+     * @return true si le nom du plat de l'assiette correspond au nom du plat commandé
+     */
+    public boolean verifierNomRecette (Assiette assiette) {
+        return assiette.getPlat() == this.commande.getNom() ;
     }
 
     /**
