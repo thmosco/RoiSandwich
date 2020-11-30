@@ -10,7 +10,7 @@ import classes.cuisine.Ingredient;
  */
 public class Assiette extends Materiel {
 
-    private Recette.NomsRecettes nomPlat ;
+    private Recette.Noms nomPlat ;
 
     /**
      * Constructeur
@@ -26,7 +26,7 @@ public class Assiette extends Materiel {
      * @return le nom du plat contenu dans l'assiette
      * @return null si aucun plat n'a été créé par le joueur
      */
-    public Recette.NomsRecettes getPlat() {
+    public Recette.Noms getPlat() {
         return this.nomPlat ;
     }
 
@@ -36,7 +36,7 @@ public class Assiette extends Materiel {
      * Permet au joueur d'indiqquer quel plat il a créé
      * @param nomRecette
      */
-    public void setPlat(Recette.NomsRecettes nomRecette) {
+    public void setPlat(Recette.Noms nomRecette) {
         this.nomPlat = nomRecette ;
     }
 
