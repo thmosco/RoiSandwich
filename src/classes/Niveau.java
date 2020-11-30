@@ -41,7 +41,7 @@ public class Niveau {
     /**
      * Liste des recettes disponibles dans le niveau
      */
-    private ArrayList<Recette.NomsRecettes> listeRecettes ;
+    private ArrayList<Recette.Noms> listeRecettes ;
     /**
      * Liste du matériel et leur nombre disponible dans le niveau
      */
@@ -86,9 +86,9 @@ public class Niveau {
         int quantiteOutilsCuisson ;
         int quantiteDecoupe ;
 
-        this.listeRecettes = new ArrayList<Recette.NomsRecettes>() ;
-        this.listeRecettes.add(Recette.NomsRecettes.FRITES) ;
-        this.listeRecettes.add(Recette.NomsRecettes.SIMPLE) ;
+        this.listeRecettes = new ArrayList<Recette.Noms>() ;
+        this.listeRecettes.add(Recette.Noms.FRITES) ;
+        this.listeRecettes.add(Recette.Noms.SIMPLE) ;
 
         // Réglages du niveau
         switch (this.numNiveau) {
@@ -129,7 +129,7 @@ public class Niveau {
                 quantiteDecoupe = 2 ;
 
                 // ajout d'une nouvelle recette
-                this.listeRecettes.add(Recette.NomsRecettes.MAXI) ;
+                this.listeRecettes.add(Recette.Noms.MAXI) ;
 
                 break ;
             // niveau 3
@@ -151,7 +151,7 @@ public class Niveau {
                 quantiteDecoupe = 2 ;
 
                 // ajout d'une nouvelle recette
-                this.listeRecettes.add(Recette.NomsRecettes.MENU) ;
+                this.listeRecettes.add(Recette.Noms.MENU) ;
         }
 
         this.tmpsAttente[0] = tempsMin ;
