@@ -51,10 +51,13 @@ public class LaveVaisselle extends Materiel {
      */
     public boolean nettoyer() {
         Assiette assiette ;
-        // Pour chaque assiette, on vide le contenu
+        // Pour chaque assiette
         for (int i = 0 ; i < this.objetsContenus.size() ; i++) {
             assiette = (Assiette) this.objetsContenus.get(i) ;
+            // on vide le contenu
             assiette.objetsContenus.clear() ;
+            // on rénitialise le nom du plat contenu
+            assiette.setPlat(null);
         }
         return true ;
     }
