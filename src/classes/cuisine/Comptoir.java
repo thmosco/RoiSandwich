@@ -51,7 +51,7 @@ public class Comptoir {
             // client déjà servit
             return false ;
         }
-        this.comptoir.replace(client,assiette) ;
+        this.comptoir.replace(client, null, assiette) ;
         return true ;
     }
 
