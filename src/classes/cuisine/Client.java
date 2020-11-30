@@ -111,7 +111,7 @@ public class Client {
      * @return true si l'ingrédient est découpé
      */
     public boolean verifierDecoupage(Ingredient ingredient) {
-        return (ingredient.isDecoupable() && ingredient.getTransformer() == true) ;
+        return (ingredient.isDecoupable() && ingredient.getTransformer() == false) ;
     }
 
 }
