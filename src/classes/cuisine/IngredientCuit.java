@@ -48,4 +48,14 @@ public class IngredientCuit extends Ingredient {
 	public int getTempsCuisson() {
 		return tmpsCuisson;
 	}
+	
+	
+	//mickael
+	public IngredientCuit(Nom nom, String urlImage) {
+		super(nom, urlImage);
+	}
+
+	public int getTempsCuisson() {
+		return tempsCuisson;
+	}
 }

@@ -23,7 +23,6 @@ public class Ingredient {
 	 * Etat de cuisson de l'ingrédient
 	 */
 	private Etat etat;
-
 	/**
 	 * Enumération des différents etats de cuisson possibles
 	 */
@@ -46,6 +45,20 @@ public class Ingredient {
 		this.etat = Etat.CRU;
     	this.transformer = false ;
 	}
+	
+	
+	// mickael
+	String urlImage;
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public Ingredient(Nom nom, String urlImage) {
+		this.nom = nom;
+		this.etat = Etat.CRU;
+		this.transformer = false;
+    this.urlImage = urlImage;
+  }
 
 	// Getteurs
 
@@ -53,16 +66,16 @@ public class Ingredient {
 	 * @return l'état de cuisson d'un ingrédient
 	 */
 	public Etat getEtat() {
-    	return this.etat;
-    }
+		return this.etat;
+	}
 
 	/**
 	 * Retourne l'état de transformation d'un ingrédient
 	 * @return true si l'ingrédient est découpé, false sinon
 	 */
 	public boolean getTransformer() {
-    	return transformer;
-    }
+		return transformer;
+	}
 
 	/**
 	 * @return le nom de l'ingrédient
