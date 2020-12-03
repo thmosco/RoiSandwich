@@ -60,7 +60,7 @@ public class Comptoir {
      * @param client
      * @return true si le client a été débarrassé
      */
-    public boolean servirClient (Client client) {
+    public boolean debarrasserClient (Client client) {
         if (this.comptoir.get(client) == null ) {
             // client pas servit
             return false ;
