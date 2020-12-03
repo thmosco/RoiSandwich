@@ -48,6 +48,7 @@ public class Recette {
         this.nom = nom;
         this.viande = viande;
         this.ingredients = new HashMap<>();
+        // initialisation des ingrédients
         switch (this.nom) {
             case FRITES:
                 this.ingredients.put(new Ingredient(Ingredient.Nom.PATATE), 1);
@@ -96,11 +97,13 @@ public class Recette {
      * @param viande
      */
     private void recetteBurger(int nbSteak, Steaks viande) {
+        // ingrédients de base
         this.ingredients.put(new Ingredient(Ingredient.Nom.SALADE), 1);
         this.ingredients.put(new Ingredient(Ingredient.Nom.TOMATE), 1);
         this.ingredients.put(new Ingredient(Ingredient.Nom.OIGNON), 1);
         this.ingredients.put(new Ingredient(Ingredient.Nom.PAIN), 1);
         this.ingredients.put(new Ingredient(Ingredient.Nom.FROMAGE), 1);
+        // précision du steak
         Ingredient.Nom typeSteak;
         if (viande == Steaks.BOEUF) {
             typeSteak = Ingredient.Nom.STEAK_DE_BOEUF;
