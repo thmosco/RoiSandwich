@@ -109,7 +109,6 @@ public class Niveau {
                 capaciteLaveVaisselle = 2 ;
                 quantiteOutilsCuisson = 1 ;
                 quantiteDecoupe = 1 ;
-                System.out.println() ;
                 break ;
             // niveau 2
             case 2 :
