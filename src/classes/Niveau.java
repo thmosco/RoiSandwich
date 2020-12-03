@@ -56,9 +56,7 @@ public class Niveau {
     private int nbAssietteMax ;
 
     private Comptoir comptoir ;
-    private GardeManger gardeManger ;
     private Cuisine cuisine ;
-    private Stock stock ;
 
     /**
      * Constructeur
@@ -70,7 +68,6 @@ public class Niveau {
 
         this.comptoir = new Comptoir() ;
         this.cuisine = new Cuisine(this) ;
-        this.stock = new Stock() ;
 
         this.tmpsAttente = new int [3] ;
         int tempsMin ;
@@ -162,8 +159,6 @@ public class Niveau {
         for (int i = 0 ; i < ingredients.length ; i++) {
             this.ingredient.put(new Ingredient(ingredients[i]), quantiteIngredient) ;
         }
-
-        this.gardeManger = new GardeManger(this) ;
 
         // définition d'outils associés à leur quantité
         this.materiel.put(new Decoupe(),quantiteDecoupe) ;
