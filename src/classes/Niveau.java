@@ -69,7 +69,6 @@ public class Niveau {
         this.tabScoreArgent = new int [2];
 
         this.comptoir = new Comptoir() ;
-        this.gardeManger = new GardeManger(this) ;
         this.cuisine = new Cuisine(this) ;
         this.stock = new Stock() ;
 
@@ -163,6 +162,8 @@ public class Niveau {
         for (int i = 0 ; i < ingredients.length ; i++) {
             this.ingredient.put(new Ingredient(ingredients[i]), quantiteIngredient) ;
         }
+
+        this.gardeManger = new GardeManger(this) ;
 
         // définition d'outils associés à leur quantité
         this.materiel.put(new Decoupe(),quantiteDecoupe) ;
