@@ -2,14 +2,17 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.awt.event.ActionEvent;
 import java.net.URL;
+
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -87,7 +90,7 @@ public class Controller implements Initializable {
 	@FXML
 	ImageView garde_manger;
 
-	// containerView à supprimer quand tout marche
+	// containerView Ã  supprimer quand tout marche
 	@FXML
 	ImageView containerView;
 
@@ -96,9 +99,9 @@ public class Controller implements Initializable {
 		String id = source.getId();
 		System.out.println(id);
 		typeIngredient(id);
-		System.out.println(container + " a été ajouté");
+		System.out.println(container + " a Ã©tÃ© ajoutÃ©");
 
-		// met l'image de l'ingredient dans un container (à supprimer à la fin, Mickael)
+		// met l'image de l'ingredient dans un container (Ã  supprimer Ã  la fin, Mickael)
 		containerView.setImage(new Image(((Ingredient) container).getUrlImage()));
 	}
 
@@ -109,10 +112,10 @@ public class Controller implements Initializable {
 				try {
 					// met l'image de l'ingredient dans l'imageview du materiel (mickael)
 					containerDansDecoupe.setImage(new Image(((Ingredient) container).getUrlImage()));
-					// enleve l'image dans container (à supprimer à la fin, Mickael)
+					// enleve l'image dans container (Ã  supprimer Ã  la fin, Mickael)
 					containerView.setVisible(false);
 					plancheADecoupe.ajouterObjet((Ingredient) container);
-					System.out.println(((Ingredient) container).getNom() + " a été découpé");
+					System.out.println(((Ingredient) container).getNom() + " a Ã©tÃ© dÃ©coupÃ©");
 					container = null;
 				} catch (IllegalAccessException e) {
 					// TODO Auto-generated catch block
@@ -120,11 +123,11 @@ public class Controller implements Initializable {
 				}
 			}
 		} else {
-//			System.out.println(((Ingredient) container).getNom() + " a été découpé ");
+//			System.out.println(((Ingredient) container).getNom() + " a Ã©tÃ© dÃ©coupÃ© ");
 			container = plancheADecoupe.objetsContenus.get(0);
 			System.out.println(container.toString());
 
-			// supprime l'image de l'ingrédient dans l'imageview du materiel(mickael)
+			// supprime l'image de l'ingrÃ©dient dans l'imageview du materiel(mickael)
 			plancheADecoupe.retirerObjet((Ingredient) container);
 			containerDansDecoupe.setVisible(false);
 			containerView.setVisible(true);
@@ -155,17 +158,17 @@ public class Controller implements Initializable {
 								e.printStackTrace();
 							}
 						} else {
-							System.out.println("déja cuit");
+							System.out.println("dÃ©ja cuit");
 						}
 					} else {
-						System.out.println("veuillez découper les pommes de terre avant de les cuir");
+						System.out.println("veuillez dÃ©couper les pommes de terre avant de les cuir");
 					}
 				} else {
 					System.out.println("Cette ingredient ne peut pas aller dans la friteuse");
 				}
 			}
 		} else if (appareilAFritte.objetsContenus.size() != 0) {
-			System.out.println("Vous avez récupéré l'ingredient dans la fritteuse ");
+			System.out.println("Vous avez rÃ©cupÃ©rÃ© l'ingredient dans la fritteuse ");
 			container = appareilAFritte.objetsContenus.get(0);
 			containerDansFritteuse.setVisible(false);
 			appareilAFritte.retirerObjet(((Ingredient) container));
@@ -224,7 +227,7 @@ public class Controller implements Initializable {
 		if (container != null) {
 			if (container instanceof Ingredient) {
 				container = null;
-				System.out.println("Items supprimé");
+				System.out.println("Items supprimÃ©");
 			} else {
 				System.out.println("Ceci n'est pas un Ingredient");
 			}
@@ -248,6 +251,7 @@ public class Controller implements Initializable {
 		}
 
 	}
+
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

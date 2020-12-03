@@ -1,15 +1,22 @@
 package classes.cuisine.materiel;
 
-public class PlaqueCuisson extends Materiel {
+import classes.cuisine.IngredientCuit;
 
-    public PlaqueCuisson(int capaciteMax, int tempsExecution) {
-        super(capaciteMax, tempsExecution);
-        // TODO Auto-generated constructor stub
+/**
+ * Classe enfant de matérielDeCuisson, contient des steaks
+ * @version 1.0
+ * @author Mickeal PIRRES
+ *
+ * @version 2.0
+ * @author Maïa DA SILVA
+ */
+public class PlaqueCuisson extends MaterielDeCuisson {
+
+    /**
+     * Constructeur
+     */
+    public PlaqueCuisson() {
+        super();
     }
-
-    public void cuire() {
-
-    }
-
 
 }
