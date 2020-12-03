@@ -133,10 +133,4 @@ public class GardeManger {
 			}
 		}
 	}
-	
-	public Ingredient saisirUnIngredient(Nom nom) {
-		Ingredient ingredient = new Ingredient(nom);
-		return ingredient;
-	}
-	
 }
