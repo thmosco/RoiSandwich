@@ -27,9 +27,13 @@ public class Niveau {
      */
     private int[] tabScoreArgent ;
     /**
-     * Tableau des clients qui apparaitront au cours de la partie
+     * Liste des clients qui apparaitront au cours de la partie
      */
-    private Client [] clients ;
+    private ArrayList<Client> clients ;
+    /**
+     * Nombre maximum de clients qui apparaitront au cours de la partie
+     */
+    private int nbMaxClients ;
     /**
      * Tableau des clients qui apparaitront au cours de la partie
      */
@@ -37,7 +41,7 @@ public class Niveau {
     /**
      * Liste des recettes disponibles dans le niveau
      */
-    private ArrayList<Recette.NomsRecettes> listeRecettes ;
+    private ArrayList<Recette.Noms> listeRecettes ;
     /**
      * Liste du matériel et leur nombre disponible dans le niveau
      */
@@ -72,6 +76,7 @@ public class Niveau {
         this.tmpsAttente = new int [3] ;
         int tempsMin ;
 
+        this.clients = new ArrayList<Client>() ;
         this.ingredient = new HashMap<Ingredient,Integer>() ;
         this.materiel = new HashMap<Materiel,Integer>() ;
 
@@ -81,9 +86,9 @@ public class Niveau {
         int quantiteOutilsCuisson ;
         int quantiteDecoupe ;
 
-        this.listeRecettes = new ArrayList<Recette.NomsRecettes>() ;
-        this.listeRecettes.add(Recette.NomsRecettes.FRITES) ;
-        this.listeRecettes.add(Recette.NomsRecettes.SIMPLE) ;
+        this.listeRecettes = new ArrayList<Recette.Noms>() ;
+        this.listeRecettes.add(Recette.Noms.FRITES) ;
+        this.listeRecettes.add(Recette.Noms.SIMPLE) ;
 
         // Réglages du niveau
         switch (this.numNiveau) {
@@ -91,7 +96,7 @@ public class Niveau {
             default:
                 this.scoreMin = 0 ;
                 this.nbAssietteMax = 25 ;
-                this.clients = new Client[25] ;
+                this.nbMaxClients = 25 ;
 
                 // définition du temps d'attente maximum
                 tempsMin = 30 ;
@@ -109,7 +114,7 @@ public class Niveau {
             case 2 :
                 this.scoreMin = 300 ;
                 this.nbAssietteMax = 9 ;
-                this.clients = new Client[50] ;
+                this.nbMaxClients = 50 ;
 
                 // définition du temps d'attente maximum
                 tempsMin = 20 ;
@@ -124,14 +129,14 @@ public class Niveau {
                 quantiteDecoupe = 2 ;
 
                 // ajout d'une nouvelle recette
-                this.listeRecettes.add(Recette.NomsRecettes.MAXI) ;
+                this.listeRecettes.add(Recette.Noms.MAXI) ;
 
                 break ;
             // niveau 3
             case 3 :
                 this.scoreMin = 600 ;
                 this.nbAssietteMax = 6 ;
-                this.clients = new Client[75] ;
+                this.nbMaxClients = 75 ;
 
                 // définition du temps d'attente maximum
                 tempsMin = 20 ;
@@ -146,7 +151,7 @@ public class Niveau {
                 quantiteDecoupe = 2 ;
 
                 // ajout d'une nouvelle recette
-                this.listeRecettes.add(Recette.NomsRecettes.MENU) ;
+                this.listeRecettes.add(Recette.Noms.MENU) ;
         }
 
         this.tmpsAttente[0] = tempsMin ;
@@ -215,7 +220,7 @@ public class Niveau {
         int attente ;
         Recette recette ;
         // Pour chaque client
-        for (int a = 0 ; a < this.clients.length ; a++) {
+        for (int a = 0 ; a < this.clients.size() ; a++) {
             // Pour chaque temps d'attente
             for (int b = 0 ; b < this.tmpsAttente.length ; b++) {
                 // Pour chaque recette
@@ -227,7 +232,7 @@ public class Niveau {
                         // définition de la commande propre au client
                         recette = new Recette(this.listeRecettes.get(c),Recette.Steaks.values()[d]) ;
                         // création du client
-                        this.clients[a] = new Client (attente,recette) ;
+                        this.clients.add(new Client (attente,recette)) ;
                     }
                 }
             }

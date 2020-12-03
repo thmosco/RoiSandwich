@@ -5,25 +5,33 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * Commentaire de documentation de la classe
- * @version 1.0
+ * Commentaire de documentation de la classe Joueur
+ * @version 2.0
  * @author Maïa DA SILVA
  */
 public class Joueur {
 
     // Variables de classe
 
-    // argent gagné par le joueur au fur et à mesure des parties
+    /**
+     * argent gagné par le joueur au total (évolue au fur et à mesure des parties)
+     */
     private int argent ;
 
-    // liste associant le niveau (key) et le score obtenu (value)
+    /**
+     *  liste associant le niveau (key) et le score obtenu (value)
+     */
     private HashMap<Integer,Integer> scores ;
 
-    // Constructeur
+    /**
+     * Constructeur
+     */
     public Joueur () {
         this.argent = 0 ;
         this.scores = new HashMap<Integer,Integer>() ;
     }
+
+    // Getteurs
 
     /**
      * @return argent possédé par le joueur
@@ -39,7 +47,6 @@ public class Joueur {
     public ArrayList<Integer> getScore(int niveau) {
         ArrayList scoreRecherche = new ArrayList<Integer>() ;
         Iterator iterator = this.scores.keySet().iterator() ;
-        int compteur = 0 ;
         while (iterator.hasNext()) {
             if (iterator.next().equals(niveau)) {
                 scoreRecherche.add(this.scores.get(iterator.next())) ;
@@ -48,8 +55,10 @@ public class Joueur {
         return scoreRecherche ;
     }
 
+    // Setteurs
+
     /**
-     * Permet d'ajouter l'argent gagné par le joueur à sa cagnotte
+     * Permet d'ajouter l'argent gagné par le joueur lors d'une partie à sa cagnotte
      * @param montant
      */
     public void setArgent (int montant) {
@@ -63,5 +72,13 @@ public class Joueur {
      */
     public void setScores (int niveau, int score) {
         this.scores.put(niveau,score) ;
+    }
+
+    // Méthodes
+
+    public boolean lancerPartie(int niveau) {
+        Niveau partie = new Niveau(niveau) ;
+        // lancer timer
+        return true ;
     }
 }
