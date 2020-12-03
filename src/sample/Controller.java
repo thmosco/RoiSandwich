@@ -28,7 +28,7 @@ public class Controller implements Initializable {
 	private Object container;
 
 	// mickael
-	private Ingredient patate = new Ingredient(Nom.POMME_DE_TERRE, "image/amandine.png");
+	private Ingredient patate = new Ingredient(Nom.PATATE, "image/amandine.png");
 	private IngredientCuit beef = new IngredientCuit(Nom.STEAK_DE_BOEUF, "image/dsc_0315.jpg");
 	private Decoupe plancheADecoupe = new Decoupe();
 	private Friteuse appareilAFritte = new Friteuse();
@@ -103,6 +103,8 @@ public class Controller implements Initializable {
 
 		// met l'image de l'ingredient dans un container (à supprimer à la fin, Mickael)
 		containerView.setImage(new Image(((Ingredient) container).getUrlImage()));
+		
+		
 	}
 
 	public void interagirDansDecoupe(MouseEvent event) {
@@ -249,8 +251,9 @@ public class Controller implements Initializable {
 		default:
 			container = null;
 		}
-
+		
 	}
+
 
 
 	@Override
