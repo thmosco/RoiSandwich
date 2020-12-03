@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,9 +18,9 @@
             <Image url="@../image/Web_1920_1.jpg" />
          </image>
       </ImageView>
-      <ImageView id="decoupe" fx:id="decoupe" fitHeight="205.0" fitWidth="261.0" layoutX="63.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="plaque_cuisson" fx:id="plaque_cuisson" fitHeight="104.0" fitWidth="267.0" layoutX="328.0" layoutY="462.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="friteuse" fx:id="friteuse" fitHeight="104.0" fitWidth="267.0" layoutX="328.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView id="decoupe" fx:id="decoupe" fitHeight="205.0" fitWidth="261.0" layoutX="63.0" layoutY="463.0" onMouseClicked="#decouper" pickOnBounds="true" preserveRatio="true" />
+      <ImageView id="plaque_cuisson" fx:id="plaque_cuisson" fitHeight="104.0" fitWidth="267.0" layoutX="328.0" layoutY="462.0" onMouseClicked="#cuir" pickOnBounds="true" preserveRatio="true" />
+      <ImageView id="friteuse" fx:id="friteuse" fitHeight="104.0" fitWidth="267.0" layoutX="328.0" layoutY="566.0" onMouseClicked="#frire" pickOnBounds="true" preserveRatio="true" />
       <ImageView id="assemblage" fx:id="assemblage" fitHeight="205.0" fitWidth="267.0" layoutX="595.0" layoutY="462.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView id="evier" fx:id="evier" fitHeight="205.0" fitWidth="267.0" layoutX="862.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView id="garde_manger" fitHeight="114.0" fitWidth="495.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true" />
@@ -47,10 +48,16 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fx:id="ingredient1" fitHeight="38.0" fitWidth="161.0" onMouseClicked="#salade" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="PATATE" fitHeight="38.0" fitWidth="109.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../image/patate.jpg" />
+               </image></ImageView>
             <ImageView id="ingredient4" fx:id="ingredient4" fitHeight="38.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
             <ImageView id="ingredient7" fx:id="ingredient7" fitHeight="38.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
-            <ImageView id="ingredient2" fx:id="ingredient2" fitHeight="38.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+            <ImageView id="STEAK_DE_BOEUF" fx:id="STEAK_DE_BOEUF" fitHeight="38.0" fitWidth="161.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../image/boeuf.jpg" />
+               </image></ImageView>
             <ImageView id="ingredient5" fx:id="ingredient5" fitHeight="38.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ImageView id="ingredient8" fx:id="ingredient8" fitHeight="38.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ImageView id="ingredient3" fx:id="ingredient3" fitHeight="38.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
@@ -58,5 +65,6 @@
             <ImageView id="ingredient9" fx:id="ingredient9" fitHeight="38.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
+      <Label fx:id="containerLabel" layoutX="1092.0" layoutY="14.0" prefHeight="17.0" prefWidth="82.0" text="containerLabel" />
    </children>
 </AnchorPane>

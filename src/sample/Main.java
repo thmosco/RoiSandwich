@@ -1,6 +1,7 @@
 package sample;
 
 
+import classes.Niveau;
 import classes.cuisine.Ingredient;
 import classes.cuisine.Ingredient.Nom;
 
@@ -16,11 +17,14 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	
 	
-
+	public static Niveau niveau1;
+	
     @Override
     public void start(Stage primaryStage) throws Exception{
 
     	Parent root = FXMLLoader.load(getClass().getResource("niveau1.fxml"));
+		niveau1 = new Niveau(1);
+
 
 		primaryStage.setTitle("RoiSandwich");
 		primaryStage.setScene(new Scene(root));

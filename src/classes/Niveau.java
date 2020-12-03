@@ -69,7 +69,7 @@ public class Niveau {
         this.tabScoreArgent = new int [2];
 
         this.comptoir = new Comptoir() ;
-        this.gardeManger = new GardeManger(this) ;
+        
         this.cuisine = new Cuisine(this) ;
         this.stock = new Stock() ;
 
@@ -156,7 +156,7 @@ public class Niveau {
 
         this.tmpsAttente[0] = tempsMin ;
         this.tmpsAttente[1] = tempsMin + tempsMin / 2 ;
-        this.tmpsAttente[3] = tempsMin * 2 ;
+//        this.tmpsAttente[3] = tempsMin * 2 ;
 
         // définition des ingrédients associés à leur quantité
         Ingredient.Nom [] ingredients = Ingredient.Nom.values() ;
@@ -173,7 +173,11 @@ public class Niveau {
         this.materiel.put(new Assemblage(),capaciteAssemblage) ;
         // définition du lave vaisselle associé à sa capacité maximum
         this.materiel.put(new LaveVaisselle(),capaciteLaveVaisselle) ;
+        
+        this.gardeManger = new GardeManger(this) ;
     }
+    
+    
 
     // Getteurs
 

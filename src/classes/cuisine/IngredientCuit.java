@@ -45,9 +45,9 @@ public class IngredientCuit extends Ingredient {
 	/**
 	 * @return le temps de cuisson optimale d'un ingrédient cuisable
 	 */
-	public int getTempsCuisson() {
-		return tmpsCuisson;
-	}
+//	public int getTempsCuisson() {
+//		return tmpsCuisson;
+//	}
 	
 	
 	//mickael
@@ -56,6 +56,6 @@ public class IngredientCuit extends Ingredient {
 	}
 
 	public int getTempsCuisson() {
-		return tempsCuisson;
+		return tmpsCuisson;
 	}
 }
