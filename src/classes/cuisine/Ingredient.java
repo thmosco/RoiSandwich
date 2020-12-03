@@ -10,7 +10,6 @@ package classes.cuisine;
  */
 public class Ingredient {
 
-
 	/**
 	 * Nom de l'ingrédient
 	 */
