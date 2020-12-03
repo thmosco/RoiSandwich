@@ -55,12 +55,7 @@ public class Materiel {
      * @version 2.0
      * @author Maia DA SILVA
      */
-    public boolean ajouterObjet (Object objet) throws IllegalAccessException {
-        // Vérifier que le matériel n'a pas atteint sa capacité max
-        if (this.objetsContenus.size() == this.capaciteMax) {
-            throw new IllegalArgumentException("plein");
-        }
-        // Ajouter l'objet
+    public boolean ajouterObjet (Object objet){
         return this.objetsContenus.add(objet) ;
     }
 

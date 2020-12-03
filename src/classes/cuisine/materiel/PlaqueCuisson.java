@@ -1,7 +1,5 @@
 package classes.cuisine.materiel;
 
-import classes.cuisine.IngredientCuit;
-
 /**
  * Classe enfant de matérielDeCuisson, contient des steaks
  * @version 1.0

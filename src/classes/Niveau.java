@@ -56,9 +56,7 @@ public class Niveau {
     private int nbAssietteMax ;
 
     private Comptoir comptoir ;
-    private GardeManger gardeManger ;
     private Cuisine cuisine ;
-    private Stock stock ;
 
     /**
      * Constructeur
@@ -69,9 +67,7 @@ public class Niveau {
         this.tabScoreArgent = new int [2];
 
         this.comptoir = new Comptoir() ;
-        this.gardeManger = new GardeManger(this) ;
         this.cuisine = new Cuisine(this) ;
-        this.stock = new Stock() ;
 
         this.tmpsAttente = new int [3] ;
         int tempsMin ;

@@ -41,12 +41,23 @@ public class Cuisine {
      * poubelle disponible dans la cuisine
      */
     private Poubelle poubelle ;
+    /**
+     * stock disponible dans la cuisine
+     */
+    private Stock stock ;
+    /**
+     * garde-manger disponible dans la cuisine
+     */
+    private GardeManger gardeManger ;
 
     /**
      * Constructeur
      * @param niveau
      */
     public Cuisine (Niveau niveau) {
+        this.stock = new Stock () ;
+        this.gardeManger = new GardeManger(niveau) ;
+
         // Initialisation des listes
         this.assiettes = new ArrayList<Assiette>() ;
         this.planchesDecoupe = new ArrayList<Decoupe>() ;
