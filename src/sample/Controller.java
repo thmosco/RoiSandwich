@@ -1,137 +1,253 @@
 package sample;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import com.sun.prism.paint.Color;
-
-import classes.Niveau;
 import classes.cuisine.Ingredient;
+import classes.cuisine.Ingredient.Etat;
 import classes.cuisine.Ingredient.Nom;
-import classes.cuisine.materiel.Decoupe;
+import classes.*;
+import classes.cuisine.*;
+import classes.cuisine.materiel.*;
 
-//test
 public class Controller implements Initializable {
 
-//	private static HashMap<Label, Ingredient> container = new HashMap<Label, Ingredient>();
-	private static String container;
-	private Decoupe decoupe = new Decoupe();
-	private Ingredient pomme_De_Terre = new Ingredient(Nom.POMME_DE_TERRE);
+	private Object container;
 
-	
-	@FXML
-	Label plancheADecoupe;
-	@FXML
-	Label cuisson;
-	@FXML
-	Label assemblage;
-	@FXML
-	Label evier;
-	@FXML
-	Label patate;
+	// mickael
+	private Ingredient patate = new Ingredient(Nom.POMME_DE_TERRE, "image/amandine.png");
+	private IngredientCuit beef = new IngredientCuit(Nom.STEAK_DE_BOEUF, "image/dsc_0315.jpg");
+	private Decoupe plancheADecoupe = new Decoupe();
+	private Friteuse appareilAFritte = new Friteuse();
 
 	@FXML
-	public void clickIngredient(MouseEvent e) {
+	ImageView pommeDeTerre;
+	@FXML
+	ImageView boeuf;
+	@FXML
+	ImageView ingredient3;
+	@FXML
+	ImageView ingredient4;
+	@FXML
+	ImageView ingredient5;
+	@FXML
+	ImageView ingredient6;
+	@FXML
+	ImageView ingredient7;
+	@FXML
+	ImageView ingredient8;
+	@FXML
+	ImageView ingredient9;
 
-		if (e.getSource() == patate) {
-			if (patate.getStyle().equals("-fx-background-color: blue;")) {
-				patate.setStyle("-fx-background-color: yellow");
-				container = e.getSource().toString();
-//				container.clear();
-				System.out.println("container = " + container);
-				System.out.println("container vide");
-			} else {
-				patate.setStyle("-fx-background-color: blue;");
-				container = "";
-//				container.put((Label) e.getSource(),pomme_De_Terre);
-				System.out.println("container = " + container);
-				System.out.println("ajouté à containter ");
-			}
-		}
+	@FXML
+	ImageView stock1;
+	@FXML
+	ImageView stock2;
+	@FXML
+	ImageView stock3;
+
+	@FXML
+	ImageView client1;
+	@FXML
+	ImageView client2;
+	@FXML
+	ImageView client3;
+
+	@FXML
+	ImageView decoupe;
+
+	@FXML
+	ImageView containerDansDecoupe;
+
+	@FXML
+	ImageView plaque_cuisson;
+
+	@FXML
+	ImageView friteuse;
+
+	@FXML
+	ImageView containerDansFritteuse;
+
+	@FXML
+	ImageView assemblage;
+
+	@FXML
+	ImageView evier;
+
+	@FXML
+	ImageView garde_manger;
+
+	// containerView à supprimer quand tout marche
+	@FXML
+	ImageView containerView;
+
+	public void prendreIngredient(MouseEvent event) {
+		final Node source = (Node) event.getSource();
+		String id = source.getId();
+		System.out.println(id);
+		typeIngredient(id);
+		System.out.println(container + " a été ajouté");
+
+		// met l'image de l'ingredient dans un container (à supprimer à la fin, Mickael)
+		containerView.setImage(new Image(((Ingredient) container).getUrlImage()));
 	}
 
-	@FXML
-	public void clickMateriel(MouseEvent e) {
-		
-//		System.out.println("test " + container.get(0));
-
-		if (e.getSource() == plancheADecoupe) {
-			System.out.println(plancheADecoupe.getStyle());
-			if (plancheADecoupe.getStyle().equals("-fx-background-color: green;")) {
+	public void interagirDansDecoupe(MouseEvent event) {
+		if (container != null) {
+			if (container instanceof Ingredient) {
 
 				try {
-					plancheADecoupe.setStyle("-fx-background-color: red;");
-					patate.setStyle("-fx-background-color: yellow;");
-
-					System.out.println("etat transformé avant " + pomme_De_Terre.getTransformer());
-					decoupe.ajouterObjet(pomme_De_Terre);
-					System.out.println("ajouté dans planche à découpe");
-					System.out.println("etat de l'ingredient =" + pomme_De_Terre.getEtat());
-					System.out.println("etat transformé apres " + pomme_De_Terre.getTransformer());
-				} catch (IllegalAccessException e1) {
+					// met l'image de l'ingredient dans l'imageview du materiel (mickael)
+					containerDansDecoupe.setImage(new Image(((Ingredient) container).getUrlImage()));
+					// enleve l'image dans container (à supprimer à la fin, Mickael)
+					containerView.setVisible(false);
+					plancheADecoupe.ajouterObjet((Ingredient) container);
+					System.out.println(((Ingredient) container).getNom() + " a été découpé");
+					container = null;
+				} catch (IllegalAccessException e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e.printStackTrace();
 				}
 			}
-		}
-		
-		if (e.getSource() == cuisson) {
-			System.out.println(cuisson.getStyle());
-			if (plancheADecoupe.getStyle().equals("-fx-background-color: green;")) {
+		} else {
+//			System.out.println(((Ingredient) container).getNom() + " a été découpé ");
+			container = plancheADecoupe.objetsContenus.get(0);
+			System.out.println(container.toString());
 
+			// supprime l'image de l'ingrédient dans l'imageview du materiel(mickael)
+			plancheADecoupe.retirerObjet((Ingredient) container);
+			containerDansDecoupe.setVisible(false);
+			containerView.setVisible(true);
+			containerView.setImage(new Image(((Ingredient) container).getUrlImage()));
+
+		}
+	}
+
+	public void interagirDansFriteuse(MouseEvent event) {
+
+		if (container != null) {
+			if (container instanceof Ingredient) {
+				if (((Ingredient) container).getNom() == Nom.POMME_DE_TERRE) {
+					if (((Ingredient) container).getTransformer() == true) {
+						if (((Ingredient) container).getEtat().equals(Etat.CRU)) {
+
+							try {
+								((Ingredient) container).setEtat(Etat.CUIT);
+								appareilAFritte.ajouterObjet(((Ingredient) container));
+								System.out.println("Ingredient cuit");
+//							containerView.setVisible(false);
+								containerView.imageProperty().set(null);
+								containerDansFritteuse.setImage(new Image(((Ingredient) container).getUrlImage()));
+								container = null;
+
+							} catch (IllegalAccessException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						} else {
+							System.out.println("déja cuit");
+						}
+					} else {
+						System.out.println("veuillez découper les pommes de terre avant de les cuir");
+					}
+				} else {
+					System.out.println("Cette ingredient ne peut pas aller dans la friteuse");
+				}
 			}
+		} else if (appareilAFritte.objetsContenus.size() != 0) {
+			System.out.println("Vous avez récupéré l'ingredient dans la fritteuse ");
+			container = appareilAFritte.objetsContenus.get(0);
+			containerDansFritteuse.setVisible(false);
+			appareilAFritte.retirerObjet(((Ingredient) container));
+			containerView.setImage(new Image(((Ingredient) container).getUrlImage()));
+			containerView.setVisible(true);
+
 		}
 	}
 
-	@FXML
-	public void clickAssemblage(MouseEvent e) {
-		if (decoupe.objetsContenus.size() != 1) {
+	public void interagirDansLaveVaisselle(MouseEvent event) {
+		if (container != null) {
+			if (container instanceof Assiette) {
+				System.out.println("Assiette dans Lave Vaiselle");
+			} else {
+				System.out.println("Ceci n'est pas une assiette");
+			}
+		} else {
+			System.out.println("Vous n'avez rien dans votre main");
+		}
+	}
+
+	public void interagirPlaqueCuisson(MouseEvent event) {
+		if (container instanceof IngredientCuit) {
+			((Ingredient) container).setEtat(Etat.CUIT);
+			System.out.println(((Ingredient) container).getEtat());
+		} else {
+			System.out.println("Cette ingredient ne peut pas aller sur les plaque de cuisson");
+		}
+	}
+
+	public void interagirAssemblage(MouseEvent event) {
+
+	}
+
+	public void interagirStock(MouseEvent event) {
+		if (container instanceof Assiette) {
 
 		}
 
 	}
 
-//	@FXML
-//	private void HandleDragDetection(MouseEvent e) {
-//		Dragboard db = boeuf.startDragAndDrop(TransferMode.ANY);
-//
-//		ClipboardContent cb = new ClipboardContent();
-////		cb.put(Label, boeuf);
-//		cb.putString(boeuf.getText());
-//
-//		db.setContent(cb);
-//
-//		e.consume();
-//	}
-//
-//	@FXML
-//	private void handleTextDragOver(DragEvent e) {
-//		if (e.getDragboard().hasString()) {
-//			e.acceptTransferModes(TransferMode.ANY);
-//		}
-//	}
-//
-//	@FXML
-//	private void handleTextDrop(DragEvent e) {
-//		String str = e.getDragboard().getString();
-//		plancheADecoupe.setText(str);
-//
-//	}
+	public void interagirClient(MouseEvent event) {
+		if (container != null) {
+			if (container instanceof Assiette) {
+
+			} else {
+				System.out.println("Ceci n'est pas une assiette !");
+			}
+		} else {
+			System.out.println("Vous n'avez rien dans votre main");
+		}
+
+	}
+
+	public void jeterPoubelle(MouseEvent event) {
+		if (container != null) {
+			if (container instanceof Ingredient) {
+				container = null;
+				System.out.println("Items supprimé");
+			} else {
+				System.out.println("Ceci n'est pas un Ingredient");
+			}
+		} else {
+			System.out.println("Vous n'avez rien dans votre main");
+		}
+	}
+
+	// recupere et stock dans container l'ingredient en fonction de l'id de la
+	// source du click (mickael)
+	public void typeIngredient(String s) {
+		switch (s) {
+		case "pommeDeTerre":
+			container = patate;
+			break;
+		case "boeuf":
+			container = beef;
+			break;
+		default:
+			container = null;
+		}
+
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

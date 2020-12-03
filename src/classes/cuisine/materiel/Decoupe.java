@@ -1,14 +1,23 @@
 package classes.cuisine.materiel;
 
+import classes.cuisine.Ingredient;
+
 public class Decoupe extends Materiel {
 
-    public Decoupe(int capaciteMax, int tempsExecution) {
-        super(capaciteMax, tempsExecution);
-        // TODO Auto-generated constructor stub
+    public Decoupe() {
+        super(2, 10);
     }
 
-    public void couper() {
-
+    public boolean ajouterObjet (Ingredient ingredient) throws IllegalAccessException {
+        if (ingredient.isSteak()) {
+            return false ;
+        }
+        super.ajouterObjet(ingredient);
+        if (super.ajouterObjet(ingredient)) {
+            ingredient.setTransformer(true) ;
+            return true ;
+        } else {
+            return false ;
+        }
     }
-
 }

@@ -17,4 +17,14 @@ public class IngredientCuit extends Ingredient {
 		super(nom);
 		this.tempsCuisson = temps_de_cuisson;
 	}
+	
+	
+	//mickael
+	public IngredientCuit(Nom nom, String urlImage) {
+		super(nom, urlImage);
+	}
+
+	public int getTempsCuisson() {
+		return tempsCuisson;
+	}
 }
