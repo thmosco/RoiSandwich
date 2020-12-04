@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
 import javafx.scene.image.ImageView;
@@ -30,10 +32,20 @@ public class Controller implements Initializable {
 
 	private Object container;
 
+	private Materiel materielFriteuse;
+	private Materiel materielAssemblage;
+	private Materiel materielPlaqueDeCuisson;
+	private Materiel materielDecoupe;
+	private Materiel materielLaveVaisselle;
+	private Materiel materielPoubelle;
+
 	// mickael
 
 	@FXML
 	ImageView PATATE;
+	@FXML
+	Label compteurPatateLabel;
+	
 	@FXML
 	ImageView STEAK_DE_BOEUF;
 	@FXML
@@ -97,54 +109,109 @@ public class Controller implements Initializable {
 	Label containerLabel;
 
 	@FXML
+	TextArea assemblageTextArea;
+
+	@FXML
 	public void prendreIngredient(MouseEvent e) {
 		Object image = e.getSource();
 		String idImage = ((Node) image).getId();
-		for (Ingredient i : Main.niveau1.getIngredient().keySet()) {
-			if (idImage.equals(i.getNom().toString())) {
-				container = new Object();
-				container = i;
-				containerLabel.setText(i.getNom().toString());
-			}
+//		for (Ingredient i : Main.niveau1.getIngredient().keySet()) {
+//			if (idImage.equals(i.getNom().toString())) {
+//				container = new Object();
+//				container = i;
+//				containerLabel.setText(i.getNom().toString());
+//			}
+//		}
+		System.out.println(idImage);
+		container = Main.niveau1.getGardeManger().saisirUnIngredient(idImage);
+		containerLabel.setText(((Ingredient) container).getNom().toString());
 		}
-		System.out.println(((Ingredient) container).getNom() + " a été selectionné");
+
+
+//	}
+	
+	public void setCompteur() {
+		GardeManger g =  Main.niveau1.getGardeManger();
+		
+		System.out.println(g);
+		int a = g.getPatates().size();
+		compteurPatateLabel.setText(Integer.toString(a));
+		
+	}
+
+
+	public void ajouterIngredientDansMateriel(Ingredient ingredient) {
 
 	}
 
 	public void decouper(MouseEvent e) {
+
 		// si le container est nul alors il faut selectionner un ingredient
 		if (container == null) {
-			System.out.println("veuillez selectionner un ingredient");
+			// si aucun objet n'est contenu dans le materiel de découpe
+//			if (materielDecoupe.objetsContenus.isEmpty()) {
+//				System.out.println("veuillez selectionner un ingredient");
+//			}
+//			// sinon, container = ingredient contenu dans le materiel de decoupe
+//			else {
+//				container = materielDecoupe.objetsContenus.get(0);
+//				containerLabel.setText(((Ingredient) materielDecoupe.objetsContenus.get(0)).getNom().toString());
+//			}
+			checkSiIngredientPresentDansMateriel(materielDecoupe);
 		}
+
 		// sinon
 		else {
+			Ingredient ingredient = (Ingredient) container;
 			// si le container est découpable
-			if (((Ingredient) container).isDecoupable() == true) {
+			if (ingredient.isDecoupable() == true) {
 				// si cette ingredient découpable n'est pas déja transformé alors le découper
-				if (((Ingredient) container).getTransformer() == false) {
-					((Ingredient) container).setTransformer(true);
-					System.out.println(((Ingredient) container).getNom() + " a été découpé ");
+				if (ingredient.getTransformer() == false) {
+					try {
+						materielDecoupe.ajouterObjet(ingredient);
+						((Decoupe) materielDecoupe).decouper();
+						container = null;
+						containerLabel.setText("vide");
+						System.out.println(ingredient.getNom() + " a été découpé ");
+					} catch (IllegalAccessException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				// sinon cette ingredient découpable a déja été découpé
 				else {
-					System.out.println(((Ingredient) container).getNom() + " a déja été découpé");
+					System.out.println(ingredient.getNom() + " a déja été découpé");
 				}
 			}
 			// sinon cette ingredient n'est pas découbale
 			else {
-				System.out.println(((Ingredient) container).getNom() + " n'est pas découpable");
+				System.out.println(ingredient.getNom() + " n'est pas découpable");
 			}
+			System.out.println("transformé : " + ingredient.getNom() + " : " + ingredient.getTransformer());
 		}
 	}
 
 	public void cuir(MouseEvent e) {
 		if (container == null) {
-			System.out.println("veuillez selectionner un ingredient");
+
+			checkSiIngredientPresentDansMateriel(materielPlaqueDeCuisson);
+//			System.out.println("veuillez selectionner un ingredient");
 		} else {
+			Ingredient ingredient = ((Ingredient) container);
 			if (((Ingredient) container).isSteak() == true) {
 				if (((Ingredient) container).getEtat() == Etat.CRU) {
-					((Ingredient) container).setEtat(Etat.CUIT);
-					System.out.println(((Ingredient) container).getNom() + " a été cuit");
+					try {
+						ingredient.setEtat(Etat.CUIT);
+						materielPlaqueDeCuisson.ajouterObjet(ingredient);
+						container = null;
+						containerLabel.setText("vide");
+						System.out.println(ingredient.getNom() + " a été cuit");
+						
+					} catch (IllegalAccessException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				
 				} else {
 					System.out.println(((Ingredient) container).getNom() + " a déja été cuit");
 				}
@@ -156,15 +223,27 @@ public class Controller implements Initializable {
 
 	public void frire(MouseEvent e) {
 		if (container == null) {
-			System.out.println("veuillez selectionner un ingredient");
+//			System.out.println("veuillez selectionner un ingredient");
+			System.out.println("ingredient contenu " + materielFriteuse.objetsContenus.size());
+			checkSiIngredientPresentDansMateriel(materielFriteuse);
+
 		} else {
 
 			Ingredient a = ((Ingredient) container);
 			if (a.getNom().toString().equals("PATATE")) {
 				if (a.getTransformer() == true) {
 					if (a.getEtat() == Etat.CRU) {
-						a.setEtat(Etat.CUIT);
-						System.out.println(a.getNom() + " a été cuit");
+						try {
+							a.setEtat(Etat.CUIT);
+							materielFriteuse.ajouterObjet(a);
+							container = null;
+							containerLabel.setText("vide");
+							System.out.println(a.getNom() + " a été cuit");
+						} catch (IllegalAccessException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+
 					} else {
 						System.out.println(a.getNom() + " a déja été cuit");
 					}
@@ -178,9 +257,72 @@ public class Controller implements Initializable {
 		}
 	}
 
+	public void assembler(MouseEvent event) {
+		if (container == null) {
+			System.out.println("selectionner un ingredient");
+		} else {
+			try {
+				materielAssemblage.ajouterObjet(container);
+				System.out.println("ajouté");
+				assemblageTextArea.setText(assemblageTextArea.getText() + " ; " + ((Ingredient) container).getNom().toString());
+				container=null;
+				containerLabel.setText("vide");
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void checkSiIngredientPresentDansMateriel(Materiel m) {
+		if (m.objetsContenus.isEmpty()) {
+			System.out.println("veuillez selectionner un ingredient");
+		}
+		// sinon, container = ingredient contenu dans le materiel de decoupe
+		else {
+			System.out.println("contenu du materiel avant " + m.objetsContenus.size());
+			this.container = m.objetsContenus.get(0);
+			m.retirerObjet(this.container);
+			System.out.println("contenu du materiel apres " + m.objetsContenus.size());
+			System.out.println("ingredient ajouté à container");
+			this.containerLabel.setText(((Ingredient) container).getNom().toString());
+		}
+	}
+
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 
+		for (Materiel i : Main.niveau1.getMateriel().keySet()) {
+			if (i instanceof Decoupe) {
+				materielDecoupe = i;
+//				System.out.println("ajouté");
+			}
+			if (i instanceof Assemblage) {
+				materielAssemblage = i;
+//				System.out.println("ajouté");
+			}
+			if (i instanceof Friteuse) {
+				materielFriteuse = i;
+//				System.out.println("ajouté");
+			}
+			if (i instanceof LaveVaisselle) {
+				materielLaveVaisselle = i;
+//				System.out.println("ajouté");
+			}
+			if (i instanceof PlaqueCuisson) {
+				materielPlaqueDeCuisson = i;
+//				System.out.println("ajouté");
+			}
+			if (i instanceof Poubelle) {
+				materielPoubelle = i;
+//				System.out.println("ajouté");
+			}
+		}
+		
+		setCompteur();
+		
+		
 	}
 }

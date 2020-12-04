@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,7 +22,7 @@
       <ImageView id="decoupe" fx:id="decoupe" fitHeight="205.0" fitWidth="261.0" layoutX="63.0" layoutY="463.0" onMouseClicked="#decouper" pickOnBounds="true" preserveRatio="true" />
       <ImageView id="plaque_cuisson" fx:id="plaque_cuisson" fitHeight="104.0" fitWidth="267.0" layoutX="328.0" layoutY="462.0" onMouseClicked="#cuir" pickOnBounds="true" preserveRatio="true" />
       <ImageView id="friteuse" fx:id="friteuse" fitHeight="104.0" fitWidth="267.0" layoutX="328.0" layoutY="566.0" onMouseClicked="#frire" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="assemblage" fx:id="assemblage" fitHeight="205.0" fitWidth="267.0" layoutX="595.0" layoutY="462.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView id="assemblage" fx:id="assemblage" fitHeight="205.0" fitWidth="267.0" layoutX="595.0" layoutY="462.0" onMouseClicked="#assembler" pickOnBounds="true" preserveRatio="true" />
       <ImageView id="evier" fx:id="evier" fitHeight="205.0" fitWidth="267.0" layoutX="862.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView id="garde_manger" fitHeight="114.0" fitWidth="495.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView id="client1" fitHeight="274.0" fitWidth="204.0" layoutX="166.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
@@ -63,8 +64,10 @@
             <ImageView id="ingredient3" fx:id="ingredient3" fitHeight="38.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
             <ImageView id="ingredient6" fx:id="ingredient6" fitHeight="38.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <ImageView id="ingredient9" fx:id="ingredient9" fitHeight="38.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="compteurPatateLabel" text="Label" />
          </children>
       </GridPane>
       <Label fx:id="containerLabel" layoutX="1092.0" layoutY="14.0" prefHeight="17.0" prefWidth="82.0" text="containerLabel" />
+      <TextArea fx:id="assemblageTextArea" layoutX="596.0" layoutY="590.0" prefHeight="73.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
