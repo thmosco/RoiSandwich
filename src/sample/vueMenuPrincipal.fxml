@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-border-width: 30px; -fx-border-color: #000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <ImageView fitHeight="111.0" fitWidth="148.0" layoutX="245.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/logo_couleur.png" />
+         </image></ImageView>
+      <Button layoutX="66.0" layoutY="248.0" mnemonicParsing="false" style="-fx-background-color: #000;" text="NIVEAU 1" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="393.0" layoutY="248.0" mnemonicParsing="false" style="-fx-background-color: #000;" text="NIVEAU 3" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="229.0" layoutY="248.0" mnemonicParsing="false" style="-fx-background-color: #000;" text="NIVEAU 2" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
