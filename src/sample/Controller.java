@@ -134,7 +134,7 @@ public class Controller implements Initializable {
 		GardeManger g =  Main.niveau1.getGardeManger();
 		
 		System.out.println(g);
-		int a = g.getPatates().size();
+		int a = g.getPatates().size()-1;
 		compteurPatateLabel.setText(Integer.toString(a));
 		
 	}
