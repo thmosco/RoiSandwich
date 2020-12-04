@@ -79,55 +79,55 @@ public class GardeManger {
 
 			// Création des pains dans la quantité indiquée par le niveau
 			if (ingredient.getNom() == Nom.PAIN) {
-				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
+				for (int i = 0 ; i < niveau.getIngredient().get(ingredient); i++) {
 					this.pains.add(new Ingredient(Nom.PAIN)) ;
 				}
 
 			// Création des fromages dans la quantité indiquée par le niveau
 			} else if (ingredient.getNom() == Nom.FROMAGE) {
-				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
+				for (int i = 0 ; i < niveau.getIngredient().get(ingredient); i++) {
 					this.fromages.add(new Ingredient(Nom.FROMAGE)) ;
 				}
 
 			// Création des oignons dans la quantité indiquée par le niveau
 			} else if (ingredient.getNom() == Nom.OIGNON) {
-				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
+				for (int i = 0 ; i < niveau.getIngredient().get(ingredient); i++) {
 					this.oignons.add(new Ingredient(Nom.OIGNON)) ;
 				}
 
 			// Création des salades dans la quantité indiquée par le niveau
 			} else if (ingredient.getNom() == Nom.SALADE) {
-				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
+				for (int i = 0 ; i < niveau.getIngredient().get(ingredient); i++) {
 					this.salades.add(new Ingredient(Nom.SALADE)) ;
 				}
 
 			// Création des tomates dans la quantité indiquée par le niveau
 			} else if (ingredient.getNom() == Nom.TOMATE) {
-				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
+				for (int i = 0 ; i < niveau.getIngredient().get(ingredient); i++) {
 					this.tomates.add(new Ingredient(Nom.TOMATE)) ;
 				}
 
 			// Création des patates dans la quantité indiquée par le niveau
 			} else if (ingredient.getNom() == Nom.PATATE) {
-				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
+				for (int i = 0 ; i < niveau.getIngredient().get(ingredient); i++) {
 					this.patates.add(new IngredientCuit(Nom.PATATE)) ;
 				}
 
 			// Création des steaks de boeuf dans la quantité indiquée par le niveau
 			} else if (ingredient.getNom() == Nom.STEAK_DE_BOEUF) {
-				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
+				for (int i = 0 ; i < niveau.getIngredient().get(ingredient); i++) {
 					this.boeuf.add(new IngredientCuit(Nom.STEAK_DE_BOEUF)) ;
 				}
 
 			// Création des steaks de poulet dans la quantité indiquée par le niveau
 			} else if (ingredient.getNom() == Nom.STEAK_DE_POULET) {
-				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
+				for (int i = 0 ; i < niveau.getIngredient().get(ingredient); i++) {
 					this.poulet.add(new IngredientCuit(Nom.STEAK_DE_POULET)) ;
 				}
 
 			// Création des steaks de soja dans la quantité indiquée par le niveau
 			} else if (ingredient.getNom() == Nom.STEAK_DE_SOJA) {
-				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
+				for (int i = 0 ; i < niveau.getIngredient().get(ingredient); i++) {
 					this.soja.add(new IngredientCuit(Nom.STEAK_DE_SOJA)) ;
 				}
 			}
