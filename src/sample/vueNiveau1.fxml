@@ -10,7 +10,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <SplitPane dividerPositions="0.15829145728643215" orientation="VERTICAL" prefHeight="400.0" prefWidth="47.0" style="-fx-background-color: #000; -fx-border-color: #000;">
+                  <SplitPane dividerPositions="0.1691919191919192" orientation="VERTICAL" prefHeight="400.0" prefWidth="47.0" style="-fx-background-color: #000; -fx-border-color: #000;">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #000;" />
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #000;" />
@@ -18,7 +18,7 @@
                   </SplitPane>
                </children>
             </AnchorPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane prefHeight="316.0" prefWidth="495.0">
                <top>
                   <SplitPane dividerPositions="0.5008110300081103" prefHeight="69.0" prefWidth="495.0" BorderPane.alignment="CENTER">
                     <items>
@@ -41,22 +41,56 @@
                   </SplitPane>
                </top>
                 <bottom>
-                    <SplitPane dividerPositions="0.5008110300081103" prefHeight="69.0" prefWidth="495.0" BorderPane.alignment="CENTER">
+                    <SplitPane dividerPositions="0.25344687753446876, 0.5129764801297648, 0.7522303325223033" prefHeight="0.0" prefWidth="495.0" BorderPane.alignment="CENTER">
                     <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="68.0" prefWidth="177.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="68.0" prefWidth="113.0" />
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <SplitPane dividerPositions="0.530690537084399" layoutY="-1.0" orientation="VERTICAL" prefHeight="159.0" prefWidth="117.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="121.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="158.0" />
+                                </items>
+                              </SplitPane>
+                           </children></AnchorPane>
+                        <AnchorPane prefHeight="121.0" prefWidth="110.0" />
+                        <AnchorPane prefHeight="138.0" prefWidth="139.0">
+                           <children>
+                              <SplitPane dividerPositions="0.5" layoutX="-4.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="158.0" prefWidth="146.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                </items>
+                              </SplitPane>
+                           </children>
                         </AnchorPane>
                     </items>
                     </SplitPane>
                 </bottom>
+               <center>
+                  <GridPane BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </center>
             </BorderPane>
             <AnchorPane prefHeight="321.0" prefWidth="359.0">
                <children>
-                  <SplitPane dividerPositions="0.15388496468213927" orientation="VERTICAL" prefHeight="398.0" prefWidth="47.0" style="-fx-background-color: #000; -fx-border-color: #000;">
+                  <SplitPane dividerPositions="0.16987829614604463" orientation="VERTICAL" prefHeight="398.0" prefWidth="47.0" style="-fx-background-color: #000; -fx-border-color: #000;">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #000;">
                            <children>
-                              <ImageView fitHeight="60.0" fitWidth="47.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="3.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../image/logoFondNoir.png" />
+                                 </image></ImageView>
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="192.0" prefWidth="46.0" style="-fx-background-color: #000;" />
                     </items>
