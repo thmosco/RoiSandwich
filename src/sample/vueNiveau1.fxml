@@ -56,25 +56,55 @@
                   </SplitPane>
                </top>
                 <bottom>
-                    <SplitPane dividerPositions="0.25344687753446876, 0.5129764801297648, 0.7522303325223033" prefHeight="0.0" prefWidth="495.0" BorderPane.alignment="CENTER">
+                    <SplitPane dividerPositions="0.17639902676399027, 0.41768045417680455, 0.7035685320356854" prefHeight="130.0" prefWidth="495.0" BorderPane.alignment="CENTER">
                     <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="68.0" prefWidth="113.0" />
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="68.0" prefWidth="113.0">
+                           <children>
+                              <BorderPane layoutX="1.0" layoutY="-1.0" prefHeight="160.0" prefWidth="116.0">
+                                 <bottom>
+                                    <ProgressBar prefWidth="200.0" progress="0.0" BorderPane.alignment="CENTER" />
+                                 </bottom>
+                              </BorderPane>
+                           </children></AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="104.0">
                            <children>
                               <SplitPane dividerPositions="0.530690537084399" layoutY="-1.0" orientation="VERTICAL" prefHeight="159.0" prefWidth="117.0">
                                 <items>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="121.0" />
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="158.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="121.0">
+                                       <children>
+                                          <BorderPane prefHeight="80.0" prefWidth="116.0">
+                                             <top>
+                                                <ProgressBar prefWidth="200.0" progress="0.0" BorderPane.alignment="CENTER" />
+                                             </top>
+                                          </BorderPane>
+                                       </children></AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="158.0">
+                                       <children>
+                                          <BorderPane layoutY="-2.0" prefHeight="74.0" prefWidth="115.0">
+                                             <bottom>
+                                                <ProgressBar prefWidth="200.0" progress="0.0" BorderPane.alignment="CENTER" />
+                                             </bottom>
+                                          </BorderPane>
+                                       </children></AnchorPane>
                                 </items>
                               </SplitPane>
                            </children></AnchorPane>
-                        <AnchorPane prefHeight="121.0" prefWidth="110.0" />
-                        <AnchorPane prefHeight="138.0" prefWidth="139.0">
+                        <AnchorPane prefHeight="158.0" prefWidth="131.0" />
+                        <AnchorPane prefHeight="158.0" prefWidth="60.0">
                            <children>
-                              <SplitPane dividerPositions="0.5" layoutX="-4.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="158.0" prefWidth="146.0">
+                              <SplitPane dividerPositions="0.6713554987212276" layoutX="49.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="158.0" prefWidth="93.0">
                                 <items>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <BorderPane layoutY="-1.0" prefHeight="103.0" prefWidth="93.0">
+                                             <bottom>
+                                                <ProgressIndicator progress="0.0" BorderPane.alignment="CENTER" />
+                                             </bottom>
+                                             <top>
+                                                <Pane prefHeight="18.0" prefWidth="100.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
+                                             </top></BorderPane>
+                                       </children></AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="49.0" prefWidth="103.0" />
                                 </items>
                               </SplitPane>
                            </children>
@@ -90,9 +120,28 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="52.4" minHeight="10.0" prefHeight="18.399998092651366" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="96.40000190734864" minHeight="10.0" prefHeight="71.80000762939451" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="84.39999237060547" minHeight="10.0" prefHeight="67.39999237060547" vgrow="SOMETIMES" />
                     </rowConstraints>
+                     <children>
+                        <ImageView fitHeight="80.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                           <image>
+                              <Image url="@../image/client.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                           <image>
+                              <Image url="@../image/client.png" />
+                           </image></ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                         <image>
+                             <Image url="@../image/client.png" />
+                         </image></ImageView>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.rowIndex="2" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                     </children>
                   </GridPane>
                </center>
             </BorderPane>
