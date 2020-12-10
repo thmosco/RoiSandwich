@@ -19,24 +19,7 @@
             <Image url="@../image/Web_1920_1.jpg" />
          </image>
       </ImageView>
-      <ImageView id="decoupe" fx:id="decoupe" fitHeight="205.0" fitWidth="261.0" layoutX="63.0" layoutY="463.0" onMouseClicked="#decouper" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="plaque_cuisson" fx:id="plaque_cuisson" fitHeight="104.0" fitWidth="267.0" layoutX="328.0" layoutY="462.0" onMouseClicked="#cuir" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="friteuse" fx:id="friteuse" fitHeight="104.0" fitWidth="267.0" layoutX="328.0" layoutY="566.0" onMouseClicked="#frire" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="assemblage" fx:id="assemblage" fitHeight="205.0" fitWidth="267.0" layoutX="595.0" layoutY="462.0" onMouseClicked="#assembler" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="evier" fx:id="evier" fitHeight="205.0" fitWidth="267.0" layoutX="862.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="garde_manger" fitHeight="114.0" fitWidth="495.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="client1" fitHeight="274.0" fitWidth="204.0" layoutX="166.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="client3" fitHeight="242.0" fitWidth="204.0" layoutX="816.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="50.0" fitWidth="51.0" layoutX="23.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="client2" fitHeight="274.0" fitWidth="204.0" layoutX="492.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="client3" fitHeight="274.0" fitWidth="204.0" layoutX="816.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
-      <HBox layoutX="601.0" layoutY="7.0" prefHeight="104.0" prefWidth="485.0">
-         <children>
-            <ImageView id="stock1" fx:id="stock1" fitHeight="104.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView id="stock2" fx:id="stock2" fitHeight="104.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView id="stock3" fx:id="stock3" fitHeight="104.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </HBox>
+
       <GridPane layoutX="94.0" prefHeight="114.0" prefWidth="495.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -49,6 +32,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+<<<<<<< HEAD
             <ImageView fx:id="PATATE" fitHeight="38.0" fitWidth="109.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
                   <Image url="@../image/patate.jpg" />
@@ -65,9 +49,24 @@
             <ImageView id="ingredient6" fx:id="ingredient6" fitHeight="38.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <ImageView id="ingredient9" fx:id="ingredient9" fitHeight="38.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label fx:id="compteurPatateLabel" text="Label" />
+=======
+            <ImageView fx:id="ingredient1" fitHeight="38.0" fitWidth="161.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="ingredient4" fx:id="ingredient4" fitHeight="38.0" fitWidth="161.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+            <ImageView id="ingredient7" fx:id="ingredient7" fitHeight="38.0" fitWidth="161.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
+            <ImageView id="ingredient2" fx:id="ingredient2" fitHeight="38.0" fitWidth="161.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+            <ImageView id="ingredient5" fx:id="ingredient5" fitHeight="38.0" fitWidth="161.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ImageView id="ingredient8" fx:id="ingredient8" fitHeight="38.0" fitWidth="161.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ImageView id="ingredient3" fx:id="ingredient3" fitHeight="38.0" fitWidth="161.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+            <ImageView id="ingredient6" fx:id="ingredient6" fitHeight="38.0" fitWidth="161.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ImageView id="ingredient9" fx:id="ingredient9" fitHeight="38.0" fitWidth="161.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+>>>>>>> branch 'thomas' of https://github.com/MaiaDS/RoiSandwich
          </children>
       </GridPane>
+<<<<<<< HEAD
       <Label fx:id="containerLabel" layoutX="1092.0" layoutY="14.0" prefHeight="17.0" prefWidth="82.0" text="containerLabel" />
       <TextArea fx:id="assemblageTextArea" layoutX="596.0" layoutY="590.0" prefHeight="73.0" prefWidth="200.0" />
+=======
+      <ImageView id="evier" fx:id="poubelle" fitHeight="104.0" fitWidth="267.0" layoutX="862.0" layoutY="566.0" onMouseClicked="#jeterPoubelle" pickOnBounds="true" preserveRatio="true" />
+>>>>>>> branch 'thomas' of https://github.com/MaiaDS/RoiSandwich
    </children>
 </AnchorPane>

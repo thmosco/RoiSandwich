@@ -40,6 +40,10 @@ public class Controller implements Initializable {
 	private Materiel materielPoubelle;
 
 	// mickael
+	private Ingredient patate = new Ingredient(Nom.PATATE, "image/amandine.png");
+	private IngredientCuit beef = new IngredientCuit(Nom.STEAK_DE_BOEUF, "image/dsc_0315.jpg");
+	private Decoupe plancheADecoupe = new Decoupe();
+	private Friteuse appareilAFritte = new Friteuse();
 
 	@FXML
 	ImageView PATATE;
@@ -108,8 +112,13 @@ public class Controller implements Initializable {
 	@FXML
 	Label containerLabel;
 
+
 	@FXML
 	TextArea assemblageTextArea;
+	
+		// met l'image de l'ingredient dans un container (Ã  supprimer Ã  la fin, Mickael)
+		//containerView.setImage(new Image(((Ingredient) container).getUrlImage()));
+	
 
 	@FXML
 	public void prendreIngredient(MouseEvent e) {
@@ -195,7 +204,7 @@ public class Controller implements Initializable {
 		if (container == null) {
 
 			checkSiIngredientPresentDansMateriel(materielPlaqueDeCuisson);
-//			System.out.println("veuillez selectionner un ingredient");
+//System.out.println("veuillez selectionner un ingredient");
 		} else {
 			Ingredient ingredient = ((Ingredient) container);
 			if (((Ingredient) container).isSteak() == true) {
@@ -287,7 +296,9 @@ public class Controller implements Initializable {
 			System.out.println("ingredient ajouté à container");
 			this.containerLabel.setText(((Ingredient) container).getNom().toString());
 		}
+
 	}
+
 
 
 	@Override
