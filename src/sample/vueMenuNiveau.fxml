@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0">
+         <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="24.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/fermer.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                  <GridPane alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="245.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="70.4" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="124.4" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="74.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="45.799998092651364" minHeight="10.0" prefHeight="42.2" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="39.4" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="47.8" minHeight="10.0" prefHeight="37.99999999999999" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="NIVEAU EN COUR" textFill="WHITE" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
+                        <Label text="TOTAL" textFill="WHITE" GridPane.columnIndex="2" GridPane.valignment="BOTTOM" />
+                        <Label text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Label text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Label text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                        <Label text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                        <Label text="ARGENT" textFill="WHITE" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Label text="SCORE" textFill="WHITE" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="131.0" layoutY="150.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="191.0" style="-fx-background-color: #fff;" text="Recommencer">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font></Button>
+                  <Button layoutX="342.0" layoutY="71.0" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Recettes">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font></Button>
+                  <Button layoutX="131.0" layoutY="71.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="191.0" style="-fx-background-color: #fff;" text="Ingrédients">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font></Button>
+                  <Button layoutX="342.0" layoutY="150.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: #fff;" text="Quitter">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font></Button>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
