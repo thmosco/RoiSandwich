@@ -58,6 +58,7 @@ public class Niveau {
 	 */
 	private int nbAssietteMax;
 
+
 	private Comptoir comptoir;
 	private GardeManger gardeManger;
 	private Cuisine cuisine;
@@ -71,6 +72,7 @@ public class Niveau {
 		return quantiteIngredient;
 	}
 
+
 	/**
 	 * Constructeur
 	 * 
@@ -79,6 +81,10 @@ public class Niveau {
 	public Niveau(int numNiveau) {
 		this.numNiveau = numNiveau;
 		this.tabScoreArgent = new int[2];
+
+        this.comptoir = new Comptoir() ;
+        this.cuisine = new Cuisine(this) ;
+
 
 		this.comptoir = new Comptoir();
 

@@ -153,7 +153,7 @@ public class Controller implements Initializable {
 
 	}
 
-	public void decouper(MouseEvent e) {
+	public void decouper(MouseEvent e) throws IllegalAccessException {
 
 		// si le container est nul alors il faut selectionner un ingredient
 		if (container == null) {
@@ -176,16 +176,11 @@ public class Controller implements Initializable {
 			if (ingredient.isDecoupable() == true) {
 				// si cette ingredient découpable n'est pas déja transformé alors le découper
 				if (ingredient.getTransformer() == false) {
-					try {
-						materielDecoupe.ajouterObjet(ingredient);
-						((Decoupe) materielDecoupe).decouper();
-						container = null;
-						containerLabel.setText("vide");
-						System.out.println(ingredient.getNom() + " a été découpé ");
-					} catch (IllegalAccessException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					materielDecoupe.ajouterObjet(ingredient);
+					((Decoupe) materielDecoupe).decouper();
+					container = null;
+					containerLabel.setText("vide");
+					System.out.println(ingredient.getNom() + " a été découpé ");
 				}
 				// sinon cette ingredient découpable a déja été découpé
 				else {
@@ -209,17 +204,11 @@ public class Controller implements Initializable {
 			Ingredient ingredient = ((Ingredient) container);
 			if (((Ingredient) container).isSteak() == true) {
 				if (((Ingredient) container).getEtat() == Etat.CRU) {
-					try {
-						ingredient.setEtat(Etat.CUIT);
-						materielPlaqueDeCuisson.ajouterObjet(ingredient);
-						container = null;
-						containerLabel.setText("vide");
-						System.out.println(ingredient.getNom() + " a été cuit");
-						
-					} catch (IllegalAccessException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					ingredient.setEtat(Etat.CUIT);
+					materielPlaqueDeCuisson.ajouterObjet(ingredient);
+					container = null;
+					containerLabel.setText("vide");
+					System.out.println(ingredient.getNom() + " a été cuit");
 				
 				} else {
 					System.out.println(((Ingredient) container).getNom() + " a déja été cuit");
@@ -242,16 +231,11 @@ public class Controller implements Initializable {
 			if (a.getNom().toString().equals("PATATE")) {
 				if (a.getTransformer() == true) {
 					if (a.getEtat() == Etat.CRU) {
-						try {
-							a.setEtat(Etat.CUIT);
-							materielFriteuse.ajouterObjet(a);
-							container = null;
-							containerLabel.setText("vide");
-							System.out.println(a.getNom() + " a été cuit");
-						} catch (IllegalAccessException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						a.setEtat(Etat.CUIT);
+						materielFriteuse.ajouterObjet(a);
+						container = null;
+						containerLabel.setText("vide");
+						System.out.println(a.getNom() + " a été cuit");
 
 					} else {
 						System.out.println(a.getNom() + " a déja été cuit");
@@ -270,16 +254,11 @@ public class Controller implements Initializable {
 		if (container == null) {
 			System.out.println("selectionner un ingredient");
 		} else {
-			try {
-				materielAssemblage.ajouterObjet(container);
-				System.out.println("ajouté");
-				assemblageTextArea.setText(assemblageTextArea.getText() + " ; " + ((Ingredient) container).getNom().toString());
-				container=null;
-				containerLabel.setText("vide");
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			materielAssemblage.ajouterObjet(container);
+			System.out.println("ajouté");
+			assemblageTextArea.setText(assemblageTextArea.getText() + " ; " + ((Ingredient) container).getNom().toString());
+			container=null;
+			containerLabel.setText("vide");
 		}
 	}
 	

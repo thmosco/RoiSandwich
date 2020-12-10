@@ -49,7 +49,7 @@ public class Assiette extends Materiel {
      * @return true si l'ingrédient a bien été ajouté
      * @throws IllegalAccessException
      */
-    public boolean ajouterObjet (Ingredient ingredient) throws IllegalAccessException {
+    public boolean ajouterObjet (Ingredient ingredient) {
         return super.ajouterObjet(ingredient) ;
     }
 
