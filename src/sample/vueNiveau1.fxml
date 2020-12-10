@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
@@ -28,9 +29,18 @@
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="24.4" minHeight="10.0" prefHeight="24.4" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="16.400000000000002" minHeight="9.8" prefHeight="10.8" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="31.4" minHeight="10.0" prefHeight="23.6" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="16.4" minHeight="10.0" prefHeight="11.399999999999999" vgrow="SOMETIMES" />
                           </rowConstraints>
+                           <children>
+                              <Label text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
                         </GridPane>
                         <GridPane prefHeight="68.0" prefWidth="247.0">
                           <columnConstraints>
@@ -39,21 +49,25 @@
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="59.4" minHeight="10.0" prefHeight="44.4" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="29.4" minHeight="9.399999999999999" prefHeight="24.4" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ImageView fitHeight="54.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <ImageView fitHeight="32.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/assiettesPropres.png" />
                                  </image></ImageView>
-                              <ImageView fitHeight="54.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <ImageView fitHeight="32.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/assiettesSales.png" />
                                  </image></ImageView>
-                              <ImageView fitHeight="54.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <ImageView fitHeight="32.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/plats.png" />
                                  </image></ImageView>
+                              <Label text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <Label text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <Label text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                            </children>
                         </GridPane>
                     </items>
@@ -104,44 +118,51 @@
                               </BorderPane>
                           </items>
                         </SplitPane>
-                        <SplitPane dividerPositions="0.5745341614906831" orientation="VERTICAL" prefHeight="162.0" prefWidth="160.0">
+                        <SplitPane orientation="VERTICAL" prefHeight="162.0" prefWidth="160.0">
                           <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #b8b18d;">
-                                 <children>
-                                    <ImageView fitHeight="47.0" fitWidth="83.0" layoutX="42.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b8b18d;">
+                                 <center>
+                                    <ImageView fitHeight="53.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                        <image>
                                           <Image url="@../image/assiette.png" />
                                        </image>
                                     </ImageView>
-                                 </children></AnchorPane>
+                                 </center>
+                                 <top>
+                                    <GridPane prefHeight="44.0" prefWidth="158.0" BorderPane.alignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="42.4" minHeight="10.0" prefHeight="22.4" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="26.4" minHeight="10.0" prefHeight="22.4" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                 </top>
+                              </BorderPane>
+                          </items>
+                        </SplitPane>
+                        <SplitPane dividerPositions="0.6288819875776397" orientation="VERTICAL" prefHeight="58.0" prefWidth="160.0">
+                          <items>
+                              <BorderPane prefHeight="77.0" prefWidth="75.0" style="-fx-background-color: #99aabf;">
+                                 <bottom>
+                                    <ProgressIndicator progress="0.0" BorderPane.alignment="CENTER" />
+                                 </bottom>
+                                 <top>
+                                    <Pane prefHeight="18.0" prefWidth="100.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
+                                 </top>
+                              </BorderPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
-                                    <ImageView fitHeight="38.0" fitWidth="96.0" layoutX="45.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="38.0" fitWidth="47.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../image/poubelle.png" />
                                        </image>
                                     </ImageView>
                                  </children></AnchorPane>
-                          </items>
-                        </SplitPane>
-                        <SplitPane orientation="VERTICAL" prefHeight="58.0" prefWidth="160.0">
-                          <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="129.0" prefWidth="116.0">
-                                 <children>
-                                    <AnchorPane prefHeight="131.0" prefWidth="80.0">
-                                       <children>
-                                          <BorderPane layoutX="-1.0" prefHeight="130.0" prefWidth="75.0" style="-fx-background-color: #99aabf;">
-                                             <bottom>
-                                                <ProgressIndicator progress="0.0" BorderPane.alignment="CENTER" />
-                                             </bottom>
-                                             <top>
-                                                <Pane prefHeight="18.0" prefWidth="100.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
-                                             </top>
-                                          </BorderPane>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
                           </items>
                         </SplitPane>
                     </items>
