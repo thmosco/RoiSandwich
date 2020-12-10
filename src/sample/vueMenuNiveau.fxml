@@ -49,19 +49,19 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="131.0" layoutY="150.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="191.0" style="-fx-background-color: #fff;" text="Recommencer">
+                  <Button layoutX="127.0" layoutY="164.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="198.0" style="-fx-background-color: #fff;" text="Recommencer">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font></Button>
-                  <Button layoutX="342.0" layoutY="71.0" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Recettes">
+                  <Button layoutX="345.0" layoutY="85.0" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Recettes">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font></Button>
-                  <Button layoutX="131.0" layoutY="71.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="191.0" style="-fx-background-color: #fff;" text="Ingrédients">
+                  <Button layoutX="127.0" layoutY="85.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="198.0" style="-fx-background-color: #fff;" text="Ingrédients">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font></Button>
-                  <Button layoutX="342.0" layoutY="150.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: #fff;" text="Quitter">
+                  <Button layoutX="345.0" layoutY="164.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: #fff;" text="Quitter">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font></Button>
