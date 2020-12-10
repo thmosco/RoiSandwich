@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <SplitPane dividerPositions="0.08361204013377926, 0.9247491638795987" prefHeight="400.0" prefWidth="600.0">
+      <SplitPane dividerPositions="0.08361204013377926, 0.8996655518394648" prefHeight="400.0" prefWidth="600.0">
         <items>
             <SplitPane dividerPositions="0.1917255297679112" orientation="VERTICAL" prefHeight="400.0" prefWidth="47.0" style="-fx-background-color: #000; -fx-border-color: #000;">
               <items>
@@ -36,8 +36,8 @@
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints maxHeight="24.4" minHeight="10.0" prefHeight="24.4" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="16.400000000000002" minHeight="9.8" prefHeight="10.8" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="29.8" minHeight="10.0" prefHeight="27.4" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="18.800000000000004" minHeight="8.2" prefHeight="13.800000000000004" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="31.4" minHeight="10.0" prefHeight="23.6" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="16.4" minHeight="10.0" prefHeight="11.399999999999999" vgrow="SOMETIMES" />
                           </rowConstraints>
@@ -293,14 +293,17 @@
               <items>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="1.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="9.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../image/logoFondNoir.png" />
                            </image>
                         </ImageView>
                      </children>
                   </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="192.0" prefWidth="46.0" style="-fx-background-color: #000;" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="192.0" prefWidth="46.0" style="-fx-background-color: #000;">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="timer" textAlignment="CENTER" textFill="WHITE" />
+                     </children></AnchorPane>
               </items>
             </SplitPane>
         </items>
