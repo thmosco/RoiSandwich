@@ -56,24 +56,24 @@
                                     <Font size="10.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="23.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <ImageView id="PAIN" fx:id="PAIN" fitHeight="23.0" fitWidth="36.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/pains.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="23.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <ImageView fx:id="FROMAGE" fitHeight="23.0" fitWidth="36.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/fromage.png" />
                                  </image></ImageView>
-                              <ImageView fitHeight="23.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <ImageView fx:id="OIGNON" fitHeight="23.0" fitWidth="36.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/oignon_entier.png" />
                                  </image></ImageView>
-                              <ImageView fitHeight="23.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <ImageView fx:id="TOMATE" fitHeight="23.0" fitWidth="36.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/tomate_entiere.png" />
                                  </image></ImageView>
-                              <ImageView fitHeight="23.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <ImageView fx:id="SALADE" fitHeight="23.0" fitWidth="36.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/salade_entiere.png" />
                                  </image></ImageView>
@@ -81,15 +81,15 @@
                                  <image>
                                     <Image url="@../image/patate.png" />
                                  </image></ImageView>
-                              <ImageView fitHeight="21.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                              <ImageView fx:id="STEAK_DE_BOEUF" fitHeight="21.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/boeuf.png" />
                                  </image></ImageView>
-                              <ImageView fitHeight="15.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                              <ImageView fx:id="STEAK_DE_POULET" fitHeight="15.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/poulet.png" />
                                  </image></ImageView>
-                              <ImageView fitHeight="23.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                              <ImageView fx:id="STEAK_DE_SOJA" fitHeight="23.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/soja.png" />
                                  </image></ImageView>
@@ -201,12 +201,12 @@
                                     </ImageView>
                                  </center>
                               </BorderPane>
-                              <BorderPane prefHeight="71.0" prefWidth="131.0">
+                              <BorderPane fx:id="friteuse" onMouseClicked="#frire" prefHeight="71.0" prefWidth="131.0">
                                  <bottom>
                                     <ProgressBar prefHeight="17.0" prefWidth="131.0" progress="0.0" BorderPane.alignment="CENTER" />
                                  </bottom>
                                  <center>
-                                    <ImageView fitHeight="27.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                    <ImageView fx:id="containerDansFriteuse" fitHeight="27.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                        <image>
                                           <Image url="@../image/friteuse.png" />
                                        </image>

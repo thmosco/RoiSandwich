@@ -72,6 +72,7 @@ public class GardeManger {
 		this.boeuf = new ArrayList<IngredientCuit>();
 		this.poulet = new ArrayList<IngredientCuit>();
 		this.soja = new ArrayList<IngredientCuit>();
+		 
 
 		// Création des ingrédients dans le garde manger
 		Iterator iterator = niveau.getIngredient().keySet().iterator();
@@ -131,11 +132,11 @@ public class GardeManger {
 		}
 	}
 
-	// mickael
+
 	public ArrayList getPatates() {
 		return patates;
 	}
-	//mickael
+
 	public Ingredient saisirUnIngredient(String nom) {
 		Ingredient i;
 		if(nom.equals("PATATE")) {

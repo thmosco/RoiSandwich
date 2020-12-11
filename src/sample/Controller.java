@@ -50,10 +50,23 @@ public class Controller implements Initializable {
 	@FXML
 	ImageView PATATE;
 	@FXML
-	Label compteurPatateLabel;
-	
+	ImageView SALADE;
+	@FXML
+	ImageView TOMATE;
+	@FXML
+	ImageView OIGNON;
+	@FXML
+	ImageView PAIN;
+	@FXML
+	ImageView FROMAGE;
+	@FXML
+	ImageView STEAK_DE_SOJA;
+	@FXML
+	ImageView STEAK_DE_POULET;
 	@FXML
 	ImageView STEAK_DE_BOEUF;
+	
+	
 	@FXML
 	ImageView ingredient3;
 	@FXML
@@ -93,10 +106,10 @@ public class Controller implements Initializable {
 	ImageView plaque_cuisson;
 
 	@FXML
-	ImageView friteuse;
+	BorderPane friteuse;
 
 	@FXML
-	ImageView containerDansFritteuse;
+	ImageView containerDansFriteuse;
 
 	@FXML
 	ImageView assemblage;
@@ -124,19 +137,19 @@ public class Controller implements Initializable {
 
 	@FXML
 	public void prendreIngredient(MouseEvent e) {
+		if(container == null) {
 		Object image = e.getSource();
 		String idImage = ((Node) image).getId();
-//		for (Ingredient i : Main.niveau1.getIngredient().keySet()) {
-//			if (idImage.equals(i.getNom().toString())) {
-//				container = new Object();
-//				container = i;
-//				containerLabel.setText(i.getNom().toString());
-//			}
-//		}
+
 		System.out.println(idImage);
+		
 		container = Main.niveau1.getGardeManger().saisirUnIngredient(idImage);
 		setCompteur();
 		//containerLabel.setText(((Ingredient) container).getNom().toString());
+		}
+		else {
+			System.out.println("Vous avez déjà quelque chose dans votre main");
+		}
 		}
 
 
@@ -147,7 +160,7 @@ public class Controller implements Initializable {
 		
 		System.out.println(g);
 		int a = g.getPatates().size()-1;
-		compteurPatateLabel.setText(Integer.toString(a));
+		//compteurPatateLabel.setText(Integer.toString(a));
 		
 	}
 
@@ -177,6 +190,7 @@ public class Controller implements Initializable {
 
 		// sinon
 		else {
+			
 			Ingredient ingredient = (Ingredient) container;
 			containerDansDecoupe.setImage(new Image(getClass().getResourceAsStream(ingredient.getImgIngredient())));
 			materielDecoupe.ajouterObjet(ingredient);
@@ -233,18 +247,20 @@ public class Controller implements Initializable {
 		if (container == null) {
 //			System.out.println("veuillez selectionner un ingredient");
 			System.out.println("ingredient contenu " + materielFriteuse.objetsContenus.size());
-			checkSiIngredientPresentDansMateriel(materielFriteuse);
+			if(checkSiIngredientPresentDansMateriel(materielFriteuse)){
+				containerDansFriteuse.setImage(new Image(getClass().getResourceAsStream("../image/friteuse.png")));
+			}
 
 		} else {
-
 			Ingredient a = ((Ingredient) container);
 			if (a.getNom().toString().equals("PATATE")) {
+				materielFriteuse.ajouterObjet(a);
+				containerDansFriteuse.setImage(new Image(getClass().getResourceAsStream("../image/friteuse_cuisson.png")));
+				container = null;
 				if (a.getTransformer() == true) {
 					if (a.getEtat() == Etat.CRU) {
 						a.setEtat(Etat.CUIT);
-						materielFriteuse.ajouterObjet(a);
-						container = null;
-						containerLabel.setText("vide");
+						//containerLabel.setText("vide");
 						System.out.println(a.getNom() + " a été cuit");
 
 					} else {
