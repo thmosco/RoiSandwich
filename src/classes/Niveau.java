@@ -49,7 +49,7 @@ public class Niveau {
     /**
      * Liste des ingrédients et leur quantité disponibles dans le niveau
      */
-    private HashMap<Ingredient,Integer> ingredient ;
+    private int nbIngredient ;
     /**
      * Nombre d'assiettes maximale mise à disposition du joueur dans le niveau
      */
@@ -73,10 +73,8 @@ public class Niveau {
         int tempsMin ;
 
         this.clients = new ArrayList<Client>() ;
-        this.ingredient = new HashMap<Ingredient,Integer>() ;
         this.materiel = new HashMap<Materiel,Integer>() ;
 
-        int quantiteIngredient ;
         int capaciteAssemblage ;
         int capaciteLaveVaisselle ;
         int quantiteOutilsCuisson ;
@@ -98,7 +96,7 @@ public class Niveau {
                 tempsMin = 30 ;
 
                 // quantité des ingrédients
-                quantiteIngredient = 50 ;
+                nbIngredient = 50 ;
 
                 // définition  de la quantité des outils
                 capaciteAssemblage = 1 ;
@@ -116,7 +114,7 @@ public class Niveau {
                 tempsMin = 20 ;
 
                 /// quantité des ingrédients
-                quantiteIngredient = 100 ;
+                nbIngredient = 100 ;
 
                 // définition  de la quantité des outils
                 capaciteAssemblage = 2 ;
@@ -138,7 +136,7 @@ public class Niveau {
                 tempsMin = 20 ;
 
                 // quantité des ingrédients
-                quantiteIngredient = 150 ;
+                nbIngredient = 150 ;
 
                 // définition  de la quantité des outils
                 capaciteAssemblage = 3 ;
@@ -153,12 +151,6 @@ public class Niveau {
         this.tmpsAttente[0] = tempsMin ;
         this.tmpsAttente[1] = tempsMin + tempsMin / 2 ;
         this.tmpsAttente[3] = tempsMin * 2 ;
-
-        // définition des ingrédients associés à leur quantité
-        Ingredient.Nom [] ingredients = Ingredient.Nom.values() ;
-        for (int i = 0 ; i < ingredients.length ; i++) {
-            this.ingredient.put(new Ingredient(ingredients[i]), quantiteIngredient) ;
-        }
 
         // définition d'outils associés à leur quantité
         this.materiel.put(new Decoupe(),quantiteDecoupe) ;
@@ -183,8 +175,8 @@ public class Niveau {
     /**
      * @return liste des ingrédient et quantité disponibles dans le niveau
      */
-    public HashMap<Ingredient, Integer> getIngredient() {
-        return ingredient;
+    public int getNbIngredient() {
+        return nbIngredient;
     }
 
     /**
