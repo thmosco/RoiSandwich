@@ -45,19 +45,8 @@ public class Ingredient {
     	this.transformer = false ;
 	}
 	
-	
-	// mickael
-	String urlImage;
-	public String getUrlImage() {
-		return urlImage;
-	}
 
-	public Ingredient(Nom nom, String urlImage) {
-		this.nom = nom;
-		this.etat = Etat.CRU;
-		this.transformer = false;
-    this.urlImage = urlImage;
-  }
+
 
 	// Getteurs
 
@@ -121,4 +110,11 @@ public class Ingredient {
 				|| this.getNom() == Nom.OIGNON
 				|| this.getNom() == Nom.SALADE) ;
 	}
+	/**
+	 * @return le lien vers l'image correspondant à l'état de l'ingrédient
+	 */
+	public String getImgIngredient() {
+		return "../image/patate_decoupee.png";
+	}
+	
 }

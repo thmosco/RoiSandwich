@@ -83,12 +83,9 @@ public class Niveau {
 		this.tabScoreArgent = new int[2];
 
         this.comptoir = new Comptoir() ;
-        this.cuisine = new Cuisine(this) ;
+  
 
-
-		this.comptoir = new Comptoir();
-
-		this.cuisine = new Cuisine(this);
+		//this.cuisine = new Cuisine(this);
 		this.stock = new Stock();
 
 		this.tmpsAttente = new int[3];
@@ -195,8 +192,9 @@ public class Niveau {
 		this.gardeManger = new GardeManger(this);
 	}
 
-	// Getteurs
-	//mickael
+	/**
+	 * @return le garde manger
+	 */
 	public GardeManger getGardeManger() {
 		return gardeManger;
 	}

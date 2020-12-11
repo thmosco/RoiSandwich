@@ -12,8 +12,10 @@ import javafx.scene.image.Image;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 
 import java.awt.event.ActionEvent;
+import java.io.InputStream;
 import java.net.URL;
 
 import java.util.HashMap;
@@ -40,8 +42,8 @@ public class Controller implements Initializable {
 	private Materiel materielPoubelle;
 
 	// mickael
-	private Ingredient patate = new Ingredient(Nom.PATATE, "image/amandine.png");
-	private IngredientCuit beef = new IngredientCuit(Nom.STEAK_DE_BOEUF, "image/dsc_0315.jpg");
+	//private Ingredient patate = new Ingredient(Nom.PATATE, "image/amandine.png");
+	//private IngredientCuit beef = new IngredientCuit(Nom.STEAK_DE_BOEUF, "image/dsc_0315.jpg");
 	private Decoupe plancheADecoupe = new Decoupe();
 	private Friteuse appareilAFritte = new Friteuse();
 
@@ -82,7 +84,7 @@ public class Controller implements Initializable {
 	ImageView client3;
 
 	@FXML
-	ImageView decoupe;
+	BorderPane decoupe;
 
 	@FXML
 	ImageView containerDansDecoupe;
@@ -133,7 +135,8 @@ public class Controller implements Initializable {
 //		}
 		System.out.println(idImage);
 		container = Main.niveau1.getGardeManger().saisirUnIngredient(idImage);
-		containerLabel.setText(((Ingredient) container).getNom().toString());
+		setCompteur();
+		//containerLabel.setText(((Ingredient) container).getNom().toString());
 		}
 
 
@@ -166,20 +169,27 @@ public class Controller implements Initializable {
 //				container = materielDecoupe.objetsContenus.get(0);
 //				containerLabel.setText(((Ingredient) materielDecoupe.objetsContenus.get(0)).getNom().toString());
 //			}
-			checkSiIngredientPresentDansMateriel(materielDecoupe);
-		}
+			//checkSiIngredientPresentDansMateriel(materielDecoupe);
+			if(checkSiIngredientPresentDansMateriel(materielDecoupe)) {
+				containerDansDecoupe.setImage(null);
+				}
+			}
 
 		// sinon
 		else {
 			Ingredient ingredient = (Ingredient) container;
+			containerDansDecoupe.setImage(new Image(getClass().getResourceAsStream(ingredient.getImgIngredient())));
+			materielDecoupe.ajouterObjet(ingredient);
+			container = null;
 			// si le container est découpable
-			if (ingredient.isDecoupable() == true) {
+			if (ingredient.isDecoupable()) {
 				// si cette ingredient découpable n'est pas déja transformé alors le découper
 				if (ingredient.getTransformer() == false) {
-					materielDecoupe.ajouterObjet(ingredient);
+					
 					((Decoupe) materielDecoupe).decouper();
-					container = null;
-					containerLabel.setText("vide");
+					System.out.println(ingredient.getImgIngredient());
+					containerDansDecoupe.setImage(new Image(getClass().getResourceAsStream(ingredient.getImgIngredient())));
+					//containerLabel.setText("vide");
 					System.out.println(ingredient.getNom() + " a été découpé ");
 				}
 				// sinon cette ingredient découpable a déja été découpé
@@ -262,9 +272,10 @@ public class Controller implements Initializable {
 		}
 	}
 	
-	public void checkSiIngredientPresentDansMateriel(Materiel m) {
+	public boolean checkSiIngredientPresentDansMateriel(Materiel m) {
 		if (m.objetsContenus.isEmpty()) {
 			System.out.println("veuillez selectionner un ingredient");
+			return false;
 		}
 		// sinon, container = ingredient contenu dans le materiel de decoupe
 		else {
@@ -273,7 +284,8 @@ public class Controller implements Initializable {
 			m.retirerObjet(this.container);
 			System.out.println("contenu du materiel apres " + m.objetsContenus.size());
 			System.out.println("ingredient ajouté à container");
-			this.containerLabel.setText(((Ingredient) container).getNom().toString());
+			return true;
+			//this.containerLabel.setText(((Ingredient) container).getNom().toString());
 		}
 
 	}
@@ -311,7 +323,6 @@ public class Controller implements Initializable {
 			}
 		}
 		
-		setCompteur();
 		
 		
 	}

@@ -51,9 +51,6 @@ public class IngredientCuit extends Ingredient {
 	
 	
 	//mickael
-	public IngredientCuit(Nom nom, String urlImage) {
-		super(nom, urlImage);
-	}
 
 	public int getTempsCuisson() {
 		return tmpsCuisson;
