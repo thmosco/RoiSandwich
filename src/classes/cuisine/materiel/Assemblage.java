@@ -11,7 +11,7 @@ public class Assemblage extends Materiel {
      * Constructeur
      */
     public Assemblage() {
-        super(1, 10);
+        super(10, 10);
     }
 
     // Méthodes

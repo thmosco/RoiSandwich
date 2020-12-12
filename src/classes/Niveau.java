@@ -65,7 +65,7 @@ public class Niveau {
 
 	
 	//mickael
-	int quantiteIngredient;
+	private int quantiteIngredient;
 		
 	public int getQuantiteIngredient() {
 		return quantiteIngredient;
