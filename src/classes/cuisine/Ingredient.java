@@ -141,13 +141,13 @@ public class Ingredient {
 				}
 			case OIGNON :
 				if(this.getTransformer()) {
-					return "../image/oignon_decoupee.png";
+					return "../image/oignon_decoupe.png";
 				}
 				else {
 					return "../image/oignon_entier.png";
 				}
 			case PAIN :
-					return "../image/pain.png";
+					return "../image/pains.png";
 			case FROMAGE :
 					return "../image/fromage.png";
 			case STEAK_DE_SOJA :

@@ -70,4 +70,12 @@ public class Materiel {
     public boolean retirerObjet(Object objet) {
         return this.objetsContenus.remove(objet) ;
     }
+    public boolean getEmplacementVide() {
+    	if (objetsContenus.size() >= 1) {
+    		return false;
+    	}
+    	else {
+    		return true;
+    	}
+    }
 }

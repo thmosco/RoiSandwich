@@ -35,10 +35,15 @@ public class Controller implements Initializable {
 	private Object container;
 
 	private Materiel materielFriteuse;
+	
 	private Materiel materielAssemblage;
+	
 	private Materiel materielPlaqueDeCuisson;
+	
 	private Materiel materielDecoupe;
+	
 	private Materiel materielLaveVaisselle;
+	
 	private Materiel materielPoubelle;
 
 	// mickael
@@ -190,7 +195,7 @@ public class Controller implements Initializable {
 
 		// sinon
 		else {
-			
+			if (((Decoupe) materielDecoupe).getEmplacementVide()) {
 			Ingredient ingredient = (Ingredient) container;
 			containerDansDecoupe.setImage(new Image(getClass().getResourceAsStream(ingredient.getImgIngredient())));
 			materielDecoupe.ajouterObjet(ingredient);
@@ -217,6 +222,10 @@ public class Controller implements Initializable {
 			}
 			System.out.println("transformé : " + ingredient.getNom() + " : " + ingredient.getTransformer());
 		}
+			else {
+				System.out.println("Il y a déjà quelque chose dans ce materiel");
+				}
+			}
 	}
 
 	public void cuir(MouseEvent e) {
