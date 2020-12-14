@@ -67,13 +67,14 @@ public class Niveau {
         this.tabScoreArgent = new int [2];
 
         this.comptoir = new Comptoir() ;
+        this.materiel = new HashMap<Materiel,Integer>() ; //mickael changement de place car sinon erreur dans l'initialisationd de la cuisine
         this.cuisine = new Cuisine(this) ;
 
         this.tmpsAttente = new int [3] ;
         int tempsMin ;
 
         this.clients = new ArrayList<Client>() ;
-        this.materiel = new HashMap<Materiel,Integer>() ;
+        
 
         int capaciteAssemblage ;
         int capaciteLaveVaisselle ;
@@ -150,7 +151,7 @@ public class Niveau {
 
         this.tmpsAttente[0] = tempsMin ;
         this.tmpsAttente[1] = tempsMin + tempsMin / 2 ;
-        this.tmpsAttente[3] = tempsMin * 2 ;
+        this.tmpsAttente[2] = tempsMin * 2 ;
 
         // définition d'outils associés à leur quantité
         this.materiel.put(new Decoupe(),quantiteDecoupe) ;

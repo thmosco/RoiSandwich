@@ -55,7 +55,7 @@ public class IngredientCuit extends Ingredient {
 		super(nom, urlImage);
 	}
 
-	public int getTempsCuisson() {
-		return tempsCuisson;
-	}
+//	public int getTempsCuisson() {
+//		return tempsCuisson;
+//	}
 }

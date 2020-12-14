@@ -111,18 +111,13 @@ public class Controller implements Initializable {
 		if (container != null) {
 			if (container instanceof Ingredient) {
 
-				try {
-					// met l'image de l'ingredient dans l'imageview du materiel (mickael)
-					containerDansDecoupe.setImage(new Image(((Ingredient) container).getUrlImage()));
-					// enleve l'image dans container (à supprimer à la fin, Mickael)
-					containerView.setVisible(false);
-					plancheADecoupe.ajouterObjet((Ingredient) container);
-					System.out.println(((Ingredient) container).getNom() + " a été découpé");
-					container = null;
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				// met l'image de l'ingredient dans l'imageview du materiel (mickael)
+				containerDansDecoupe.setImage(new Image(((Ingredient) container).getUrlImage()));
+				// enleve l'image dans container (à supprimer à la fin, Mickael)
+				containerView.setVisible(false);
+				plancheADecoupe.ajouterObjet((Ingredient) container);
+				System.out.println(((Ingredient) container).getNom() + " a été découpé");
+				container = null;
 			}
 		} else {
 //			System.out.println(((Ingredient) container).getNom() + " a été découpé ");
@@ -142,23 +137,17 @@ public class Controller implements Initializable {
 
 		if (container != null) {
 			if (container instanceof Ingredient) {
-				if (((Ingredient) container).getNom() == Nom.POMME_DE_TERRE) {
+				if (((Ingredient) container).getNom() == Nom.PATATE) {
 					if (((Ingredient) container).getTransformer() == true) {
 						if (((Ingredient) container).getEtat().equals(Etat.CRU)) {
 
-							try {
-								((Ingredient) container).setEtat(Etat.CUIT);
-								appareilAFritte.ajouterObjet(((Ingredient) container));
-								System.out.println("Ingredient cuit");
+							((Ingredient) container).setEtat(Etat.CUIT);
+							appareilAFritte.ajouterObjet(((Ingredient) container));
+							System.out.println("Ingredient cuit");
 //							containerView.setVisible(false);
-								containerView.imageProperty().set(null);
-								containerDansFritteuse.setImage(new Image(((Ingredient) container).getUrlImage()));
-								container = null;
-
-							} catch (IllegalAccessException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+							containerView.imageProperty().set(null);
+							containerDansFritteuse.setImage(new Image(((Ingredient) container).getUrlImage()));
+							container = null;
 						} else {
 							System.out.println("déja cuit");
 						}

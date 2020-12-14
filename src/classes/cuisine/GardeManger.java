@@ -22,7 +22,8 @@ public class GardeManger {
 	/**
 	 * liste des compteurs des ingrédients : représente le nb d'ingrédient utilisé par le joueur
 	 */
-	private HashMap<Ingredient.Nom, Integer> compteurs ;
+	
+	private HashMap<Ingredient.Nom, Integer> compteurs = new HashMap<>() ; // mickael : ajout de = new HashMap()
 
 	/**
 	 * niveau de la partie en cours
