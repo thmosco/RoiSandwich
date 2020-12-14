@@ -115,7 +115,7 @@
                                        <Font size="10.0" />
                                    </font>
                                </Label>
-                               <Label fx:id="compteurPatateLabel" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                               <Label fx:id="containerPatateLabel" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="10.0" />
                                  </font></Label>

@@ -153,8 +153,18 @@ public class Controller implements Initializable {
 		
 		container = Main.niveau1.getGardeManger().prendreIngredient(Nom.valueOf(idImage));
 		if(container != null) {
-			setCompteur();
+			switch(Nom.valueOf(idImage)){
+				case PATATE : 
+				String nb = containerPatateLabel.getText();
+				int a = Integer.valueOf(nb);
+				a -= 1;
+				containerPatateLabel.setText(String.valueOf(a));
+			default:
+					break;
+				
+			}
 		}
+
 	
 		//containerLabel.setText(((Ingredient) container).getNom().toString());
 		}
