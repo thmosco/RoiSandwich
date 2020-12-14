@@ -144,7 +144,7 @@ public class Controller implements Initializable {
 		System.out.println(idImage);
 		
 		container = Main.niveau1.getGardeManger().prendreIngredient(Nom.valueOf(idImage));
-		setCompteur();
+		//setCompteur();
 		//containerLabel.setText(((Ingredient) container).getNom().toString());
 		}
 		else {

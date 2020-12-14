@@ -1,6 +1,7 @@
 package classes.cuisine;
 
 import classes.Niveau;
+import classes.cuisine.Ingredient.Etat;
 import classes.cuisine.Ingredient.Nom;
 
 import java.util.ArrayList;
@@ -43,10 +44,10 @@ public class GardeManger {
 
 	public Ingredient prendreIngredient (Ingredient.Nom ingredient) {
 		int compteur = compteurs.get(ingredient) ;
-		if (compteur > this.niveau.getNbIngredient()) {
+		if (compteur < this.niveau.getNbIngredient()) {
 			// décrémenter le compteur
-			compteurs.put(ingredient, compteur-1);
-			return new Ingredient(ingredient) ;
+			compteurs.put(ingredient, compteur+1);
+			return new Ingredient(ingredient);
 		}
 		return null ;
 	}
