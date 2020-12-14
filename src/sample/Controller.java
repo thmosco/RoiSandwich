@@ -124,13 +124,16 @@ public class Controller implements Initializable {
 
 	@FXML
 	ImageView garde_manger;
+	
+	@FXML
+	ImageView poubelle;
 
 	// containerView Ã  supprimer quand tout marche
 	@FXML
 	ImageView containerView;
 
 	@FXML
-	Label containerLabel;
+	Label containerPatateLabel;
 
 
 	@FXML
@@ -149,7 +152,10 @@ public class Controller implements Initializable {
 		System.out.println(idImage);
 		
 		container = Main.niveau1.getGardeManger().prendreIngredient(Nom.valueOf(idImage));
-		//setCompteur();
+		if(container != null) {
+			setCompteur();
+		}
+	
 		//containerLabel.setText(((Ingredient) container).getNom().toString());
 		}
 		else {
@@ -240,7 +246,6 @@ public class Controller implements Initializable {
 					ingredient.setEtat(Etat.CUIT);
 					materielPlaqueDeCuisson.ajouterObjet(ingredient);
 					container = null;
-					containerLabel.setText("vide");
 					System.out.println(ingredient.getNom() + " a été cuit");
 				
 				} else {
@@ -293,7 +298,6 @@ public class Controller implements Initializable {
 			System.out.println("ajouté");
 			assemblageTextArea.setText(assemblageTextArea.getText() + " ; " + ((Ingredient) container).getNom().toString());
 			container=null;
-			containerLabel.setText("vide");
 		}
 	}
 	
@@ -313,6 +317,11 @@ public class Controller implements Initializable {
 			//this.containerLabel.setText(((Ingredient) container).getNom().toString());
 		}
 
+	}
+	
+	public void jeter() {
+		container = null;
+		System.out.println(container);
 	}
 
 
@@ -346,6 +355,8 @@ public class Controller implements Initializable {
 				materielPoubelle = i;
 //				System.out.println("ajouté");
 			}
+			int quantiteIngredient = Main.niveau1.getNbIngredient();
+			containerPatateLabel.setText(String.valueOf(quantiteIngredient));
 		}
 		
 		

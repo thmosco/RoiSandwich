@@ -81,15 +81,15 @@
                                  <image>
                                     <Image url="@../image/patate.png" />
                                  </image></ImageView>
-                              <ImageView fx:id="STEAK_DE_BOEUF" fitHeight="21.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                              <ImageView fx:id="STEAK_DE_BOEUF" fitHeight="21.0" fitWidth="32.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/boeuf.png" />
                                  </image></ImageView>
-                              <ImageView fx:id="STEAK_DE_POULET" fitHeight="15.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                              <ImageView fx:id="STEAK_DE_POULET" fitHeight="15.0" fitWidth="34.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/poulet.png" />
                                  </image></ImageView>
-                              <ImageView fx:id="STEAK_DE_SOJA" fitHeight="23.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                              <ImageView fx:id="STEAK_DE_SOJA" fitHeight="23.0" fitWidth="36.0" onMouseClicked="#prendreIngredient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/soja.png" />
                                  </image></ImageView>
@@ -115,7 +115,7 @@
                                        <Font size="10.0" />
                                    </font>
                                </Label>
-                               <Label fx:id="compteurPatateLabel" text="50" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                               <Label fx:id="compteurPatateLabel" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="10.0" />
                                  </font></Label>
@@ -254,7 +254,7 @@
                               </BorderPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
-                                    <ImageView fitHeight="38.0" fitWidth="47.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="poubelle" fitHeight="38.0" fitWidth="47.0" layoutX="14.0" layoutY="9.0" onMouseClicked="#jeter" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../image/poubelle.png" />
                                        </image>
