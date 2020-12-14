@@ -64,8 +64,6 @@ public class Niveau {
 	private Cuisine cuisine;
 	private Stock stock;
 
-
-
 	/**
 	 * Constructeur
 	 * 
