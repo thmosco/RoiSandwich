@@ -1,14 +1,15 @@
 package classes.cuisine;
 
 import classes.Niveau;
+import classes.cuisine.Ingredient.Etat;
 import classes.cuisine.Ingredient.Nom;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
  * Commentaire de documentation de la classe GardeManger
- * 
  * @version 1.0
  * @author Thomas MOSCONI
  *
@@ -20,151 +21,34 @@ public class GardeManger {
 	// Variables de classe
 
 	/**
-	 * liste des pains disponibles garde manger et leur quantité
+	 * liste des compteurs des ingr�dients : repr�sente le nb d'ingr�dient utilis� par le joueur
 	 */
-	private ArrayList pains;
+	private HashMap<Ingredient.Nom, Integer> compteurs = new HashMap<>();
+
 	/**
-	 * liste des fromages disponibles garde manger et leur quantité
+	 * niveau de la partie en cours
 	 */
-	private ArrayList fromages;
-	/**
-	 * liste des oignons disponibles garde manger et leur quantité
-	 */
-	private ArrayList oignons;
-	/**
-	 * liste des salades disponibles garde manger et leur quantité
-	 */
-	private ArrayList salades;
-	/**
-	 * liste des tomates disponibles garde manger et leur quantité
-	 */
-	private ArrayList tomates;
-	/**
-	 * liste des patates disponibles garde manger et leur quantité
-	 */
-	private ArrayList patates;
-	/**
-	 * liste des steaks de boeuf disponibles garde manger et leur quantité
-	 */
-	private ArrayList boeuf;
-	/**
-	 * liste des steaks de poulet disponibles garde manger et leur quantité
-	 */
-	private ArrayList poulet;
-	/**
-	 * liste des steaks de soja disponibles garde manger et leur quantité
-	 */
-	private ArrayList soja;
+	private Niveau niveau ;
 
 	/**
 	 * Constructeur
-	 * 
-	 * @param niveau
+	 * @param quantit� ingr�dient, correspondant au niveau
 	 */
 	public GardeManger(Niveau niveau) {
-		// Initialisation des listes
-		this.pains = new ArrayList<Ingredient>();
-		this.fromages = new ArrayList<Ingredient>();
-		this.oignons = new ArrayList<Ingredient>();
-		this.salades = new ArrayList<Ingredient>();
-		this.tomates = new ArrayList<Ingredient>();
-		this.patates = new ArrayList<IngredientCuit>();
-		this.boeuf = new ArrayList<IngredientCuit>();
-		this.poulet = new ArrayList<IngredientCuit>();
-		this.soja = new ArrayList<IngredientCuit>();
-
-		// Création des ingrédients dans le garde manger
-		Iterator iterator = niveau.getIngredient().keySet().iterator();
-
-		while (iterator.hasNext()) {
-			Ingredient ingredient = (Ingredient) iterator.next();
-
-			// Création des pains dans la quantité indiquée par le niveau
-			if (ingredient.getNom() == Nom.PAIN) {
-
-//				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
-				this.pains.add(new Ingredient(Nom.PAIN));
-//				}
-
-				// Création des fromages dans la quantité indiquée par le niveau
-			} else if (ingredient.getNom() == Nom.FROMAGE) {
-//				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
-				this.fromages.add(new Ingredient(Nom.FROMAGE));
-//				}
-
-				// Création des oignons dans la quantité indiquée par le niveau
-			} else if (ingredient.getNom() == Nom.OIGNON) {
-//				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
-				this.oignons.add(new Ingredient(Nom.OIGNON));
-//				}
-
-				// Création des salades dans la quantité indiquée par le niveau
-			} else if (ingredient.getNom() == Nom.SALADE) {
-//				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
-				this.salades.add(new Ingredient(Nom.SALADE));
-//				}
-
-				// Création des tomates dans la quantité indiquée par le niveau
-			} else if (ingredient.getNom() == Nom.TOMATE) {
-//				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
-				this.tomates.add(new Ingredient(Nom.TOMATE));
-//				}
-
-				// Création des patates dans la quantité indiquée par le niveau
-			} else if (ingredient.getNom() == Nom.PATATE) {
-//				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) { //pourquoi utiliser un get.(iterator.next() ? mickael
-					
-					this.patates.add(new IngredientCuit(Nom.PATATE)) ;
-//				}
-//				}
-
-				// mickael
-				for (int i = 0; i < niveau.getQuantiteIngredient(); i++) {
-
-					this.patates.add(new IngredientCuit(Nom.PATATE));
-//					}
-				}
-
-				// Création des steaks de boeuf dans la quantité indiquée par le niveau
-			} else if (ingredient.getNom() == Nom.STEAK_DE_BOEUF) {
-//				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
-				this.boeuf.add(new IngredientCuit(Nom.STEAK_DE_BOEUF));
-//				}
-
-				// Création des steaks de poulet dans la quantité indiquée par le niveau
-			} else if (ingredient.getNom() == Nom.STEAK_DE_POULET) {
-//				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
-				this.poulet.add(new IngredientCuit(Nom.STEAK_DE_POULET));
-//				}
-
-				// Création des steaks de soja dans la quantité indiquée par le niveau
-			} else if (ingredient.getNom() == Nom.STEAK_DE_SOJA) {
-//				for (int i = 0 ; i < niveau.getIngredient().get(iterator.next()); i++) {
-				this.soja.add(new IngredientCuit(Nom.STEAK_DE_SOJA));
-//				}
-			}
+		this.niveau = niveau;
+		Ingredient.Nom [] ingredients = Ingredient.Nom.values() ;
+		for (int i = 0 ; i < ingredients.length ; i++) {
+			this.compteurs.put(ingredients[i],0) ;
 		}
 	}
 
-	// mickael
-	public ArrayList getPatates() {
-		return patates;
-	}
-	//mickael
-	public Ingredient saisirUnIngredient(String nom) {
-		Ingredient i;
-		if(nom.equals("PATATE")) {
-			i = (Ingredient) patates.get(0);
-			patates.remove(0);
-			return i;
-			}
-		if(nom.equals("STEAK_DE_BOEUF")) {
-			i = (Ingredient) boeuf.get(0);
-			boeuf.remove(0);
-			return i;
+	public Ingredient prendreIngredient (Ingredient.Nom ingredient) {
+		int compteur = compteurs.get(ingredient) ;
+		if (compteur < this.niveau.getNbIngredient()) {
+			// d�cr�menter le compteur
+			compteurs.put(ingredient, compteur+1);
+			return new Ingredient(ingredient);
 		}
-		return null;
-
+		return null ;
 	}
-
 }

@@ -16,16 +16,18 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
-	
+
 	public static Niveau niveau1;
-	
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
 
 		niveau1 = new Niveau(1);
 
-    	Parent root = FXMLLoader.load(getClass().getResource("niveau1.fxml"));
-
+    	Parent root = FXMLLoader.load(getClass().getResource("vueNiveau1.fxml"));
+    	
+    	niveau1 = new Niveau(1);
 
 		primaryStage.setTitle("RoiSandwich");
 		primaryStage.setScene(new Scene(root));

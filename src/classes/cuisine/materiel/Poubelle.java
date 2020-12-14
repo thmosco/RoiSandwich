@@ -30,7 +30,7 @@ public class Poubelle extends Materiel {
      * @return true si le contenu d'une assiette a bien été ajouté
      * @throws IllegalAccessException
      */
-    public boolean ajouterObjet (Assiette assiette) throws IllegalAccessException {
+    public boolean ajouterObjet (Assiette assiette) {
         // pop up de confirmation
         super.ajouterObjet(assiette.objetsContenus);
         // envoyer assiette dans laveVaisselle

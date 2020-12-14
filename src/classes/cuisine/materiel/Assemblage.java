@@ -23,7 +23,7 @@ public class Assemblage extends Materiel {
      * @return true si l'assiette a bien été ajouté
      * @throws IllegalAccessException
      */
-    public boolean ajouterObjet (Assiette assiette) throws IllegalAccessException {
+    public boolean ajouterObjet (Assiette assiette) {
         return super.ajouterObjet(assiette) ;
     }
 
