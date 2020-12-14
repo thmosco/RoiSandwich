@@ -44,8 +44,8 @@ public class Controller implements Initializable {
 	// mickael
 	//private Ingredient patate = new Ingredient(Nom.PATATE, "image/amandine.png");
 	//private IngredientCuit beef = new IngredientCuit(Nom.STEAK_DE_BOEUF, "image/dsc_0315.jpg");
-	private Decoupe plancheADecoupe = new Decoupe();
-	private Friteuse appareilAFritte = new Friteuse();
+	//private Decoupe plancheADecoupe = new Decoupe();
+	//private Friteuse appareilAFritte = new Friteuse();
 
 	@FXML
 	ImageView PATATE;
@@ -143,7 +143,7 @@ public class Controller implements Initializable {
 
 		System.out.println(idImage);
 		
-		container = Main.niveau1.getGardeManger().saisirUnIngredient(idImage);
+		container = Main.niveau1.getGardeManger().prendreIngredient(Nom.valueOf(idImage));
 		setCompteur();
 		//containerLabel.setText(((Ingredient) container).getNom().toString());
 		}
@@ -156,10 +156,10 @@ public class Controller implements Initializable {
 //	}
 	
 	public void setCompteur() {
-		GardeManger g =  Main.niveau1.getGardeManger();
+		//GardeManger g =  Main.niveau1.getGardeManger();
 		
-		System.out.println(g);
-		int a = g.getPatates().size()-1;
+		//System.out.println(g);
+		//int a = g.getPatates().size()-1;
 		//compteurPatateLabel.setText(Integer.toString(a));
 		
 	}
