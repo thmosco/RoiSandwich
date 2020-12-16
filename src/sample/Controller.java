@@ -19,6 +19,8 @@ import java.io.InputStream;
 import java.net.URL;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import classes.cuisine.Ingredient;
@@ -35,22 +37,23 @@ public class Controller implements Initializable {
 	private Object container;
 
 	private Materiel materielFriteuse;
-	
+
 	private Materiel materielAssemblage;
-	
+
 	private Materiel materielPlaqueDeCuisson;
-	
+
 	private Materiel materielDecoupe;
-	
+
 	private Materiel materielLaveVaisselle;
-	
+
 	private Materiel materielPoubelle;
 
 	// mickael
-	//private Ingredient patate = new Ingredient(Nom.PATATE, "image/amandine.png");
-	//private IngredientCuit beef = new IngredientCuit(Nom.STEAK_DE_BOEUF, "image/dsc_0315.jpg");
-	//private Decoupe plancheADecoupe = new Decoupe();
-	//private Friteuse appareilAFritte = new Friteuse();
+	// private Ingredient patate = new Ingredient(Nom.PATATE, "image/amandine.png");
+	// private IngredientCuit beef = new IngredientCuit(Nom.STEAK_DE_BOEUF,
+	// "image/dsc_0315.jpg");
+	// private Decoupe plancheADecoupe = new Decoupe();
+	// private Friteuse appareilAFritte = new Friteuse();
 
 	@FXML
 	ImageView PATATE;
@@ -70,8 +73,7 @@ public class Controller implements Initializable {
 	ImageView STEAK_DE_POULET;
 	@FXML
 	ImageView STEAK_DE_BOEUF;
-	
-	
+
 	@FXML
 	ImageView ingredient3;
 	@FXML
@@ -124,7 +126,7 @@ public class Controller implements Initializable {
 
 	@FXML
 	ImageView garde_manger;
-	
+
 	@FXML
 	ImageView poubelle;
 
@@ -133,58 +135,111 @@ public class Controller implements Initializable {
 	ImageView containerView;
 
 	@FXML
-	Label containerPatateLabel;
-
+	ImageView assiettePropre;
 
 	@FXML
-	TextArea assemblageTextArea;
-	
-		// met l'image de l'ingredient dans un container (Ã  supprimer Ã  la fin, Mickael)
-		//containerView.setImage(new Image(((Ingredient) container).getUrlImage()));
-	
+	private Label compteurPAIN;
+
+	@FXML
+	private Label compteurFROMAGE;
+
+	@FXML
+	private Label compteurOIGNON;
+
+	@FXML
+	private Label compteurTOMATE;
+
+	@FXML
+	private Label compteurSALADE;
+
+	@FXML
+	private Label compteurPATATE;
+
+	@FXML
+	private Label compteurSTEAK_DE_BOEUF;
+
+	@FXML
+	private Label compteurSTEAK_DE_POULET;
+
+	@FXML
+	private Label compteurSTEAK_DE_SOJA;
+
+	@FXML
+	private Label compteurAssitette;
+
+	@FXML
+	private ImageView emplacementAssiette;
+
+	@FXML
+	private TextArea assemblageTextArea;
+
+	// met l'image de l'ingredient dans un container (Ã  supprimer Ã  la fin,
+	// Mickael)
+	// containerView.setImage(new Image(((Ingredient) container).getUrlImage()));
+
+	public void prendreAssiettePropre(MouseEvent e) {
+		if (materielAssemblage.getEmplacementVide()) {
+			Object image = e.getSource();
+			System.out.println("assiette prise");
+			emplacementAssiette.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+			materielAssemblage.ajouterObjet(Main.niveau1.getCuisine().retirerAssietteDeLaCuisine());
+			compteurAssitette.setText(String.valueOf(Main.niveau1.getCuisine().getAssiettes().size()));
+		}
+		else {
+			System.out.println("1 assiette déja présente dans l'assemblage");
+		}
+
+//		materielAssemblage.ajouterObjet(assiette);
+	}
 
 	@FXML
 	public void prendreIngredient(MouseEvent e) {
-		if(container == null) {
-		Object image = e.getSource();
-		String idImage = ((Node) image).getId();
+		if (container == null) {
+			Object image = e.getSource();
+			String idImage = ((Node) image).getId();
+			System.out.println(idImage);
+			container = Main.niveau1.getGardeManger().prendreIngredient(Nom.valueOf(idImage));
+//			if (container != null) { // demander à thomas à quoi sert le if ?
+			switch (Nom.valueOf(idImage)) {
+			case PATATE:
+				compteurPATATE.setText(String.valueOf(compteur(Nom.PATATE)));
+				break;
+			case FROMAGE:
+				compteurFROMAGE.setText(String.valueOf(compteur(Nom.FROMAGE)));
+				break;
+			case PAIN:
+				compteurPAIN.setText(String.valueOf(compteur(Nom.PAIN)));
+				break;
+			case OIGNON:
+				compteurOIGNON.setText(String.valueOf(compteur(Nom.OIGNON)));
+				break;
+			case SALADE:
+				compteurSALADE.setText(String.valueOf(compteur(Nom.SALADE)));
+				break;
+			case STEAK_DE_BOEUF:
+				compteurSTEAK_DE_BOEUF.setText(String.valueOf(compteur(Nom.STEAK_DE_BOEUF)));
+				break;
+			case STEAK_DE_POULET:
+				compteurSTEAK_DE_POULET.setText(String.valueOf(compteur(Nom.STEAK_DE_POULET)));
+				break;
+			case STEAK_DE_SOJA:
+				compteurSTEAK_DE_SOJA.setText(String.valueOf(compteur(Nom.STEAK_DE_SOJA)));
+				break;
+			case TOMATE:
+				compteurTOMATE.setText(String.valueOf(compteur(Nom.TOMATE)));
+				break;
 
-		System.out.println(idImage);
-		
-		container = Main.niveau1.getGardeManger().prendreIngredient(Nom.valueOf(idImage));
-		if(container != null) {
-			switch(Nom.valueOf(idImage)){
-				case PATATE : 
-				String nb = containerPatateLabel.getText();
-				int a = Integer.valueOf(nb);
-				a -= 1;
-				containerPatateLabel.setText(String.valueOf(a));
 			default:
-					break;
-				
-			}
-		}
+				break;
 
-	
-		//containerLabel.setText(((Ingredient) container).getNom().toString());
-		}
-		else {
+			}
+//			}
+
+			// containerLabel.setText(((Ingredient) container).getNom().toString());
+		} else {
 			System.out.println("Vous avez déjà quelque chose dans votre main");
 		}
-		}
-
-
-//	}
-	
-	public void setCompteur() {
-		//GardeManger g =  Main.niveau1.getGardeManger();
-		
-		//System.out.println(g);
-		//int a = g.getPatates().size()-1;
-		//compteurPatateLabel.setText(Integer.toString(a));
-		
 	}
-
 
 	public void ajouterIngredientDansMateriel(Ingredient ingredient) {
 
@@ -203,45 +258,45 @@ public class Controller implements Initializable {
 //				container = materielDecoupe.objetsContenus.get(0);
 //				containerLabel.setText(((Ingredient) materielDecoupe.objetsContenus.get(0)).getNom().toString());
 //			}
-			//checkSiIngredientPresentDansMateriel(materielDecoupe);
-			if(checkSiIngredientPresentDansMateriel(materielDecoupe)) {
+			// checkSiIngredientPresentDansMateriel(materielDecoupe);
+			if (checkSiIngredientPresentDansMateriel(materielDecoupe)) {
 				containerDansDecoupe.setImage(null);
-				}
 			}
+		}
 
 		// sinon
 		else {
 			if (((Decoupe) materielDecoupe).getEmplacementVide()) {
-			Ingredient ingredient = (Ingredient) container;
-			containerDansDecoupe.setImage(new Image(getClass().getResourceAsStream(ingredient.getImgIngredient())));
-			materielDecoupe.ajouterObjet(ingredient);
-			container = null;
-			// si le container est découpable
-			if (ingredient.isDecoupable()) {
-				// si cette ingredient découpable n'est pas déja transformé alors le découper
-				if (ingredient.getTransformer() == false) {
-					
-					((Decoupe) materielDecoupe).decouper();
-					System.out.println(ingredient.getImgIngredient());
-					containerDansDecoupe.setImage(new Image(getClass().getResourceAsStream(ingredient.getImgIngredient())));
-					//containerLabel.setText("vide");
-					System.out.println(ingredient.getNom() + " a été découpé ");
+				Ingredient ingredient = (Ingredient) container;
+				containerDansDecoupe.setImage(new Image(getClass().getResourceAsStream(ingredient.getImgIngredient())));
+				materielDecoupe.ajouterObjet(ingredient);
+				container = null;
+				// si le container est découpable
+				if (ingredient.isDecoupable()) {
+					// si cette ingredient découpable n'est pas déja transformé alors le découper
+					if (ingredient.getTransformer() == false) {
+
+						((Decoupe) materielDecoupe).decouper();
+						System.out.println(ingredient.getImgIngredient());
+						containerDansDecoupe
+								.setImage(new Image(getClass().getResourceAsStream(ingredient.getImgIngredient())));
+						// containerLabel.setText("vide");
+						System.out.println(ingredient.getNom() + " a été découpé ");
+					}
+					// sinon cette ingredient découpable a déja été découpé
+					else {
+						System.out.println(ingredient.getNom() + " a déja été découpé");
+					}
 				}
-				// sinon cette ingredient découpable a déja été découpé
+				// sinon cette ingredient n'est pas découbale
 				else {
-					System.out.println(ingredient.getNom() + " a déja été découpé");
+					System.out.println(ingredient.getNom() + " n'est pas découpable");
 				}
-			}
-			// sinon cette ingredient n'est pas découbale
-			else {
-				System.out.println(ingredient.getNom() + " n'est pas découpable");
-			}
-			System.out.println("transformé : " + ingredient.getNom() + " : " + ingredient.getTransformer());
-		}
-			else {
+				System.out.println("transformé : " + ingredient.getNom() + " : " + ingredient.getTransformer());
+			} else {
 				System.out.println("Il y a déjà quelque chose dans ce materiel");
-				}
 			}
+		}
 	}
 
 	public void cuir(MouseEvent e) {
@@ -257,7 +312,7 @@ public class Controller implements Initializable {
 					materielPlaqueDeCuisson.ajouterObjet(ingredient);
 					container = null;
 					System.out.println(ingredient.getNom() + " a été cuit");
-				
+
 				} else {
 					System.out.println(((Ingredient) container).getNom() + " a déja été cuit");
 				}
@@ -271,7 +326,7 @@ public class Controller implements Initializable {
 		if (container == null) {
 //			System.out.println("veuillez selectionner un ingredient");
 			System.out.println("ingredient contenu " + materielFriteuse.objetsContenus.size());
-			if(checkSiIngredientPresentDansMateriel(materielFriteuse)){
+			if (checkSiIngredientPresentDansMateriel(materielFriteuse)) {
 				containerDansFriteuse.setImage(new Image(getClass().getResourceAsStream("../image/friteuse.png")));
 			}
 
@@ -279,12 +334,13 @@ public class Controller implements Initializable {
 			Ingredient a = ((Ingredient) container);
 			if (a.getNom().toString().equals("PATATE")) {
 				materielFriteuse.ajouterObjet(a);
-				containerDansFriteuse.setImage(new Image(getClass().getResourceAsStream("../image/friteuse_cuisson.png")));
+				containerDansFriteuse
+						.setImage(new Image(getClass().getResourceAsStream("../image/friteuse_cuisson.png")));
 				container = null;
 				if (a.getTransformer() == true) {
 					if (a.getEtat() == Etat.CRU) {
 						a.setEtat(Etat.CUIT);
-						//containerLabel.setText("vide");
+						// containerLabel.setText("vide");
 						System.out.println(a.getNom() + " a été cuit");
 
 					} else {
@@ -306,11 +362,12 @@ public class Controller implements Initializable {
 		} else {
 			materielAssemblage.ajouterObjet(container);
 			System.out.println("ajouté");
-			assemblageTextArea.setText(assemblageTextArea.getText() + " ; " + ((Ingredient) container).getNom().toString());
-			container=null;
+			assemblageTextArea
+					.setText(assemblageTextArea.getText() + " ; " + ((Ingredient) container).getNom().toString());
+			container = null;
 		}
 	}
-	
+
 	public boolean checkSiIngredientPresentDansMateriel(Materiel m) {
 		if (m.objetsContenus.isEmpty()) {
 			System.out.println("veuillez selectionner un ingredient");
@@ -324,22 +381,26 @@ public class Controller implements Initializable {
 			System.out.println("contenu du materiel apres " + m.objetsContenus.size());
 			System.out.println("ingredient ajouté à container");
 			return true;
-			//this.containerLabel.setText(((Ingredient) container).getNom().toString());
+			// this.containerLabel.setText(((Ingredient) container).getNom().toString());
 		}
 
 	}
-	
+
 	public void jeter() {
 		container = null;
 		System.out.println(container);
 	}
 
-
+	public int compteur(Nom n) {
+		return Main.niveau1.getGardeManger().getCompteurs().get(n);
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 
+		// mickael : récupere tous l'adresse de tous les materiels du niveau pour le
+		// controlleur
 		for (Materiel i : Main.niveau1.getMateriel().keySet()) {
 			if (i instanceof Decoupe) {
 				materielDecoupe = i;
@@ -365,11 +426,63 @@ public class Controller implements Initializable {
 				materielPoubelle = i;
 //				System.out.println("ajouté");
 			}
-			int quantiteIngredient = Main.niveau1.getNbIngredient();
-			containerPatateLabel.setText(String.valueOf(quantiteIngredient));
+
 		}
-		
-		
-		
+
+		compteurPATATE.setText(String.valueOf(compteur(Nom.PATATE)));
+		compteurFROMAGE.setText(String.valueOf(compteur(Nom.FROMAGE)));
+		compteurPAIN.setText(String.valueOf(compteur(Nom.PAIN)));
+		compteurOIGNON.setText(String.valueOf(compteur(Nom.OIGNON)));
+		compteurSALADE.setText(String.valueOf(compteur(Nom.SALADE)));
+		compteurSTEAK_DE_BOEUF.setText(String.valueOf(compteur(Nom.STEAK_DE_BOEUF)));
+		compteurSTEAK_DE_POULET.setText(String.valueOf(compteur(Nom.STEAK_DE_POULET)));
+		compteurSTEAK_DE_SOJA.setText(String.valueOf(compteur(Nom.STEAK_DE_SOJA)));
+		compteurTOMATE.setText(String.valueOf(compteur(Nom.TOMATE)));
+
+		compteurAssitette.setText(String.valueOf(Main.niveau1.getCuisine().getAssiettes().size()));
+
+		// Mickael ici on initialize chacun des compteurs correspondant à la quantité
+		// d'ingredient disponible selon niveau
+//		Map map = new HashMap();
+//		Iterator entries = Main.niveau1.getGardeManger().getCompteurs().entrySet().iterator();
+//		while (entries.hasNext()) {
+//			Map.Entry entry = (Map.Entry) entries.next();
+//			System.out.println("test " +entry.getKey());
+//			Nom key = (Nom) entry.getKey();
+//			switch (key) {
+//			case PATATE:
+//				compteurPATATE.setText(String.valueOf((Integer) entry.getValue()));
+//				break;
+//			case FROMAGE:
+//				compteurFROMAGE.setText(String.valueOf((Integer) entry.getValue()));
+//				break;
+//			case PAIN:
+//				compteurPAIN.setText(String.valueOf((Integer) entry.getValue()));
+//				break;
+//			case OIGNON:
+//				compteurOIGNON.setText(String.valueOf((Integer) entry.getValue()));
+//				break;
+//			case SALADE:
+//				compteurSALADE.setText(String.valueOf((Integer) entry.getValue()));
+//				break;
+//			case STEAK_DE_BOEUF:
+//				compteurSTEAK_DE_BOEUF.setText(String.valueOf((Integer) entry.getValue()));
+//				break;
+//			case STEAK_DE_POULET:
+//				compteurSTEAK_DE_POULET.setText(String.valueOf((Integer) entry.getValue()));
+//				break;
+//			case STEAK_DE_SOJA:
+//				compteurSTEAK_DE_SOJA.setText(String.valueOf((Integer) entry.getValue()));
+//				break;
+//			case TOMATE:
+//				compteurTOMATE.setText(String.valueOf((Integer) entry.getValue()));
+//				break;
+//
+//			default:
+//				break;
+//
+//			}
+//		}
+
 	}
 }

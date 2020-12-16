@@ -38,17 +38,24 @@ public class GardeManger {
 		this.niveau = niveau;
 		Ingredient.Nom [] ingredients = Ingredient.Nom.values() ;
 		for (int i = 0 ; i < ingredients.length ; i++) {
-			this.compteurs.put(ingredients[i],0) ;
+			this.compteurs.put(ingredients[i],niveau.getNbIngredient()) ;
 		}
 	}
 
 	public Ingredient prendreIngredient (Ingredient.Nom ingredient) {
 		int compteur = compteurs.get(ingredient) ;
-		if (compteur < this.niveau.getNbIngredient()) {
+		System.out.println(compteur);
+		if (compteur > 0) {
 			// décrémenter le compteur
-			compteurs.put(ingredient, compteur+1);
+			compteurs.put(ingredient, compteur-1);
 			return new Ingredient(ingredient);
 		}
 		return null ;
+	}
+
+	
+	//Mickael
+	public HashMap<Ingredient.Nom, Integer> getCompteurs() {
+		return compteurs;
 	}
 }

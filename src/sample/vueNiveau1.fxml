@@ -51,7 +51,7 @@
                               <RowConstraints maxHeight="16.4" minHeight="10.0" prefHeight="11.399999999999999" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="50" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                              <Label fx:id="compteurPAIN" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -95,41 +95,41 @@
                                  </image></ImageView>
                               <ImageView fitHeight="23.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
 
-                               <Label text="50" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                               <Label fx:id="compteurFROMAGE" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                    <font>
                                        <Font size="10.0" />
                                    </font>
                                </Label>
-                               <Label text="50" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                               <Label fx:id="compteurOIGNON" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                    <font>
                                        <Font size="10.0" />
                                    </font>
                                </Label>
-                               <Label text="50" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                               <Label fx:id="compteurTOMATE" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                    <font>
                                        <Font size="10.0" />
                                    </font>
                                </Label>
-                               <Label text="50" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                               <Label fx:id="compteurSALADE" text="0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                    <font>
                                        <Font size="10.0" />
                                    </font>
                                </Label>
-                               <Label fx:id="containerPatateLabel" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                               <Label fx:id="compteurPATATE" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="10.0" />
                                  </font></Label>
-                               <Label text="50" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                               <Label fx:id="compteurSTEAK_DE_BOEUF" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                    <font>
                                        <Font size="10.0" />
                                    </font>
                                </Label>
-                               <Label text="50" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                               <Label fx:id="compteurSTEAK_DE_POULET" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                    <font>
                                        <Font size="10.0" />
                                    </font>
                                </Label>
-                               <Label text="50" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                               <Label fx:id="compteurSTEAK_DE_SOJA" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                    <font>
                                        <Font size="10.0" />
                                    </font>
@@ -147,7 +147,7 @@
                               <RowConstraints maxHeight="29.4" minHeight="9.399999999999999" prefHeight="24.4" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ImageView fitHeight="32.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <ImageView fx:id="assiettePropre" fitHeight="32.0" fitWidth="55.0" onMouseClicked="#prendreAssiettePropre" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/assiettesPropres.png" />
                                  </image></ImageView>
@@ -159,7 +159,7 @@
                                  <image>
                                     <Image url="@../image/plats.png" />
                                  </image></ImageView>
-                              <Label text="50" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <Label fx:id="compteurAssitette" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                               <Label text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                               <Label text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                            </children>
@@ -219,11 +219,7 @@
                           <items>
                               <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b8b18d;">
                                  <center>
-                                    <ImageView fitHeight="53.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                       <image>
-                                          <Image url="@../image/assiette.png" />
-                                       </image>
-                                    </ImageView>
+                                    <ImageView fx:id="emplacementAssiette" fitHeight="53.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
                                  </center>
                                  <top>
                                     <GridPane prefHeight="44.0" prefWidth="158.0" BorderPane.alignment="CENTER">
