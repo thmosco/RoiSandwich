@@ -1,11 +1,19 @@
 package sample;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -17,7 +25,7 @@ import javafx.scene.layout.BorderPane;
 import java.awt.event.ActionEvent;
 import java.io.InputStream;
 import java.net.URL;
-
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -110,7 +118,15 @@ public class Controller implements Initializable {
 	ImageView containerDansDecoupe;
 
 	@FXML
-	ImageView plaque_cuisson;
+	BorderPane plaque_cuisson;
+	
+	@FXML
+	ImageView containerDansCuisson;
+	
+	@FXML
+	ProgressBar cuissonProgress;
+	
+	Service<Void> CuissonEnCoursSteak;
 
 	@FXML
 	BorderPane friteuse;
@@ -210,14 +226,13 @@ public class Controller implements Initializable {
 				if (((Ingredient) container).isDecoupable()) {
 					if (((Decoupe) materielDecoupe).getEmplacementVide()) {
 						Ingredient ingredient = (Ingredient) container;
-						containerDansDecoupe
-								.setImage(new Image(getClass().getResourceAsStream(ingredient.getImgIngredient())));
+						containerDansDecoupe.setImage(new Image(getClass().getResourceAsStream(ingredient.getImgIngredient())));
 						materielDecoupe.ajouterObjet(ingredient);
+						viderContainer();
 						// si le container est découpable
 						if (ingredient.isDecoupable()) {
 							// si cette ingredient découpable n'est pas déja transformé alors le découper
 							if (ingredient.getTransformer() == false) {
-								viderContainer();
 								((Decoupe) materielDecoupe).decouper();
 								System.out.println(ingredient.getImgIngredient());
 								containerDansDecoupe.setImage(
@@ -250,14 +265,26 @@ public class Controller implements Initializable {
 	public void cuir(MouseEvent e) {
 		if (container == null) {
 			checkSiIngredientPresentDansMateriel(materielPlaqueDeCuisson);
-		} else {
+			if(CuissonEnCoursSteak != null) {
+			CuissonEnCoursSteak.cancel();
+			CuissonEnCoursSteak.reset();
+			cuissonProgress.setProgress(0.0);
+				}
+			}
+		else {
 			Ingredient ingredient = ((Ingredient) container);
 			if (((Ingredient) container).isSteak() == true) {
 				if (((Ingredient) container).getEtat() == Etat.CRU) {
-					ingredient.setEtat(Etat.CUIT);
-					materielPlaqueDeCuisson.ajouterObjet(ingredient);
-					container = null;
-					System.out.println(ingredient.getNom() + " a été cuit");
+					try {
+						materielPlaqueDeCuisson.ajouterObjet(ingredient);
+						//containerDansCuisson.setImage(new Image(getClass().getResourceAsStream("../image/friteuse.png")));
+						viderContainer();
+						cuissonProgression(ingredient, cuissonProgress, 10);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				} else {
 					System.out.println(((Ingredient) container).getNom() + " a déja été cuit");
 				}
@@ -275,11 +302,10 @@ public class Controller implements Initializable {
 			}
 		} else {
 			Ingredient a = ((Ingredient) container);
-			if (a.getNom().toString().equals("PATATE")) {
+			if (a.getNom().toString().equals("PATATE") & a.getTransformer()) {
 				materielFriteuse.ajouterObjet(a);
-				containerDansFriteuse
-						.setImage(new Image(getClass().getResourceAsStream("../image/friteuse_cuisson.png")));
-				container = null;
+				containerDansFriteuse.setImage(new Image(getClass().getResourceAsStream("../image/friteuse_cuisson.png")));
+				viderContainer();
 				if (a.getTransformer() == true) {
 					if (a.getEtat() == Etat.CRU) {
 						a.setEtat(Etat.CUIT);
@@ -291,7 +317,7 @@ public class Controller implements Initializable {
 					System.out.println(a.getNom() + " doit etre découpé");
 				}
 			} else {
-				System.out.println("seul les patates peuvent être fries");
+				System.out.println("seul les patates coupé peuvent être fries");
 			}
 		}
 	}
@@ -350,8 +376,7 @@ public class Controller implements Initializable {
 	public void mettreDansContainer(Object o) {
 		if (o instanceof Ingredient) {
 			container = ((Ingredient) o);
-			containerView
-					.setImage(new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+			containerView.setImage(new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
 			Nom nomIngredient = ((Ingredient) container).getNom();
 			switch (nomIngredient) {
 			case PATATE:
@@ -396,6 +421,78 @@ public class Controller implements Initializable {
 		container = null;
 		containerView.setImage(null);
 	}
+	
+	public void cuissonProgression(Ingredient ingredient, ProgressBar progress, double temps) throws InterruptedException {
+		 
+		Service<Void> CuissonMateriel = new Service<Void>(){
+
+			  @Override
+			  protected Task<Void> createTask() {
+			    return new Task<Void>(){
+			     @Override
+			     protected Void call() throws Exception {
+			  
+			    	 for(int i = 0; i < temps ; i++) {
+			    		 if (isCancelled()) {
+			 	        break;
+			 	      }
+			    	cuissonProgress.setProgress(cuissonProgress.getProgress()+ (1.0/temps));
+			 		cuissonProgress.setStyle("-fx-accent: green;");
+			 		Thread.sleep(1000);
+			 		}
+			    	 System.out.println("Votre steak est cuit");
+			    	ingredient.setEtat(Etat.CUIT);
+			    	cuissonProgress.setProgress(0.0);
+			    	for(int i = 0; i < 10/2 ; i++) {
+			    		if (isCancelled()) {
+				 	        break;
+				 	      }
+				    	cuissonProgress.setProgress(cuissonProgress.getProgress()+ (1.0/temps)*2.0);
+				 		cuissonProgress.setStyle("-fx-accent: orange;");
+				 		Thread.sleep(1000);}
+			    	ingredient.setEtat(Etat.BRULE);
+			    	cuissonProgress.setProgress(1);
+			 		cuissonProgress.setStyle("-fx-accent: red;");
+			 		System.out.println("Votre steak est brulé");
+			 		return null;
+			      }
+			    };
+			  }
+			};
+			CuissonEnCoursSteak = CuissonMateriel;
+			CuissonMateriel.start();
+	}
+	    
+//		cuissonProgress.setProgress(0.2);
+//		cuissonProgress.setStyle("-fx-accent: green;");
+//		Thread.sleep(2000);
+//		cuissonProgress.setProgress(0.4);
+//		cuissonProgress.setStyle("-fx-accent: green;");
+//		Thread.sleep(2000);
+//		cuissonProgress.setProgress(0.6);
+//		cuissonProgress.setStyle("-fx-accent: green;");
+//		Thread.sleep(2000);
+//		cuissonProgress.setProgress(0.8);
+//		cuissonProgress.setStyle("-fx-accent: green;");
+//		Thread.sleep(2000);
+//		cuissonProgress.setProgress(1.0);
+//		cuissonProgress.setStyle("-fx-accent: green;");
+//		ingredient.setEtat(Etat.CUIT);
+//		System.out.println("Votre viande est cuite, récupérez le avant qu'il soit cramé !");
+//		Thread.sleep(3000);
+//		cuissonProgress.setProgress(0.3);
+//		cuissonProgress.setStyle("-fx-accent: orange;");
+//		Thread.sleep(2000);
+//		cuissonProgress.setProgress(0.6);
+//		cuissonProgress.setStyle("-fx-accent: orange;");
+//		Thread.sleep(2000);
+//		cuissonProgress.setProgress(1.0);
+//		cuissonProgress.setStyle("-fx-accent: orange;");
+//		Thread.sleep(2000);
+//		cuissonProgress.setProgress(1.0);
+//		cuissonProgress.setStyle("-fx-accent: red;");
+//		ingredient.setEtat(Etat.BRULE);
+//		System.out.println("Votre viande est complétement carbonisé !");
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
