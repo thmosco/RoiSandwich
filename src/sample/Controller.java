@@ -197,6 +197,26 @@ public class Controller implements Initializable {
 //	@FXML
 //	private TextArea assemblageTextArea;
 
+	public void donnerAssietteClient(MouseEvent e) {
+		if ((container != null) && (container instanceof Assiette)) {
+
+			ImageView i = (ImageView) e.getSource();
+			switch (i.getId()) {
+			case "client1":
+				System.out.println("tu as choisis le client 1");
+				break;
+			case "client2":
+				System.out.println("tu as choisis le client 2");
+				break;
+			case "client3":
+				System.out.println("tu as choisis le client 3");
+				break;
+			}
+		}
+
+//		Main.niveau1.getComptoir().servirClient(client, container);
+	}
+
 	public void prendreAssiettePropre(MouseEvent e) {
 		if (container == null) {
 			Object image = e.getSource();

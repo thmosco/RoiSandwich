@@ -59,6 +59,11 @@ public class Niveau {
 	private int nbAssietteMax;
 
 	private Comptoir comptoir;
+	
+	public Comptoir getComptoir() {
+		return comptoir;
+	}
+
 	private GardeManger gardeManger;
 	private Cuisine cuisine;
 	private Stock stock;
@@ -165,6 +170,10 @@ public class Niveau {
 		this.gardeManger = new GardeManger(this);
 		this.cuisine = new Cuisine(this);
 
+	}
+
+	public ArrayList<Client> getClients() {
+		return clients;
 	}
 
 	public Cuisine getCuisine() {
