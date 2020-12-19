@@ -45,19 +45,8 @@ public class Ingredient {
     	this.transformer = false ;
 	}
 	
-	
-	// mickael
-	String urlImage;
-	public String getUrlImage() {
-		return urlImage;
-	}
 
-	public Ingredient(Nom nom, String urlImage) {
-		this.nom = nom;
-		this.etat = Etat.CRU;
-		this.transformer = false;
-    this.urlImage = urlImage;
-  }
+
 
 	// Getteurs
 
@@ -121,4 +110,54 @@ public class Ingredient {
 				|| this.getNom() == Nom.OIGNON
 				|| this.getNom() == Nom.SALADE) ;
 	}
+	/**
+	 * @return le lien vers l'image correspondant à l'état de l'ingrédient
+	 */
+	public String getImgIngredient() {
+		
+		switch(this.getNom()) {
+			case PATATE :
+				if(this.getEtat() == Etat.CRU) {
+				if(this.getTransformer()) {
+					return "../image/patate_decoupee.png";
+				}
+				else {
+					return "../image/patate.png";
+				}}
+				else { return "../image/frites.png"; }
+			case SALADE :
+				if(this.getTransformer()) {
+					return "../image/salade_decoupee.png";
+				}
+				else {
+					return "../image/salade_entiere.png";
+				}
+			case TOMATE : 
+				if(this.getTransformer()) {
+					return "../image/tomate-decoupee.png";
+				}
+				else {
+					return "../image/tomate_entiere.png";
+				}
+			case OIGNON :
+				if(this.getTransformer()) {
+					return "../image/oignon_decoupe.png";
+				}
+				else {
+					return "../image/oignon_entier.png";
+				}
+			case PAIN :
+					return "../image/pains.png";
+			case FROMAGE :
+					return "../image/fromage.png";
+			case STEAK_DE_SOJA :
+					return "../image/soja.png";
+			case STEAK_DE_POULET :
+					return "../image/poulet.png";
+			case STEAK_DE_BOEUF:
+					return "../image/boeuf.png";
+		}
+		return "../image/patate_decoupee.png";
+	}
+	
 }

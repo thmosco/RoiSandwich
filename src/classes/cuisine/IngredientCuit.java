@@ -45,17 +45,14 @@ public class IngredientCuit extends Ingredient {
 	/**
 	 * @return le temps de cuisson optimale d'un ingrédient cuisable
 	 */
-	public int getTempsCuisson() {
-		return tmpsCuisson;
-	}
+//	public int getTempsCuisson() {
+//		return tmpsCuisson;
+//	}
 	
 	
 	//mickael
-	public IngredientCuit(Nom nom, String urlImage) {
-		super(nom, urlImage);
-	}
 
-//	public int getTempsCuisson() {
-//		return tempsCuisson;
-//	}
+	public int getTempsCuisson() {
+		return tmpsCuisson;
+	}
 }
