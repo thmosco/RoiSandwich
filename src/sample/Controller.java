@@ -361,9 +361,12 @@ public class Controller implements Initializable {
 
 	public void assembler(MouseEvent event) {
 		if (container == null) {
-			System.out.println("selectionner un ingredient");
-			mettreDansContainer(((Assiette) materielAssemblage.objetsContenus.get(0)));
-			emplacementAssiette.setImage(null);
+			if (materielAssemblage.objetsContenus.size() != 0) {
+				System.out.println("selectionner un ingredient");
+				mettreDansContainer(((Assiette) materielAssemblage.objetsContenus.get(0)));
+				materielAssemblage.objetsContenus.remove(0);
+				emplacementAssiette.setImage(null);
+			}
 
 		} else if (container instanceof Assiette) {
 			materielAssemblage.ajouterObjet(container);
