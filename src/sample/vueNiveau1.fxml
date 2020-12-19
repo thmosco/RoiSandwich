@@ -287,9 +287,18 @@
                          <image>
                              <Image url="@../image/client.png" />
                          </image></ImageView>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.rowIndex="2" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fx:id="emplacementAssietteClient1" fitHeight="73.0" fitWidth="64.0" layoutX="51.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                           </children></Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fx:id="emplacementAssietteClient2" fitHeight="73.0" fitWidth="64.0" layoutX="39.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+                           </children></Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fx:id="emplacementAssietteClient3" fitHeight="73.0" fitWidth="64.0" layoutX="60.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                           </children></Pane>
                         <Label text="Label" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                         <Label text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                         <Label text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />

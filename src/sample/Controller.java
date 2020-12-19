@@ -112,6 +112,15 @@ public class Controller implements Initializable {
 	ImageView client3;
 
 	@FXML
+	private ImageView emplacementAssietteClient1;
+
+	@FXML
+	private ImageView emplacementAssietteClient2;
+
+	@FXML
+	private ImageView emplacementAssietteClient3;
+
+	@FXML
 	BorderPane decoupe;
 
 	@FXML
@@ -327,6 +336,9 @@ public class Controller implements Initializable {
 	public void assembler(MouseEvent event) {
 		if (container == null) {
 			System.out.println("selectionner un ingredient");
+			mettreDansContainer(((Assiette) materielAssemblage.objetsContenus.get(0)));
+			emplacementAssiette.setImage(null);
+
 		} else if (container instanceof Assiette) {
 			materielAssemblage.ajouterObjet(container);
 			viderContainer();
