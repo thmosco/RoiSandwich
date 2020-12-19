@@ -204,12 +204,18 @@ public class Controller implements Initializable {
 			switch (i.getId()) {
 			case "client1":
 				System.out.println("tu as choisis le client 1");
+				emplacementAssietteClient1.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				viderContainer();
 				break;
 			case "client2":
 				System.out.println("tu as choisis le client 2");
+				emplacementAssietteClient2.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				viderContainer();
 				break;
 			case "client3":
 				System.out.println("tu as choisis le client 3");
+				emplacementAssietteClient3.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				viderContainer();
 				break;
 			}
 		}
@@ -219,7 +225,7 @@ public class Controller implements Initializable {
 
 	public void prendreAssiettePropre(MouseEvent e) {
 		if (container == null) {
-			Object image = e.getSource();
+//			Object image = e.getSource();
 			Object c = Main.niveau1.getCuisine().retirerAssietteDeLaCuisine();
 			mettreDansContainer(c);
 		} else {
