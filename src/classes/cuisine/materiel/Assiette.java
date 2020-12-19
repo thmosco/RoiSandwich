@@ -16,7 +16,7 @@ public class Assiette extends Materiel {
      * Constructeur
      */
     public Assiette() {
-        super(10, 0);
+        super(10, 10);
         this.nomPlat = null ;
     }
 
