@@ -119,13 +119,13 @@ public class Controller implements Initializable {
 
 	@FXML
 	BorderPane plaque_cuisson;
-	
+
 	@FXML
 	ImageView containerDansCuisson;
-	
+
 	@FXML
 	ProgressBar cuissonProgress;
-	
+
 	Service<Void> CuissonEnCoursSteak;
 
 	@FXML
@@ -226,7 +226,8 @@ public class Controller implements Initializable {
 				if (((Ingredient) container).isDecoupable()) {
 					if (((Decoupe) materielDecoupe).getEmplacementVide()) {
 						Ingredient ingredient = (Ingredient) container;
-						containerDansDecoupe.setImage(new Image(getClass().getResourceAsStream(ingredient.getImgIngredient())));
+						containerDansDecoupe
+								.setImage(new Image(getClass().getResourceAsStream(ingredient.getImgIngredient())));
 						materielDecoupe.ajouterObjet(ingredient);
 						viderContainer();
 						// si le container est découpable
@@ -265,26 +266,26 @@ public class Controller implements Initializable {
 	public void cuir(MouseEvent e) {
 		if (container == null) {
 			checkSiIngredientPresentDansMateriel(materielPlaqueDeCuisson);
-			if(CuissonEnCoursSteak != null) {
-			CuissonEnCoursSteak.cancel();
-			CuissonEnCoursSteak.reset();
-			cuissonProgress.setProgress(0.0);
-				}
+			if (CuissonEnCoursSteak != null) {
+				CuissonEnCoursSteak.cancel();
+				CuissonEnCoursSteak.reset();
+				cuissonProgress.setProgress(0.0);
 			}
-		else {
+		} else {
 			Ingredient ingredient = ((Ingredient) container);
 			if (((Ingredient) container).isSteak() == true) {
 				if (((Ingredient) container).getEtat() == Etat.CRU) {
 					try {
 						materielPlaqueDeCuisson.ajouterObjet(ingredient);
-						//containerDansCuisson.setImage(new Image(getClass().getResourceAsStream("../image/friteuse.png")));
+						// containerDansCuisson.setImage(new
+						// Image(getClass().getResourceAsStream("../image/friteuse.png")));
 						viderContainer();
 						cuissonProgression(ingredient, cuissonProgress, 10);
 					} catch (InterruptedException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
+
 				} else {
 					System.out.println(((Ingredient) container).getNom() + " a déja été cuit");
 				}
@@ -304,7 +305,8 @@ public class Controller implements Initializable {
 			Ingredient a = ((Ingredient) container);
 			if (a.getNom().toString().equals("PATATE") & a.getTransformer()) {
 				materielFriteuse.ajouterObjet(a);
-				containerDansFriteuse.setImage(new Image(getClass().getResourceAsStream("../image/friteuse_cuisson.png")));
+				containerDansFriteuse
+						.setImage(new Image(getClass().getResourceAsStream("../image/friteuse_cuisson.png")));
 				viderContainer();
 				if (a.getTransformer() == true) {
 					if (a.getEtat() == Etat.CRU) {
@@ -325,26 +327,27 @@ public class Controller implements Initializable {
 	public void assembler(MouseEvent event) {
 		if (container == null) {
 			System.out.println("selectionner un ingredient");
-		} else {
-			if (container instanceof Assiette) {
-				materielAssemblage.ajouterObjet(container);
-				viderContainer();
-				emplacementAssiette.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
-				System.out.println("assiette ajouté");
-			}
-			else if(container instanceof Ingredient) {
+		} else if (container instanceof Assiette) {
+			materielAssemblage.ajouterObjet(container);
+			viderContainer();
+			emplacementAssiette.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+			System.out.println("assiette ajouté");
+		} else if (container instanceof Ingredient) {
+			if (materielAssemblage.objetsContenus.size() == 0) {
+				System.out.println("il faut mettre une assiette propre d abord");
+			} else {
 				Assiette a = (Assiette) materielAssemblage.objetsContenus.get(0);
 				a.ajouterObjet(container);
 				viderContainer();
 				System.out.println("ingredient ajouté à assiette :");
-				for(int i = 0; i<a.objetsContenus.size();i++) {
-					System.out.print(((Ingredient)a.objetsContenus.get(i)).getNom() + " , " + "transformé =" + ((Ingredient)a.objetsContenus.get(i)).getTransformer() + " , état =" + ((Ingredient)a.objetsContenus.get(i)).getEtat() + " ; ");
+				for (int i = 0; i < a.objetsContenus.size(); i++) {
+					System.out.print(((Ingredient) a.objetsContenus.get(i)).getNom() + " , " + "transformé ="
+							+ ((Ingredient) a.objetsContenus.get(i)).getTransformer() + " , état ="
+							+ ((Ingredient) a.objetsContenus.get(i)).getEtat() + " ; ");
 				}
-				
 			}
-			else {
-				System.out.println("ca c'est rien y a un probleme dans assembler");
-			}
+		} else {
+			System.out.println("ca c'est rien y a un probleme dans assembler");
 		}
 	}
 
@@ -376,7 +379,8 @@ public class Controller implements Initializable {
 	public void mettreDansContainer(Object o) {
 		if (o instanceof Ingredient) {
 			container = ((Ingredient) o);
-			containerView.setImage(new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+			containerView
+					.setImage(new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
 			Nom nomIngredient = ((Ingredient) container).getNom();
 			switch (nomIngredient) {
 			case PATATE:
@@ -421,48 +425,50 @@ public class Controller implements Initializable {
 		container = null;
 		containerView.setImage(null);
 	}
-	
-	public void cuissonProgression(Ingredient ingredient, ProgressBar progress, double temps) throws InterruptedException {
-		 
-		Service<Void> CuissonMateriel = new Service<Void>(){
 
-			  @Override
-			  protected Task<Void> createTask() {
-			    return new Task<Void>(){
-			     @Override
-			     protected Void call() throws Exception {
-			  
-			    	 for(int i = 0; i < temps ; i++) {
-			    		 if (isCancelled()) {
-			 	        break;
-			 	      }
-			    	cuissonProgress.setProgress(cuissonProgress.getProgress()+ (1.0/temps));
-			 		cuissonProgress.setStyle("-fx-accent: green;");
-			 		Thread.sleep(1000);
-			 		}
-			    	 System.out.println("Votre steak est cuit");
-			    	ingredient.setEtat(Etat.CUIT);
-			    	cuissonProgress.setProgress(0.0);
-			    	for(int i = 0; i < 10/2 ; i++) {
-			    		if (isCancelled()) {
-				 	        break;
-				 	      }
-				    	cuissonProgress.setProgress(cuissonProgress.getProgress()+ (1.0/temps)*2.0);
-				 		cuissonProgress.setStyle("-fx-accent: orange;");
-				 		Thread.sleep(1000);}
-			    	ingredient.setEtat(Etat.BRULE);
-			    	cuissonProgress.setProgress(1);
-			 		cuissonProgress.setStyle("-fx-accent: red;");
-			 		System.out.println("Votre steak est brulé");
-			 		return null;
-			      }
-			    };
-			  }
-			};
-			CuissonEnCoursSteak = CuissonMateriel;
-			CuissonMateriel.start();
+	public void cuissonProgression(Ingredient ingredient, ProgressBar progress, double temps)
+			throws InterruptedException {
+
+		Service<Void> CuissonMateriel = new Service<Void>() {
+
+			@Override
+			protected Task<Void> createTask() {
+				return new Task<Void>() {
+					@Override
+					protected Void call() throws Exception {
+
+						for (int i = 0; i < temps; i++) {
+							if (isCancelled()) {
+								break;
+							}
+							cuissonProgress.setProgress(cuissonProgress.getProgress() + (1.0 / temps));
+							cuissonProgress.setStyle("-fx-accent: green;");
+							Thread.sleep(1000);
+						}
+						System.out.println("Votre steak est cuit");
+						ingredient.setEtat(Etat.CUIT);
+						cuissonProgress.setProgress(0.0);
+						for (int i = 0; i < 10 / 2; i++) {
+							if (isCancelled()) {
+								break;
+							}
+							cuissonProgress.setProgress(cuissonProgress.getProgress() + (1.0 / temps) * 2.0);
+							cuissonProgress.setStyle("-fx-accent: orange;");
+							Thread.sleep(1000);
+						}
+						ingredient.setEtat(Etat.BRULE);
+						cuissonProgress.setProgress(1);
+						cuissonProgress.setStyle("-fx-accent: red;");
+						System.out.println("Votre steak est brulé");
+						return null;
+					}
+				};
+			}
+		};
+		CuissonEnCoursSteak = CuissonMateriel;
+		CuissonMateriel.start();
 	}
-	    
+
 //		cuissonProgress.setProgress(0.2);
 //		cuissonProgress.setStyle("-fx-accent: green;");
 //		Thread.sleep(2000);
