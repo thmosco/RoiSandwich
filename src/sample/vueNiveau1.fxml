@@ -233,6 +233,15 @@
                                         <RowConstraints maxHeight="42.4" minHeight="10.0" prefHeight="22.4" vgrow="SOMETIMES" />
                                         <RowConstraints maxHeight="26.4" minHeight="10.0" prefHeight="22.4" vgrow="SOMETIMES" />
                                       </rowConstraints>
+                                       <children>
+                                          <ImageView fx:id="emplacementAssemblagePain" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="emplacementAssemblageFromage" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                                          <ImageView fx:id="emplacementAssemblageOignon" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                                          <ImageView fx:id="emplacementAssemblageTomate" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
+                                          <ImageView fx:id="emplacementAssemblageSalade" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+                                          <ImageView fx:id="emplacementAssemblagePatate" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <ImageView fx:id="emplacementAssemblageSteak" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                       </children>
                                     </GridPane>
                                  </top>
                               </BorderPane>
