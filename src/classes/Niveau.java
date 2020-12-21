@@ -59,6 +59,11 @@ public class Niveau {
 	private int nbAssietteMax;
 
 	private Comptoir comptoir;
+	
+	public Comptoir getComptoir() {
+		return comptoir;
+	}
+
 	private GardeManger gardeManger;
 	private Cuisine cuisine;
 	private Stock stock;
@@ -167,6 +172,13 @@ public class Niveau {
 
 	}
 
+<<<<<<< HEAD
+=======
+	public ArrayList<Client> getClients() {
+		return clients;
+	}
+
+>>>>>>> branch 'mick' of https://github.com/MaiaDS/RoiSandwich
 	public Cuisine getCuisine() {
 		return cuisine;
 	}

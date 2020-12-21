@@ -82,20 +82,45 @@ public class Controller implements Initializable {
 	@FXML
 	ImageView STEAK_DE_BOEUF;
 
+<<<<<<< HEAD
+=======
+//	@FXML
+//	ImageView ingredient3;
+//	@FXML
+//	ImageView ingredient4;
+//	@FXML
+//	ImageView ingredient5;
+//	@FXML
+//	ImageView ingredient6;
+//	@FXML
+//	ImageView ingredient7;
+//	@FXML
+//	ImageView ingredient8;
+//	@FXML
+//	ImageView ingredient9;
+	
+>>>>>>> branch 'mick' of https://github.com/MaiaDS/RoiSandwich
 	@FXML
-	ImageView ingredient3;
-	@FXML
-	ImageView ingredient4;
-	@FXML
-	ImageView ingredient5;
-	@FXML
-	ImageView ingredient6;
-	@FXML
-	ImageView ingredient7;
-	@FXML
-	ImageView ingredient8;
-	@FXML
-	ImageView ingredient9;
+    private ImageView emplacementAssemblagePain;
+
+    @FXML
+    private ImageView emplacementAssemblageFromage;
+
+    @FXML
+    private ImageView emplacementAssemblageOignon;
+
+    @FXML
+    private ImageView emplacementAssemblageTomate;
+
+    @FXML
+    private ImageView emplacementAssemblageSalade;
+
+    @FXML
+    private ImageView emplacementAssemblagePatate;
+
+    @FXML
+    private ImageView emplacementAssemblageSteak;
+
 
 	@FXML
 	ImageView stock1;
@@ -110,6 +135,15 @@ public class Controller implements Initializable {
 	ImageView client2;
 	@FXML
 	ImageView client3;
+
+	@FXML
+	private ImageView emplacementAssietteClient1;
+
+	@FXML
+	private ImageView emplacementAssietteClient2;
+
+	@FXML
+	private ImageView emplacementAssietteClient3;
 
 	@FXML
 	BorderPane decoupe;
@@ -154,6 +188,7 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label compteurPAIN;
+<<<<<<< HEAD
 
 	@FXML
 	private Label compteurFROMAGE;
@@ -199,8 +234,11 @@ public class Controller implements Initializable {
 
 //		materielAssemblage.ajouterObjet(assiette);
 	}
+=======
+>>>>>>> branch 'mick' of https://github.com/MaiaDS/RoiSandwich
 
 	@FXML
+<<<<<<< HEAD
 	public void prendreIngredient(MouseEvent e) {
 		if (container == null) {
 			Object image = e.getSource();
@@ -210,6 +248,94 @@ public class Controller implements Initializable {
 		} else {
 			System.out.println("Vous avez déjà quelque chose dans votre main");
 		}
+=======
+	private Label compteurFROMAGE;
+
+	@FXML
+	private Label compteurOIGNON;
+
+	@FXML
+	private Label compteurTOMATE;
+
+	@FXML
+	private Label compteurSALADE;
+
+	@FXML
+	private Label compteurPATATE;
+
+	@FXML
+	private Label compteurSTEAK_DE_BOEUF;
+
+	@FXML
+	private Label compteurSTEAK_DE_POULET;
+
+	@FXML
+	private Label compteurSTEAK_DE_SOJA;
+
+	@FXML
+	private Label compteurAssitette;
+
+	@FXML
+	private ImageView emplacementAssiette;
+
+//	@FXML
+//	private TextArea assemblageTextArea;
+
+	public void donnerAssietteClient(MouseEvent e) {
+		if ((container != null) && (container instanceof Assiette)) {
+
+			ImageView i = (ImageView) e.getSource();
+			switch (i.getId()) {
+			case "client1":
+				System.out.println("tu as choisis le client 1");
+				emplacementAssietteClient1.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				viderContainer();
+				break;
+			case "client2":
+				System.out.println("tu as choisis le client 2");
+				emplacementAssietteClient2.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				viderContainer();
+				break;
+			case "client3":
+				System.out.println("tu as choisis le client 3");
+				emplacementAssietteClient3.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				viderContainer();
+				break;
+			}
+		}
+
+//		Main.niveau1.getComptoir().servirClient(client, container);
+	}
+
+	public void prendreAssiettePropre(MouseEvent e) {
+		if (container == null) {
+//			Object image = e.getSource();
+			Object c = Main.niveau1.getCuisine().retirerAssietteDeLaCuisine();
+			mettreDansContainer(c);
+		} else {
+			System.out.println("container non vide");
+		}
+
+//		materielAssemblage.ajouterObjet(assiette);
+	}
+
+	@FXML
+	public void prendreIngredient(MouseEvent e) {
+		if (materielAssemblage.objetsContenus.size() == 0) {
+			System.out.println("attention, il n'y a pas d'assiette dans l'assemblage");
+		} else {
+			if (container == null) {
+				Object image = e.getSource();
+				String idImage = ((Node) image).getId();
+				Object c = Main.niveau1.getGardeManger().prendreIngredient(Nom.valueOf(idImage));
+				mettreDansContainer(c);
+			} else {
+				System.out.println("Vous avez déjà quelque chose dans votre main");
+			}
+
+		}
+
+>>>>>>> branch 'mick' of https://github.com/MaiaDS/RoiSandwich
 	}
 
 	public void decouper(MouseEvent e) throws IllegalAccessException {
@@ -326,13 +452,24 @@ public class Controller implements Initializable {
 
 	public void assembler(MouseEvent event) {
 		if (container == null) {
+<<<<<<< HEAD
 			System.out.println("selectionner un ingredient");
+=======
+			if (materielAssemblage.objetsContenus.size() != 0) {
+				System.out.println("selectionner un ingredient");
+				mettreDansContainer(((Assiette) materielAssemblage.objetsContenus.get(0)));
+				materielAssemblage.objetsContenus.remove(0);
+				emplacementAssiette.setImage(null);
+			}
+
+>>>>>>> branch 'mick' of https://github.com/MaiaDS/RoiSandwich
 		} else if (container instanceof Assiette) {
 			materielAssemblage.ajouterObjet(container);
 			viderContainer();
 			emplacementAssiette.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
 			System.out.println("assiette ajouté");
 		} else if (container instanceof Ingredient) {
+<<<<<<< HEAD
 			if (materielAssemblage.objetsContenus.size() == 0) {
 				System.out.println("il faut mettre une assiette propre d abord");
 			} else {
@@ -345,6 +482,17 @@ public class Controller implements Initializable {
 							+ ((Ingredient) a.objetsContenus.get(i)).getTransformer() + " , état ="
 							+ ((Ingredient) a.objetsContenus.get(i)).getEtat() + " ; ");
 				}
+=======
+				Assiette assiette = (Assiette) materielAssemblage.objetsContenus.get(0);
+				assiette.ajouterObjet(container);
+				emplacementAssemblagePatate.setImage(new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				viderContainer();
+				System.out.println("ingredient ajouté à assiette :");
+				for (int i = 0; i < assiette.objetsContenus.size(); i++) {
+					System.out.print(((Ingredient) assiette.objetsContenus.get(i)).getNom() + " , " + "transformé ="
+							+ ((Ingredient) assiette.objetsContenus.get(i)).getTransformer() + " , état ="
+							+ ((Ingredient) assiette.objetsContenus.get(i)).getEtat() + " ; ");
+>>>>>>> branch 'mick' of https://github.com/MaiaDS/RoiSandwich
 			}
 		} else {
 			System.out.println("ca c'est rien y a un probleme dans assembler");

@@ -233,6 +233,15 @@
                                         <RowConstraints maxHeight="42.4" minHeight="10.0" prefHeight="22.4" vgrow="SOMETIMES" />
                                         <RowConstraints maxHeight="26.4" minHeight="10.0" prefHeight="22.4" vgrow="SOMETIMES" />
                                       </rowConstraints>
+                                       <children>
+                                          <ImageView fx:id="emplacementAssemblagePain" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="emplacementAssemblageFromage" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                                          <ImageView fx:id="emplacementAssemblageOignon" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                                          <ImageView fx:id="emplacementAssemblageTomate" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
+                                          <ImageView fx:id="emplacementAssemblageSalade" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+                                          <ImageView fx:id="emplacementAssemblagePatate" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <ImageView fx:id="emplacementAssemblageSteak" fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                       </children>
                                     </GridPane>
                                  </top>
                               </BorderPane>
@@ -274,22 +283,31 @@
                       <RowConstraints maxHeight="84.39999237060547" minHeight="10.0" prefHeight="67.39999237060547" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fitHeight="80.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <ImageView fx:id="client1" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <image>
                               <Image url="@../image/client.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="80.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <ImageView fx:id="client2" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <image>
                               <Image url="@../image/client.png" />
                            </image></ImageView>
-                        <ImageView fitHeight="80.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <ImageView fx:id="client3" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                          <image>
                              <Image url="@../image/client.png" />
                          </image></ImageView>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.rowIndex="2" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fx:id="emplacementAssietteClient1" fitHeight="73.0" fitWidth="64.0" layoutX="51.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                           </children></Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fx:id="emplacementAssietteClient2" fitHeight="73.0" fitWidth="64.0" layoutX="39.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+                           </children></Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fx:id="emplacementAssietteClient3" fitHeight="73.0" fitWidth="64.0" layoutX="60.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                           </children></Pane>
                         <Label text="Label" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                         <Label text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                         <Label text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />

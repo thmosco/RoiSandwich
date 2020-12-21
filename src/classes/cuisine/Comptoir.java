@@ -17,7 +17,11 @@ public class Comptoir {
      */
     private HashMap<Client, Assiette> comptoir ;
 
-    /**
+    public HashMap<Client, Assiette> getComptoir() {
+		return comptoir;
+	}
+
+	/**
      * Constructeur
      */
     public Comptoir () {
