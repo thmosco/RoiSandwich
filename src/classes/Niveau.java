@@ -40,7 +40,7 @@ public class Niveau {
 	/**
 	 * Tableau des clients qui apparaitront au cours de la partie
 	 */
-	private int[] tmpsAttente;
+	private int tmpsAttente;
 	/**
 	 * Liste des recettes disponibles dans le niveau
 	 */
@@ -99,7 +99,9 @@ public class Niveau {
 		default:
 			this.scoreMin = 0;
 			this.nbAssietteMax = 25;
-			this.nbMaxClients = 25;
+			this.nbMaxClients = 10;
+			
+			this.tmpsAttente = 45;
 
 			// quantité des ingrédients
 			nbIngredient = 50;
@@ -115,6 +117,8 @@ public class Niveau {
 			this.scoreMin = 300;
 			this.nbAssietteMax = 9;
 			this.nbMaxClients = 50;
+			
+			this.tmpsAttente = 35;
 
 			nbIngredient = 100;
 
@@ -133,6 +137,8 @@ public class Niveau {
 			this.scoreMin = 600;
 			this.nbAssietteMax = 6;
 			this.nbMaxClients = 75;
+			
+			this.tmpsAttente = 25;
 
 			// quantité des ingrédients
 			nbIngredient = 150;
@@ -154,19 +160,25 @@ public class Niveau {
 		this.materiel.put(new Poubelle(), 1);
 		// définition de la station d'assemblage associée à sa capacité maximum
 		this.materiel.put(new Assemblage(), capaciteAssemblage);
+		
 		// définition du lave vaisselle associé à sa capacité maximum
 		this.materiel.put(new LaveVaisselle(), capaciteLaveVaisselle);
-
+		
 		// définition d'outils associés à leur quantité
 		this.materiel.put(new Decoupe(), quantiteDecoupe);
 		this.materiel.put(new Friteuse(), quantiteOutilsCuisson);
 		this.materiel.put(new PlaqueCuisson(), quantiteOutilsCuisson);
 		this.materiel.put(new Poubelle(), 1);
 		// définition de la station d'assemblage associée à sa capacité maximum
+		
 		this.materiel.put(new Assemblage(), capaciteAssemblage);
 		// définition du lave vaisselle associé à sa capacité maximum
+		
 		this.materiel.put(new LaveVaisselle(), capaciteLaveVaisselle);
-
+		
+		//cr�er la liste des clients en fonction des recettes du niveau
+		this.creerClients();
+		
 		this.gardeManger = new GardeManger(this);
 		this.cuisine = new Cuisine(this);
 
@@ -175,6 +187,7 @@ public class Niveau {
 	public ArrayList<Client> getClients() {
 		return clients;
 	}
+
 
 	public Cuisine getCuisine() {
 		return cuisine;
@@ -233,23 +246,18 @@ public class Niveau {
 		int attente;
 		Recette recette;
 		// Pour chaque client
-		for (int a = 0; a < this.clients.size(); a++) {
-			// Pour chaque temps d'attente
-			for (int b = 0; b < this.tmpsAttente.length; b++) {
+		for (int a = 0; a < this.nbMaxClients; a++) {
 				// Pour chaque recette
 				for (int c = 0; c < this.listeRecettes.size(); c++) {
 					// Pour chaque viande
 					for (int d = 0; d < Recette.Steaks.values().length; d++) {
-						// définition du temps d'attente propre au client
-						attente = this.tmpsAttente[b];
 						// définition de la commande propre au client
 						recette = new Recette(this.listeRecettes.get(c), Recette.Steaks.values()[d]);
 						// création du client
-						this.clients.add(new Client(attente, recette));
+						this.clients.add(new Client(tmpsAttente, recette));
 					}
 				}
 			}
-		}
 		return true;
 	}
 }

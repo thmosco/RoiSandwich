@@ -26,12 +26,12 @@ import java.awt.event.ActionEvent;
 import java.io.InputStream;
 import java.net.URL;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import classes.cuisine.Ingredient;
 import classes.cuisine.Ingredient.Etat;
 import classes.cuisine.Ingredient.Nom;
 import classes.*;
@@ -129,9 +129,20 @@ public class Controller implements Initializable {
 	@FXML
 	ImageView client1;
 	@FXML
+	ProgressBar client1Progress;
+	Service<Void> client1EnCours;
+	
+	@FXML
 	ImageView client2;
 	@FXML
+	ProgressBar client2Progress;
+	Service<Void> client2EnCours;
+	
+	@FXML
 	ImageView client3;
+	@FXML
+	ProgressBar client3Progress;
+	Service<Void> client3EnCours;
 
 	@FXML
 	private ImageView emplacementAssietteClient1;
@@ -219,14 +230,23 @@ public class Controller implements Initializable {
 //	@FXML
 //	private TextArea assemblageTextArea;
 
-	public void donnerAssietteClient(MouseEvent e) {
+	public void donnerAssietteClient(MouseEvent e) throws IllegalAccessException {
 		if ((container != null) && (container instanceof Assiette)) {
 
 			ImageView i = (ImageView) e.getSource();
 			switch (i.getId()) {
 			case "client1":
 				System.out.println("tu as choisis le client 1");
-				emplacementAssietteClient1.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				//emplacementAssietteClient1.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				 
+				client1EnCours.cancel();
+				client1EnCours.reset();
+				client1Progress.setProgress(0.0);
+				
+				if(Main.niveau1.getClients().get(0).verifierPlat((Assiette)container))
+				
+				client1EnCours = null;
+				
 				viderContainer();
 				break;
 			case "client2":
@@ -520,7 +540,6 @@ public class Controller implements Initializable {
 							}
 							cuissonProgress.setProgress(cuissonProgress.getProgress() + (1.0 / temps) * 2.0);
 							cuissonProgress.setStyle("-fx-accent: orange;");
-							Thread.sleep(1000);
 						}
 						ingredient.setEtat(Etat.BRULE);
 						cuissonProgress.setProgress(1);
@@ -533,6 +552,44 @@ public class Controller implements Initializable {
 		};
 		CuissonEnCoursSteak = CuissonMateriel;
 		CuissonMateriel.start();
+	}
+	
+	public Service<Void> envoyerUnClient(Client client)
+			throws InterruptedException {
+
+		Service<Void> ArriverClient = new Service<Void>() {
+
+			@Override
+			protected Task<Void> createTask() {
+				return new Task<Void>() {
+					@Override
+					protected Void call() throws Exception {
+						
+						double temps = client.getTmpsAttente();
+						
+						client1Progress.setProgress(1.0);
+						client1Progress.setStyle("-fx-accent: green;");
+						for (double i = temps; i > 1; i--) {
+							if (isCancelled()) {
+								break;
+							}
+							client1Progress.setProgress(client1Progress.getProgress() - (1.0 / temps));
+							Thread.sleep(1000);
+							if (i < temps*0.4){
+								client1Progress.setStyle("-fx-accent: orange;");
+							}
+							if (i < temps*0.2){
+								client1Progress.setStyle("-fx-accent: red;");
+							}
+						}
+						System.out.println("Le client est parti");
+						return null;
+					}
+				};
+			}
+		};
+		ArriverClient.start();
+		return ArriverClient;
 	}
 
 //		cuissonProgress.setProgress(0.2);
@@ -597,9 +654,14 @@ public class Controller implements Initializable {
 				materielPoubelle = i;
 //				System.out.println("ajouté");
 			}
-
 		}
 
+		try {
+			client1EnCours = envoyerUnClient(Main.niveau1.getClients().get(0));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		compteurPATATE.setText(String.valueOf(compteur(Nom.PATATE)));
 		compteurFROMAGE.setText(String.valueOf(compteur(Nom.FROMAGE)));
 		compteurPAIN.setText(String.valueOf(compteur(Nom.PAIN)));
