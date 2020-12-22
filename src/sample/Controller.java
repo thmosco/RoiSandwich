@@ -26,12 +26,12 @@ import java.awt.event.ActionEvent;
 import java.io.InputStream;
 import java.net.URL;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import classes.cuisine.Ingredient;
 import classes.cuisine.Ingredient.Etat;
 import classes.cuisine.Ingredient.Nom;
 import classes.*;
@@ -82,8 +82,6 @@ public class Controller implements Initializable {
 	@FXML
 	ImageView STEAK_DE_BOEUF;
 
-<<<<<<< HEAD
-=======
 //	@FXML
 //	ImageView ingredient3;
 //	@FXML
@@ -99,7 +97,6 @@ public class Controller implements Initializable {
 //	@FXML
 //	ImageView ingredient9;
 	
->>>>>>> branch 'mick' of https://github.com/MaiaDS/RoiSandwich
 	@FXML
     private ImageView emplacementAssemblagePain;
 
@@ -132,9 +129,20 @@ public class Controller implements Initializable {
 	@FXML
 	ImageView client1;
 	@FXML
+	ProgressBar client1Progress;
+	Service<Void> client1EnCours;
+	
+	@FXML
 	ImageView client2;
 	@FXML
+	ProgressBar client2Progress;
+	Service<Void> client2EnCours;
+	
+	@FXML
 	ImageView client3;
+	@FXML
+	ProgressBar client3Progress;
+	Service<Void> client3EnCours;
 
 	@FXML
 	private ImageView emplacementAssietteClient1;
@@ -188,7 +196,6 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label compteurPAIN;
-<<<<<<< HEAD
 
 	@FXML
 	private Label compteurFROMAGE;
@@ -223,72 +230,23 @@ public class Controller implements Initializable {
 //	@FXML
 //	private TextArea assemblageTextArea;
 
-	public void prendreAssiettePropre(MouseEvent e) {
-		if (container == null) {
-			Object image = e.getSource();
-			Object c = Main.niveau1.getCuisine().retirerAssietteDeLaCuisine();
-			mettreDansContainer(c);
-		} else {
-			System.out.println("container non vide");
-		}
-
-//		materielAssemblage.ajouterObjet(assiette);
-	}
-=======
->>>>>>> branch 'mick' of https://github.com/MaiaDS/RoiSandwich
-
-	@FXML
-<<<<<<< HEAD
-	public void prendreIngredient(MouseEvent e) {
-		if (container == null) {
-			Object image = e.getSource();
-			String idImage = ((Node) image).getId();
-			Object c = Main.niveau1.getGardeManger().prendreIngredient(Nom.valueOf(idImage));
-			mettreDansContainer(c);
-		} else {
-			System.out.println("Vous avez déjà quelque chose dans votre main");
-		}
-=======
-	private Label compteurFROMAGE;
-
-	@FXML
-	private Label compteurOIGNON;
-
-	@FXML
-	private Label compteurTOMATE;
-
-	@FXML
-	private Label compteurSALADE;
-
-	@FXML
-	private Label compteurPATATE;
-
-	@FXML
-	private Label compteurSTEAK_DE_BOEUF;
-
-	@FXML
-	private Label compteurSTEAK_DE_POULET;
-
-	@FXML
-	private Label compteurSTEAK_DE_SOJA;
-
-	@FXML
-	private Label compteurAssitette;
-
-	@FXML
-	private ImageView emplacementAssiette;
-
-//	@FXML
-//	private TextArea assemblageTextArea;
-
-	public void donnerAssietteClient(MouseEvent e) {
+	public void donnerAssietteClient(MouseEvent e) throws IllegalAccessException {
 		if ((container != null) && (container instanceof Assiette)) {
 
 			ImageView i = (ImageView) e.getSource();
 			switch (i.getId()) {
 			case "client1":
 				System.out.println("tu as choisis le client 1");
-				emplacementAssietteClient1.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				//emplacementAssietteClient1.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				 
+				client1EnCours.cancel();
+				client1EnCours.reset();
+				client1Progress.setProgress(0.0);
+				
+				if(Main.niveau1.getClients().get(0).verifierPlat((Assiette)container))
+				
+				client1EnCours = null;
+				
 				viderContainer();
 				break;
 			case "client2":
@@ -335,7 +293,6 @@ public class Controller implements Initializable {
 
 		}
 
->>>>>>> branch 'mick' of https://github.com/MaiaDS/RoiSandwich
 	}
 
 	public void decouper(MouseEvent e) throws IllegalAccessException {
@@ -452,9 +409,6 @@ public class Controller implements Initializable {
 
 	public void assembler(MouseEvent event) {
 		if (container == null) {
-<<<<<<< HEAD
-			System.out.println("selectionner un ingredient");
-=======
 			if (materielAssemblage.objetsContenus.size() != 0) {
 				System.out.println("selectionner un ingredient");
 				mettreDansContainer(((Assiette) materielAssemblage.objetsContenus.get(0)));
@@ -462,27 +416,12 @@ public class Controller implements Initializable {
 				emplacementAssiette.setImage(null);
 			}
 
->>>>>>> branch 'mick' of https://github.com/MaiaDS/RoiSandwich
 		} else if (container instanceof Assiette) {
 			materielAssemblage.ajouterObjet(container);
 			viderContainer();
 			emplacementAssiette.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
 			System.out.println("assiette ajouté");
 		} else if (container instanceof Ingredient) {
-<<<<<<< HEAD
-			if (materielAssemblage.objetsContenus.size() == 0) {
-				System.out.println("il faut mettre une assiette propre d abord");
-			} else {
-				Assiette a = (Assiette) materielAssemblage.objetsContenus.get(0);
-				a.ajouterObjet(container);
-				viderContainer();
-				System.out.println("ingredient ajouté à assiette :");
-				for (int i = 0; i < a.objetsContenus.size(); i++) {
-					System.out.print(((Ingredient) a.objetsContenus.get(i)).getNom() + " , " + "transformé ="
-							+ ((Ingredient) a.objetsContenus.get(i)).getTransformer() + " , état ="
-							+ ((Ingredient) a.objetsContenus.get(i)).getEtat() + " ; ");
-				}
-=======
 				Assiette assiette = (Assiette) materielAssemblage.objetsContenus.get(0);
 				assiette.ajouterObjet(container);
 				emplacementAssemblagePatate.setImage(new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
@@ -492,7 +431,6 @@ public class Controller implements Initializable {
 					System.out.print(((Ingredient) assiette.objetsContenus.get(i)).getNom() + " , " + "transformé ="
 							+ ((Ingredient) assiette.objetsContenus.get(i)).getTransformer() + " , état ="
 							+ ((Ingredient) assiette.objetsContenus.get(i)).getEtat() + " ; ");
->>>>>>> branch 'mick' of https://github.com/MaiaDS/RoiSandwich
 			}
 		} else {
 			System.out.println("ca c'est rien y a un probleme dans assembler");
@@ -602,7 +540,6 @@ public class Controller implements Initializable {
 							}
 							cuissonProgress.setProgress(cuissonProgress.getProgress() + (1.0 / temps) * 2.0);
 							cuissonProgress.setStyle("-fx-accent: orange;");
-							Thread.sleep(1000);
 						}
 						ingredient.setEtat(Etat.BRULE);
 						cuissonProgress.setProgress(1);
@@ -615,6 +552,44 @@ public class Controller implements Initializable {
 		};
 		CuissonEnCoursSteak = CuissonMateriel;
 		CuissonMateriel.start();
+	}
+	
+	public Service<Void> envoyerUnClient(Client client)
+			throws InterruptedException {
+
+		Service<Void> ArriverClient = new Service<Void>() {
+
+			@Override
+			protected Task<Void> createTask() {
+				return new Task<Void>() {
+					@Override
+					protected Void call() throws Exception {
+						
+						double temps = client.getTmpsAttente();
+						
+						client1Progress.setProgress(1.0);
+						client1Progress.setStyle("-fx-accent: green;");
+						for (double i = temps; i > 1; i--) {
+							if (isCancelled()) {
+								break;
+							}
+							client1Progress.setProgress(client1Progress.getProgress() - (1.0 / temps));
+							Thread.sleep(1000);
+							if (i < temps*0.4){
+								client1Progress.setStyle("-fx-accent: orange;");
+							}
+							if (i < temps*0.2){
+								client1Progress.setStyle("-fx-accent: red;");
+							}
+						}
+						System.out.println("Le client est parti");
+						return null;
+					}
+				};
+			}
+		};
+		ArriverClient.start();
+		return ArriverClient;
 	}
 
 //		cuissonProgress.setProgress(0.2);
@@ -679,9 +654,14 @@ public class Controller implements Initializable {
 				materielPoubelle = i;
 //				System.out.println("ajouté");
 			}
-
 		}
 
+		try {
+			client1EnCours = envoyerUnClient(Main.niveau1.getClients().get(0));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		compteurPATATE.setText(String.valueOf(compteur(Nom.PATATE)));
 		compteurFROMAGE.setText(String.valueOf(compteur(Nom.FROMAGE)));
 		compteurPAIN.setText(String.valueOf(compteur(Nom.PAIN)));

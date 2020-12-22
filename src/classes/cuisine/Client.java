@@ -82,7 +82,7 @@ public class Client {
             // Si un aliment a un résultat négatif alors la commande n'a pas été respectée
             return !(checked.contains(false)) ;
         }
-        return false ;
+        return false;
     }
 
     /**
