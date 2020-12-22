@@ -11,6 +11,40 @@ import classes.cuisine.Ingredient;
 public class Assiette extends Materiel {
 
     private Recette.Noms nomPlat ;
+    
+    
+    
+//    Mickael ajout de l etat de l'assiette. 
+    private EtatAssiette etatAssiette;
+    
+    public EtatAssiette getEtatAssiette() {
+		return etatAssiette;
+	}
+
+	public void setEtatAssiette(EtatAssiette etatAssiette) {
+		this.etatAssiette = etatAssiette;
+	}
+
+	public enum EtatAssiette {
+		PROPRE, SALE, PLAT
+	}
+	
+	public String getImgAssiette(){
+		String s =null;
+		switch (etatAssiette) {
+		case PROPRE:
+			s = "../image/assiette.png";
+			break;
+		case SALE:
+			s = "../image/assiettesSales.png";
+			break;
+		case PLAT:
+			s = "../image/plat-simple.png";
+			break;
+		}
+		return s;
+		
+	}
 
     /**
      * Constructeur
@@ -18,6 +52,7 @@ public class Assiette extends Materiel {
     public Assiette() {
         super(10, 10);
         this.nomPlat = null ;
+        this.etatAssiette = EtatAssiette.PROPRE;
     }
 
     // Getteur
@@ -50,6 +85,7 @@ public class Assiette extends Materiel {
      * @throws IllegalAccessException
      */
     public boolean ajouterObjet (Ingredient ingredient) {
+    	setEtatAssiette(EtatAssiette.PLAT);
         return super.ajouterObjet(ingredient) ;
     }
 

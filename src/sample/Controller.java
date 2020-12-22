@@ -96,28 +96,27 @@ public class Controller implements Initializable {
 //	ImageView ingredient8;
 //	@FXML
 //	ImageView ingredient9;
-	
+
 	@FXML
-    private ImageView emplacementAssemblagePain;
+	private ImageView emplacementAssemblagePain;
 
-    @FXML
-    private ImageView emplacementAssemblageFromage;
+	@FXML
+	private ImageView emplacementAssemblageFromage;
 
-    @FXML
-    private ImageView emplacementAssemblageOignon;
+	@FXML
+	private ImageView emplacementAssemblageOignon;
 
-    @FXML
-    private ImageView emplacementAssemblageTomate;
+	@FXML
+	private ImageView emplacementAssemblageTomate;
 
-    @FXML
-    private ImageView emplacementAssemblageSalade;
+	@FXML
+	private ImageView emplacementAssemblageSalade;
 
-    @FXML
-    private ImageView emplacementAssemblagePatate;
+	@FXML
+	private ImageView emplacementAssemblagePatate;
 
-    @FXML
-    private ImageView emplacementAssemblageSteak;
-
+	@FXML
+	private ImageView emplacementAssemblageSteak;
 
 	@FXML
 	ImageView stock1;
@@ -131,13 +130,13 @@ public class Controller implements Initializable {
 	@FXML
 	ProgressBar client1Progress;
 	Service<Void> client1EnCours;
-	
+
 	@FXML
 	ImageView client2;
 	@FXML
 	ProgressBar client2Progress;
 	Service<Void> client2EnCours;
-	
+
 	@FXML
 	ImageView client3;
 	@FXML
@@ -237,26 +236,27 @@ public class Controller implements Initializable {
 			switch (i.getId()) {
 			case "client1":
 				System.out.println("tu as choisis le client 1");
-				//emplacementAssietteClient1.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
-				 
+				// emplacementAssietteClient1.setImage(new
+				// Image(getClass().getResourceAsStream("../image/assiette.png")));
+
 				client1EnCours.cancel();
 				client1EnCours.reset();
 				client1Progress.setProgress(0.0);
-				
-				if(Main.niveau1.getClients().get(0).verifierPlat((Assiette)container))
-				
-				client1EnCours = null;
-				
+
+				if (Main.niveau1.getClients().get(0).verifierPlat((Assiette) container))
+
+					client1EnCours = null;
+
 				viderContainer();
 				break;
 			case "client2":
 				System.out.println("tu as choisis le client 2");
-				emplacementAssietteClient2.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				emplacementAssietteClient2.setImage(new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
 				viderContainer();
 				break;
 			case "client3":
 				System.out.println("tu as choisis le client 3");
-				emplacementAssietteClient3.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				emplacementAssietteClient3.setImage(new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
 				viderContainer();
 				break;
 			}
@@ -414,24 +414,69 @@ public class Controller implements Initializable {
 				mettreDansContainer(((Assiette) materielAssemblage.objetsContenus.get(0)));
 				materielAssemblage.objetsContenus.remove(0);
 				emplacementAssiette.setImage(null);
+				emplacementAssemblagePatate.setImage(null);
+				emplacementAssemblageFromage.setImage(null);
+				emplacementAssemblagePain.setImage(null);
+				emplacementAssemblageOignon.setImage(null);
+				emplacementAssemblageSalade.setImage(null);
+				emplacementAssemblageSteak.setImage(null);
+				emplacementAssemblageTomate.setImage(null);
 			}
-
 		} else if (container instanceof Assiette) {
 			materielAssemblage.ajouterObjet(container);
+			emplacementAssiette
+					.setImage(new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
 			viderContainer();
-			emplacementAssiette.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
 			System.out.println("assiette ajouté");
 		} else if (container instanceof Ingredient) {
-				Assiette assiette = (Assiette) materielAssemblage.objetsContenus.get(0);
-				assiette.ajouterObjet(container);
-				emplacementAssemblagePatate.setImage(new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
-				viderContainer();
-				System.out.println("ingredient ajouté à assiette :");
-				for (int i = 0; i < assiette.objetsContenus.size(); i++) {
-					System.out.print(((Ingredient) assiette.objetsContenus.get(i)).getNom() + " , " + "transformé ="
-							+ ((Ingredient) assiette.objetsContenus.get(i)).getTransformer() + " , état ="
-							+ ((Ingredient) assiette.objetsContenus.get(i)).getEtat() + " ; ");
+			Assiette assiette = (Assiette) materielAssemblage.objetsContenus.get(0);
+			assiette.ajouterObjet((Ingredient) container);
+			switch (((Ingredient) container).getNom()) {
+			case PATATE:
+				emplacementAssemblagePatate.setImage(
+						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				break;
+			case FROMAGE:
+				emplacementAssemblageFromage.setImage(
+						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				break;
+			case PAIN:
+				emplacementAssemblagePain.setImage(
+						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				break;
+			case OIGNON:
+				emplacementAssemblageOignon.setImage(
+						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				break;
+			case SALADE:
+				emplacementAssemblageSalade.setImage(
+						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				break;
+			case STEAK_DE_BOEUF:
+				emplacementAssemblageSteak.setImage(
+						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				break;
+			case STEAK_DE_POULET:
+				emplacementAssemblageSteak.setImage(
+						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				break;
+			case STEAK_DE_SOJA:
+				emplacementAssemblageSteak.setImage(
+						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				break;
+			case TOMATE:
+				emplacementAssemblageTomate.setImage(
+						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				break;
 			}
+
+			System.out.println("ingredient ajouté à assiette :");
+			for (int i = 0; i < assiette.objetsContenus.size(); i++) {
+				System.out.print(((Ingredient) assiette.objetsContenus.get(i)).getNom() + " , " + "transformé ="
+						+ ((Ingredient) assiette.objetsContenus.get(i)).getTransformer() + " , état ="
+						+ ((Ingredient) assiette.objetsContenus.get(i)).getEtat() + " ; ");
+			}
+			viderContainer();
 		} else {
 			System.out.println("ca c'est rien y a un probleme dans assembler");
 		}
@@ -501,10 +546,10 @@ public class Controller implements Initializable {
 		if (o instanceof Assiette) {
 			container = ((Assiette) o);
 			compteurAssitette.setText(String.valueOf(Main.niveau1.getCuisine().getAssiettes().size()));
-			containerView.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+			containerView.setImage(new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
 		}
 
-		System.out.println("container = " + container.getClass());
+//		System.out.println("container = " + container.getClass());
 	}
 
 	public void viderContainer() {
@@ -553,9 +598,8 @@ public class Controller implements Initializable {
 		CuissonEnCoursSteak = CuissonMateriel;
 		CuissonMateriel.start();
 	}
-	
-	public Service<Void> envoyerUnClient(Client client)
-			throws InterruptedException {
+
+	public Service<Void> envoyerUnClient(Client client) throws InterruptedException {
 
 		Service<Void> ArriverClient = new Service<Void>() {
 
@@ -564,9 +608,9 @@ public class Controller implements Initializable {
 				return new Task<Void>() {
 					@Override
 					protected Void call() throws Exception {
-						
+
 						double temps = client.getTmpsAttente();
-						
+
 						client1Progress.setProgress(1.0);
 						client1Progress.setStyle("-fx-accent: green;");
 						for (double i = temps; i > 1; i--) {
@@ -575,10 +619,10 @@ public class Controller implements Initializable {
 							}
 							client1Progress.setProgress(client1Progress.getProgress() - (1.0 / temps));
 							Thread.sleep(1000);
-							if (i < temps*0.4){
+							if (i < temps * 0.4) {
 								client1Progress.setStyle("-fx-accent: orange;");
 							}
-							if (i < temps*0.2){
+							if (i < temps * 0.2) {
 								client1Progress.setStyle("-fx-accent: red;");
 							}
 						}
@@ -661,7 +705,7 @@ public class Controller implements Initializable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 		compteurPATATE.setText(String.valueOf(compteur(Nom.PATATE)));
 		compteurFROMAGE.setText(String.valueOf(compteur(Nom.FROMAGE)));
 		compteurPAIN.setText(String.valueOf(compteur(Nom.PAIN)));
