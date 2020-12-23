@@ -3,10 +3,12 @@ package sample;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -25,12 +27,17 @@ import javafx.scene.layout.BorderPane;
 import java.awt.event.ActionEvent;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.Time;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import classes.cuisine.Ingredient.Etat;
 import classes.cuisine.Ingredient.Nom;
@@ -226,6 +233,9 @@ public class Controller implements Initializable {
 
 	@FXML
 	private ImageView emplacementAssiette;
+	
+	@FXML 
+	Label tempsEnCours;
 
 //	@FXML
 //	private TextArea assemblageTextArea;
@@ -243,7 +253,10 @@ public class Controller implements Initializable {
 				client1EnCours.reset();
 				client1Progress.setProgress(0.0);
 				
-				if(Main.niveau1.getClients().get(0).verifierPlat((Assiette)container))
+				if(Main.niveau1.getClients().get(0).verifierPlat((Assiette)container)) {
+					Main.niveau1.setScoreArgent(100, 100);
+					System.out.println("score augmenté");
+				}
 				
 				client1EnCours = null;
 				
@@ -251,12 +264,34 @@ public class Controller implements Initializable {
 				break;
 			case "client2":
 				System.out.println("tu as choisis le client 2");
-				emplacementAssietteClient2.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				//emplacementAssietteClient2.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				
+				 
+				client2EnCours.cancel();
+				client2EnCours.reset();
+				client2Progress.setProgress(0.0);
+				
+				// faire un un tableau de variable dans la niveau pour voir les clients à table
+				
+//				if(Main.niveau1.getClients().get(0).verifierPlat((Assiette)container)) {
+//					Main.niveau1.setScoreArgent(100, 100);
+//					System.out.println("score augmenté");
+//				}
+				
+				client2EnCours = null;
+				
 				viderContainer();
 				break;
 			case "client3":
 				System.out.println("tu as choisis le client 3");
-				emplacementAssietteClient3.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				//emplacementAssietteClient3.setImage(new Image(getClass().getResourceAsStream("../image/assiette.png")));
+				
+				client3EnCours.cancel();
+				client3EnCours.reset();
+				client3Progress.setProgress(0.0);
+				
+				client3EnCours = null;
+				
 				viderContainer();
 				break;
 			}
@@ -511,6 +546,82 @@ public class Controller implements Initializable {
 		container = null;
 		containerView.setImage(null);
 	}
+	
+	public class tempsDuJeu extends TimerTask{
+		
+			private int temps = 180;
+			//permet de ne pas envoyer tout les clients en même temps
+			private int attenteEntreClient = 0;
+		
+			private int nbrClientEnvoye = 0;
+			
+			private ArrayList<Client> clientDuNiveau = Main.niveau1.getClients();
+			
+			private boolean enCours = true;
+
+			public void setAttenteClient(int attente) {
+				this.attenteEntreClient = attente; 
+				System.out.println(clientDuNiveau.size());
+			}
+		    @Override
+		    public void run() {
+		   while(enCours) {
+			   
+			   if(temps == 0 || nbrClientEnvoye == clientDuNiveau.size()) {
+				   this.enCours = false;
+				   System.out.println("Fin Du Niveau");
+			   }
+			   
+			   
+		        if(client1EnCours == null && attenteEntreClient == 0) {
+		        	try {
+						client1EnCours = envoyerUnClient(clientDuNiveau.get(nbrClientEnvoye), client1Progress);
+						setAttenteClient(10);
+						nbrClientEnvoye++;
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+		        }
+		        
+		        if(client2EnCours == null && attenteEntreClient == 0) {
+		        	try {
+						client2EnCours = envoyerUnClient(clientDuNiveau.get(nbrClientEnvoye), client2Progress);
+						setAttenteClient(10);
+						nbrClientEnvoye++;
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+		        }
+		        
+		        if(client3EnCours == null && attenteEntreClient == 0) {
+		        	try {
+						client3EnCours = envoyerUnClient(clientDuNiveau.get(nbrClientEnvoye), client3Progress);
+						setAttenteClient(10);
+						nbrClientEnvoye++;
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+		        }
+		        
+		        
+		        String time = String.valueOf(temps);
+		        temps--;
+		        attenteEntreClient--;
+		        
+		        Platform.runLater(() -> {
+		            tempsEnCours.setText(time);
+		        });
+		    	try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					}
+		   		}
+		    }
+		}
+	
+	
 
 	public void cuissonProgression(Ingredient ingredient, ProgressBar progress, double temps)
 			throws InterruptedException {
@@ -554,7 +665,7 @@ public class Controller implements Initializable {
 		CuissonMateriel.start();
 	}
 	
-	public Service<Void> envoyerUnClient(Client client)
+	public Service<Void> envoyerUnClient(Client client, ProgressBar progressClient)
 			throws InterruptedException {
 
 		Service<Void> ArriverClient = new Service<Void>() {
@@ -567,19 +678,19 @@ public class Controller implements Initializable {
 						
 						double temps = client.getTmpsAttente();
 						
-						client1Progress.setProgress(1.0);
-						client1Progress.setStyle("-fx-accent: green;");
+						progressClient.setProgress(1.0);
+						progressClient.setStyle("-fx-accent: green;");
 						for (double i = temps; i > 1; i--) {
 							if (isCancelled()) {
 								break;
 							}
-							client1Progress.setProgress(client1Progress.getProgress() - (1.0 / temps));
+							progressClient.setProgress(progressClient.getProgress() - (1.0 / temps));
 							Thread.sleep(1000);
 							if (i < temps*0.4){
-								client1Progress.setStyle("-fx-accent: orange;");
+								progressClient.setStyle("-fx-accent: orange;");
 							}
 							if (i < temps*0.2){
-								client1Progress.setStyle("-fx-accent: red;");
+								progressClient.setStyle("-fx-accent: red;");
 							}
 						}
 						System.out.println("Le client est parti");
@@ -591,6 +702,8 @@ public class Controller implements Initializable {
 		ArriverClient.start();
 		return ArriverClient;
 	}
+	
+	
 
 //		cuissonProgress.setProgress(0.2);
 //		cuissonProgress.setStyle("-fx-accent: green;");
@@ -655,12 +768,6 @@ public class Controller implements Initializable {
 //				System.out.println("ajouté");
 			}
 		}
-
-		try {
-			client1EnCours = envoyerUnClient(Main.niveau1.getClients().get(0));
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		
 		compteurPATATE.setText(String.valueOf(compteur(Nom.PATATE)));
 		compteurFROMAGE.setText(String.valueOf(compteur(Nom.FROMAGE)));
@@ -674,5 +781,7 @@ public class Controller implements Initializable {
 
 		compteurAssitette.setText(String.valueOf(Main.niveau1.getCuisine().getAssiettes().size()));
 
+		 Timer timer = new Timer(true);
+	     timer.schedule(new tempsDuJeu(), 0, 1000);
 	}
 }

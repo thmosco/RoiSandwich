@@ -243,21 +243,18 @@ public class Niveau {
 	 * @return true si les clients ont bien été créés
 	 */
 	public boolean creerClients() {
-		int attente;
-		Recette recette;
 		// Pour chaque client
 		for (int a = 0; a < this.nbMaxClients; a++) {
-				// Pour chaque recette
-				for (int c = 0; c < this.listeRecettes.size(); c++) {
-					// Pour chaque viande
-					for (int d = 0; d < Recette.Steaks.values().length; d++) {
+			
+						// Pour chaque, je pioche une recette al�atoire
+						int recetteAleatoire = (int)(Math.random() * listeRecettes.size());
+						System.out.print(recetteAleatoire);
 						// définition de la commande propre au client
-						recette = new Recette(this.listeRecettes.get(c), Recette.Steaks.values()[d]);
+						Recette recette = new Recette(this.listeRecettes.get(recetteAleatoire), Recette.Steaks.values()[0]);
 						// création du client
 						this.clients.add(new Client(tmpsAttente, recette));
-					}
+		
 				}
-			}
 		return true;
 	}
 }
