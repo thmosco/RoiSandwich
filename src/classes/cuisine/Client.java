@@ -43,7 +43,11 @@ public class Client {
 
     // Méthodes
 
-    /**
+    public Recette getCommande() {
+		return commande;
+	}
+
+	/**
      * Permet de vérifier que l'assiette qu'on lui a servit correspond à sa commande
      * @param assiette
      * @return true si la commande est bonne
