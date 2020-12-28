@@ -247,6 +247,15 @@ public class Controller implements Initializable {
 					emplacementAssietteClient1.setImage(
 							new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
 					comptoir.getEmplacementAssietteDansComptoire()[0] = (Assiette) container;
+					System.out.println("ingredient ajouté à assiette :");
+
+					Assiette a = (Assiette) container;
+					for (int z = 0; z < a.objetsContenus.size(); z++) {
+						System.out.println("nom = " + ((Ingredient) a.objetsContenus.get(z)).getNom() + " ; état = "
+								+ ((Ingredient) a.objetsContenus.get(z)).getEtat() + " ; transformé ="
+								+ ((Ingredient) a.objetsContenus.get(z)).getTransformer());
+					}
+
 					comptoir.getEmplacementClientDansComptoire()[0].verifierPlat((Assiette) container);
 					comptoir.retirerClient(0);
 					labelRecetteClient1.setText("");
@@ -308,7 +317,7 @@ public class Controller implements Initializable {
 							((Assiette) comptoir.getEmplacementAssietteDansComptoire()[2]).getImgAssiette())));
 					break;
 				}
-				
+
 			}
 		} else if (container == null) {
 			ImageView i = (ImageView) e.getSource();
@@ -532,12 +541,12 @@ public class Controller implements Initializable {
 						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
 				break;
 			}
-			System.out.println("ingredient ajouté à assiette :");
-			for (int i = 0; i < assiette.objetsContenus.size(); i++) {
-				System.out.print(((Ingredient) assiette.objetsContenus.get(i)).getNom() + " , " + "transformé ="
-						+ ((Ingredient) assiette.objetsContenus.get(i)).getTransformer() + " , état ="
-						+ ((Ingredient) assiette.objetsContenus.get(i)).getEtat() + " ; ");
-			}
+//			System.out.println("ingredient ajouté à assiette :");
+//			for (int i = 0; i < assiette.objetsContenus.size(); i++) {
+//				System.out.print(((Ingredient) assiette.objetsContenus.get(i)).getNom() + " , " + "transformé ="
+//						+ ((Ingredient) assiette.objetsContenus.get(i)).getTransformer() + " , état ="
+//						+ ((Ingredient) assiette.objetsContenus.get(i)).getEtat() + " ; ");
+//			}
 			viderContainer();
 		} else {
 			System.out.println("ca c'est rien y a un probleme dans assembler");
@@ -719,13 +728,15 @@ public class Controller implements Initializable {
 				Platform.runLater(() -> {
 					tempsEnCours.setText(time);
 //					labelRecetteClient1.setText(String.valueOf(comptoir.getComptoir().get(0).getTmpsAttente()));
-					if (Main.niveau1.getClients().size() > 0) {
-						for (int i = 0; i < comptoir.getEmplacementClientDansComptoire().length; i++) {
+
+					for (int i = 0; i < comptoir.getEmplacementClientDansComptoire().length; i++) {
+						if (Main.niveau1.getClients().size() > 0) {
 							if (comptoir.getEmplacementAssietteDansComptoire()[i] == null) {
 
 								if (comptoir.getEmplacementClientDansComptoire()[i] == null) {
 									comptoir.ajouterClient(Main.niveau1.getClients().get(0), i);
 									Main.niveau1.getClients().remove(0);
+
 									if (i == 0) {
 										labelRecetteClient1
 												.setText(comptoir.getEmplacementClientDansComptoire()[i].toString());
@@ -740,33 +751,36 @@ public class Controller implements Initializable {
 									}
 								}
 							}
-							if (comptoir.getEmplacementClientDansComptoire()[i] != null) {
-								if (i == 0) {
-									labelTimerClient1.setText(String
-											.valueOf(comptoir.getEmplacementClientDansComptoire()[0].getTmpsAttente()));
-								}
-								if (i == 1) {
-									labelTimerClient2.setText(String
-											.valueOf(comptoir.getEmplacementClientDansComptoire()[1].getTmpsAttente()));
-								}
-								if (i == 2) {
-									labelTimerClient3.setText(String
-											.valueOf(comptoir.getEmplacementClientDansComptoire()[2].getTmpsAttente()));
-								}
-								if (comptoir.getEmplacementClientDansComptoire()[i].getTmpsAttente() == 0) {
-									System.out.println("client : " + comptoir.getEmplacementClientDansComptoire()[i]
-											+ " est parti");
-									comptoir.retirerClient(i);
-								}
-							}
-
-							System.out.println("il reste " + Main.niveau1.getClients().size() + " clients");
+							
 						}
+						
+						if (comptoir.getEmplacementClientDansComptoire()[i] != null) {
+							if (i == 0) {
+								labelTimerClient1.setText(String
+										.valueOf(comptoir.getEmplacementClientDansComptoire()[0].getTmpsAttente()));
+							}
+							if (i == 1) {
+								labelTimerClient2.setText(String
+										.valueOf(comptoir.getEmplacementClientDansComptoire()[1].getTmpsAttente()));
+							}
+							if (i == 2) {
+								labelTimerClient3.setText(String
+										.valueOf(comptoir.getEmplacementClientDansComptoire()[2].getTmpsAttente()));
+							}
+							if (comptoir.getEmplacementClientDansComptoire()[i].getTmpsAttente() == 0) {
+								System.out.println(
+										"client : " + comptoir.getEmplacementClientDansComptoire()[i] + " est parti");
+								comptoir.retirerClient(i);
+							}
+						}
+
 					}
 
 				});
 				try {
 					Thread.sleep(1000);
+					System.out.println("il reste " + Main.niveau1.getClients().size() + " clients");
+
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
