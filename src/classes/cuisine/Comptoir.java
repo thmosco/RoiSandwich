@@ -40,7 +40,7 @@ public class Comptoir {
             //exception
             return false ;
         }
-        this.comptoir.put(client,null) ;
+        comptoir.put(client, null) ;
         return true ;
     }
 

@@ -59,10 +59,6 @@ public class Niveau {
 	private int nbAssietteMax;
 
 	private Comptoir comptoir;
-	
-	public Comptoir getComptoir() {
-		return comptoir;
-	}
 
 	private GardeManger gardeManger;
 	private Cuisine cuisine;
@@ -220,6 +216,13 @@ public class Niveau {
 	public GardeManger getGardeManger() {
 		return gardeManger;
 	}
+	/**
+	 * @return le comptoir correspondant au niveau
+	 */
+	
+	public Comptoir getComptoir() {
+		return comptoir;
+	}
 
 	// Setteurs
 
@@ -248,7 +251,6 @@ public class Niveau {
 			
 						// Pour chaque, je pioche une recette al�atoire
 						int recetteAleatoire = (int)(Math.random() * listeRecettes.size());
-						System.out.print(recetteAleatoire);
 						// définition de la commande propre au client
 						Recette recette = new Recette(this.listeRecettes.get(recetteAleatoire), Recette.Steaks.values()[0]);
 						// création du client
