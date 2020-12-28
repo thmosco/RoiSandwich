@@ -311,9 +311,12 @@
                               <ImageView fx:id="emplacementAssietteClient3" fitHeight="56.0" fitWidth="81.0" layoutX="43.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
                               <ProgressBar fx:id="client3Progress" layoutX="43.0" layoutY="5.0" prefHeight="18.0" prefWidth="79.0" progress="0.0" />
                            </children></Pane>
-                        <Label text="Label" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                        <Label text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Label fx:id="labelRecetteClient1" text="Label" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Label fx:id="labelRecetteClient2" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Label fx:id="labelRecetteClient3" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Label fx:id="labelTimerClient1" text="Label" GridPane.rowIndex="1" />
+                        <Label fx:id="labelTimerClient2" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="labelTimerClient3" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </center>
