@@ -478,6 +478,7 @@ public class Controller implements Initializable {
 				
 			}
 		} else {
+			if (container instanceof Ingredient) {
 			Ingredient a = ((Ingredient) container);
 			if (a.getNom().toString().equals("PATATE") & a.getTransformer()) {
 				if (a.getTransformer() == true) {
@@ -497,6 +498,12 @@ public class Controller implements Initializable {
 				System.out.println("seul les patates coupé peuvent être fries");
 			}
 		}
+		else 
+		{
+			System.out.println("ce que vous avez dans la main n'est même pas un ingrédient");
+			}
+		
+	}
 	}
 
 	public void assembler(MouseEvent event) {
