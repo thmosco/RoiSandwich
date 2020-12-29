@@ -249,9 +249,9 @@
                         </SplitPane>
                         <SplitPane dividerPositions="0.6288819875776397" orientation="VERTICAL" prefHeight="58.0" prefWidth="160.0">
                           <items>
-                              <BorderPane prefHeight="77.0" prefWidth="75.0" style="-fx-background-color: #99aabf;">
+                              <BorderPane fx:id="lavevaisselle" onMouseClicked="#lavevaisselle" prefHeight="77.0" prefWidth="75.0" style="-fx-background-color: #99aabf;">
                                  <bottom>
-                                    <ProgressIndicator progress="0.0" BorderPane.alignment="CENTER" />
+                                    <ProgressIndicator fx:id="LaveProgress" progress="0.0" BorderPane.alignment="CENTER" />
                                  </bottom>
                                  <top>
                                     <Pane prefHeight="18.0" prefWidth="100.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
@@ -283,9 +283,18 @@
                       <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="client1" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                        <ImageView fx:id="client2" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                        <ImageView fx:id="client3" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                        <ImageView fx:id="client1" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                           <image>
+                              <Image url="@../image/client.png" />
+                           </image></ImageView>
+                        <ImageView fx:id="client2" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                           <image>
+                              <Image url="@../image/client.png" />
+                           </image></ImageView>
+                        <ImageView fx:id="client3" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                           <image>
+                              <Image url="@../image/client.png" />
+                           </image></ImageView>
                         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.rowIndex="2">
                            <children>
                               <ImageView fx:id="emplacementAssietteClient1" fitHeight="56.0" fitWidth="77.0" layoutX="45.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />

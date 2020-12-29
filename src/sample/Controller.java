@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -175,7 +176,12 @@ public class Controller implements Initializable {
 	ImageView containerDansFriteuse;
 
 	@FXML
-	ImageView evier;
+	BorderPane lavevaisselle;
+	
+	@FXML
+	ProgressIndicator LaveProgress;
+	
+	Service<Void> LaveVaisselleEnCours;
 
 	@FXML
 	ImageView garde_manger;
@@ -505,6 +511,36 @@ public class Controller implements Initializable {
 		
 	}
 	}
+	
+	
+	public void lavevaisselle(MouseEvent e) {
+		if (container == null) {
+			checkSiIngredientPresentDansMateriel(materielLaveVaisselle);
+			if (LaveVaisselleEnCours != null) {
+				LaveVaisselleEnCours.cancel();
+				LaveVaisselleEnCours.reset();
+				LaveProgress.setProgress(0.0);
+			}
+		} else {
+			Assiette assiette = ((Assiette) container);
+			if (((Assiette) container).getEtatAssiette() == EtatAssiette.SALE) {
+						try {
+							laverProgression(assiette, LaveProgress, 5.0);	
+							materielLaveVaisselle.ajouterObjet(assiette);	
+							viderContainer();
+						// containerDansCuisson.setImage(new
+						// Image(getClass().getResourceAsStream("../image/friteuse.png")));
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+						}
+					 
+				} else {
+					System.out.println("Ceci est déjà propre");
+				}
+			} 
+
+		}
+	
 
 	public void assembler(MouseEvent event) {
 		if (container == null) {
@@ -918,6 +954,38 @@ public class Controller implements Initializable {
 		};
 		FrireEnCours = CuissonMateriel;
 		CuissonMateriel.start();
+	}
+	
+	public void laverProgression(Assiette assiette, ProgressIndicator progress, double temps)
+			throws InterruptedException {
+
+		Service<Void> laveEnCours = new Service<Void>() {
+
+			@Override
+			protected Task<Void> createTask() {
+				return new Task<Void>() {
+					@Override
+					protected Void call() throws Exception {
+						
+						for (int i = 0; i < temps; i++) {
+							if (isCancelled()) {
+								break;
+							}
+							progress.setProgress(progress.getProgress() + (1.0 / temps));
+							progress.setStyle("-fx-accent: green;");
+							Thread.sleep(1000);
+						}
+						
+						System.out.println("Vos assiettes sont propre");
+						assiette.setEtatAssiette(EtatAssiette.PROPRE);
+						
+						return null;
+					}
+				};
+			}
+		};
+		LaveVaisselleEnCours = laveEnCours;
+		LaveVaisselleEnCours.start();
 	}
 
 	public Service<Void> envoyerUnClient(Client client, ProgressBar progressClient) throws InterruptedException {
