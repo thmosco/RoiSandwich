@@ -231,11 +231,15 @@ public class Niveau {
 	 * @param argent
 	 */
 	public void setScoreArgent(int score, int argent) {
-		this.tabScoreArgent[1] = score;
-		this.tabScoreArgent[2] = argent;
+		this.tabScoreArgent[0] = score;
+		this.tabScoreArgent[1] = argent;
 	}
 
 	// Méthodes
+
+	public int[] getTabScoreArgent() {
+		return tabScoreArgent;
+	}
 
 	/**
 	 * Permet de remplir le tableau de client avec des clients et leur commande

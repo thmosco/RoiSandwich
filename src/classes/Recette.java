@@ -1,6 +1,10 @@
 package classes;
 import classes.cuisine.Ingredient;
+import classes.cuisine.Ingredient.Etat;
+
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Commentaire de documentation de la classe
@@ -17,6 +21,8 @@ public class Recette {
     public enum Noms {
         SIMPLE, MENU, MAXI, FRITES,
     }
+    //frites = patate
+    //simple = STEAK_DE_BOEUF , SALADE, TOMATE, OIGNON, FROMAGE, PAIN
 
     /**
      * Enumération des différents types de steaks disponibles
@@ -51,7 +57,7 @@ public class Recette {
         // initialisation des ingrédients
         switch (this.nom) {
             case FRITES:
-                this.ingredients.put(new Ingredient(Ingredient.Nom.PATATE), 1);
+                this.ingredients.put(new Ingredient(Ingredient.Nom.PATATE,Etat.CUIT,true), 1);
                 break;
             case MAXI:
                 recetteBurger(2, this.viande);
@@ -98,9 +104,9 @@ public class Recette {
      */
     private void recetteBurger(int nbSteak, Steaks viande) {
         // ingrédients de base
-        this.ingredients.put(new Ingredient(Ingredient.Nom.SALADE), 1);
-        this.ingredients.put(new Ingredient(Ingredient.Nom.TOMATE), 1);
-        this.ingredients.put(new Ingredient(Ingredient.Nom.OIGNON), 1);
+        this.ingredients.put(new Ingredient(Ingredient.Nom.SALADE,Etat.CRU,false), 1);
+        this.ingredients.put(new Ingredient(Ingredient.Nom.TOMATE,Etat.CRU,true), 1);
+        this.ingredients.put(new Ingredient(Ingredient.Nom.OIGNON,Etat.CRU, true), 1);
         this.ingredients.put(new Ingredient(Ingredient.Nom.PAIN), 1);
         this.ingredients.put(new Ingredient(Ingredient.Nom.FROMAGE), 1);
         // précision du steak
@@ -112,6 +118,15 @@ public class Recette {
         } else {
             typeSteak = Ingredient.Nom.STEAK_DE_SOJA;
         }
-        this.ingredients.put(new Ingredient(typeSteak), nbSteak);
+        this.ingredients.put(new Ingredient(typeSteak,Etat.CUIT,false), nbSteak);
+    }
+    
+    public void afficherIngredientRecette() {
+        Iterator it = ingredients.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            System.out.println("les ingredients attendus sont = "  +((Ingredient)pair.getKey()).getNom() + " etat = " + ((Ingredient)pair.getKey()).getEtat() + " transform� ? " + ((Ingredient)pair.getKey()).getTransformer());
+            it.remove(); // avoids a ConcurrentModificationException
+        }
     }
 }

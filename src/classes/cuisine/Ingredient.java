@@ -45,6 +45,13 @@ public class Ingredient {
     	this.transformer = false ;
 	}
 	
+	//constructeur pour recette
+	public Ingredient(Nom nom,Etat etat, boolean transformé) {
+		this.nom = nom;
+		this.etat = etat;
+    	this.transformer = transformé ;
+	}
+	
 
 
 

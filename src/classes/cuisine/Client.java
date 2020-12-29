@@ -7,6 +7,8 @@ import sample.Controller.tempsDuJeu;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -61,42 +63,90 @@ public class Client {
 	 * @return true si la commande est bonne
 	 * @throws IllegalAccessException
 	 */
-	public boolean verifierPlat(Assiette assiette) throws IllegalAccessException {
-		// vérifier que le nom du plat servit est le bon
-		if (verifierNomRecette(assiette)) {
-			ArrayList<Boolean> checked = new ArrayList<Boolean>();
-			boolean check = true;
-			int quantite = 0;
+//	public boolean verifierPlat(Assiette assiette) throws IllegalAccessException {
+//		// vérifier que le nom du plat servit est le bon
+//		if (verifierNomRecette(assiette)) {
+//			ArrayList<Boolean> checked = new ArrayList<Boolean>();
+//			boolean check = true;
+//			int quantite = 0;
+//
+//			// Récupération des ingrédient de la recette
+//			Set<Ingredient> listeIngredient = this.commande.ingredients.keySet();
+//			Iterator iterator = listeIngredient.iterator();
+//
+//			// Pour chaque ingrédient de la recette
+//			while (iterator.hasNext()) {
+//				// Vérifier qu'il est présent dans l'assiette
+//				if (assiette.objetsContenus.contains(iterator.next())) {
+//					Ingredient ingredient = (Ingredient) iterator.next();
+//					// Vérifier qu'il est présent en bonne quantité dans l'assiette
+//					quantite = this.commande.ingredients.get(iterator.next());
+//					check = verifierQuantite(assiette.objetsContenus, ingredient, quantite);
+//					// S'il s'agit d'un steak ou d'une patate : vérifier la cuisson
+//					check = verifierCuisson(ingredient);
+//					// S'il s'agit d'un ingrédient découpable : vérifier qu'il est découpé
+//					check = verifierDecoupage(ingredient);
+//				} else {
+//					check = false;
+//				}
+//				// Ajouter le résultat de la vérification de l'ingrédient à la liste des
+//				// vérifications
+//				checked.add(check);
+//			}
+//
+//			// Si un aliment a un résultat négatif alors la commande n'a pas été
+//			// respectée
+//			return !(checked.contains(false));
+//		}
+//		return false;
+//	}
 
-			// Récupération des ingrédient de la recette
-			Set<Ingredient> listeIngredient = this.commande.ingredients.keySet();
-			Iterator iterator = listeIngredient.iterator();
-
-			// Pour chaque ingrédient de la recette
-			while (iterator.hasNext()) {
-				// Vérifier qu'il est présent dans l'assiette
-				if (assiette.objetsContenus.contains(iterator.next())) {
-					Ingredient ingredient = (Ingredient) iterator.next();
-					// Vérifier qu'il est présent en bonne quantité dans l'assiette
-					quantite = this.commande.ingredients.get(iterator.next());
-					check = verifierQuantite(assiette.objetsContenus, ingredient, quantite);
-					// S'il s'agit d'un steak ou d'une patate : vérifier la cuisson
-					check = verifierCuisson(ingredient);
-					// S'il s'agit d'un ingrédient découpable : vérifier qu'il est découpé
-					check = verifierDecoupage(ingredient);
-				} else {
-					check = false;
-				}
-				// Ajouter le résultat de la vérification de l'ingrédient à la liste des
-				// vérifications
-				checked.add(check);
-			}
-
-			// Si un aliment a un résultat négatif alors la commande n'a pas été
-			// respectée
-			return !(checked.contains(false));
+	public boolean verifierLePlat(Assiette a) {
+		ArrayList<Ingredient> ingredientAssiette = new ArrayList<Ingredient>();
+		ArrayList<Ingredient> ingredientRecette = new ArrayList<Ingredient>();
+		boolean estConforme = false;
+		int nbDeConformit� = 0;
+		for (int i = 0; i < a.objetsContenus.size(); i++) {
+			Ingredient ing = (Ingredient) a.objetsContenus.get(i);
+			ingredientAssiette.add(ing);
 		}
-		return false;
+		;
+		Iterator it = commande.ingredients.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry pair = (Map.Entry) it.next();
+			ingredientRecette.add((Ingredient) pair.getKey());
+//			System.out.println("ingredient ajout� " + pair.getKey());
+			it.remove(); // avoids a ConcurrentModificationException
+		}
+
+		for (int i = 0; i < ingredientAssiette.size(); i++) {
+			System.out.println("ingredientAssiette : " + ingredientAssiette.get(i).getNom());
+			Ingredient IngredientAssietteAChecker = ingredientAssiette.get(i);
+			for (int y = 0; y < ingredientRecette.size(); y++) {
+				Ingredient IngredientRecetteAComparer = ingredientRecette.get(y);
+				if (IngredientAssietteAChecker.getNom().equals(IngredientRecetteAComparer.getNom())
+						&& IngredientAssietteAChecker.getTransformer() == IngredientRecetteAComparer.getTransformer()
+						&& IngredientAssietteAChecker.getEtat().equals(IngredientRecetteAComparer.getEtat())) {
+					nbDeConformit�++;
+				}
+			}
+		}
+
+//		System.out.println("nb conformit� = " + nbDeConformit�);
+		if (nbDeConformit� == ingredientRecette.size()) {
+			estConforme = true;
+		}
+		
+		System.out.println(" ");
+		for (int i = 0; i < ingredientRecette.size(); i++) {
+			System.out.println("ingredientRecette : " + ingredientRecette.get(i).getNom() + " etat : "
+					+ ingredientRecette.get(i).getEtat() + " transform� : "
+					+ ingredientRecette.get(i).getTransformer());
+		}
+		
+		return estConforme;
+//		System.out.println("est conforme ? " + estConforme);
+
 	}
 
 	/**
@@ -144,7 +194,7 @@ public class Client {
 	public boolean verifierDecoupage(Ingredient ingredient) {
 		return (ingredient.isDecoupable() && ingredient.getTransformer() == false);
 	}
-	
+
 	public void debutTimerClient() {
 		Timer timer = new Timer(true);
 		timer.schedule(new start(), 0, this.tmpsAttente);
