@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -114,6 +115,8 @@ public class Controller implements Initializable {
 	@FXML
 	ImageView stock3;
 
+	
+	
 	@FXML
 	ImageView client1;
 	@FXML
@@ -173,8 +176,13 @@ public class Controller implements Initializable {
 	ImageView containerDansFriteuse;
 
 	@FXML
-	ImageView evier;
-
+	BorderPane lavevaisselle;
+	
+	@FXML
+	ProgressIndicator LaveProgress;
+	
+	Service<Void> LaveVaisselleEnCours;
+	
 	@FXML
 	ImageView garde_manger;
 
@@ -228,10 +236,8 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label labelRecetteClient2;
-
 	@FXML
 	private Label labelRecetteClient3;
-
 	// <===== a supprimer quand progressBar sera implementée
 	@FXML
 	private Label labelTimerClient1;
@@ -240,7 +246,6 @@ public class Controller implements Initializable {
 	@FXML
 	private Label labelTimerClient3;
 	// =======>
-
 	@FXML
 	private Label scoreLabel;
 
@@ -281,9 +286,6 @@ public class Controller implements Initializable {
 					client1EnCours.cancel();
 					client1EnCours.reset();
 					client1Progress.setVisible(false);
-					// clientProgress.get(0) = null;
-
-//				client1EnCours = null;
 					viderContainer();
 					emplacementAssietteClient1.setImage(new Image(getClass().getResourceAsStream(
 							((Assiette) comptoir.getEmplacementAssietteDansComptoire()[0]).getImgAssiette())));
@@ -319,15 +321,12 @@ public class Controller implements Initializable {
 				}
 			case "client3":
 				if (comptoir.getEmplacementClientDansComptoire()[2] != null) {
-//					System.out.println("tu as choisis le client 3");
 					emplacementAssietteClient3.setImage(
 							new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
 
 					client3EnCours.cancel();
 					client3EnCours.reset();
 					client3Progress.setVisible(false);
-
-//					comptoir.getEmplacementClientDansComptoire()[2].verifierPlat((Assiette) container);
 					comptoir.getEmplacementAssietteDansComptoire()[2] = (Assiette) container;
 					if (comptoir.getEmplacementClientDansComptoire()[2].verifierLePlat((Assiette) container)) {
 						Main.niveau1.setScoreArgent(100, 100);
@@ -337,13 +336,11 @@ public class Controller implements Initializable {
 					comptoir.retirerClient(2);
 					labelRecetteClient3.setText("");
 					comptoir.getEmplacementAssietteDansComptoire()[2].setEtatAssiette(EtatAssiette.SALE);
-
 					viderContainer();
 					emplacementAssietteClient3.setImage(new Image(getClass().getResourceAsStream(
 							((Assiette) comptoir.getEmplacementAssietteDansComptoire()[2]).getImgAssiette())));
 					break;
 				}
-
 			}
 		} else if (container == null) {
 			ImageView i = (ImageView) e.getSource();
@@ -366,7 +363,6 @@ public class Controller implements Initializable {
 			}
 		}
 	}
-
 	public void prendreAssiettePropre(MouseEvent e) {
 		if (container == null) {
 //			Object image = e.getSource();
@@ -376,7 +372,6 @@ public class Controller implements Initializable {
 			System.out.println("container non vide");
 		}
 	}
-
 	@FXML
 	public void prendreIngredient(MouseEvent e) {
 		if (materielAssemblage.objetsContenus.size() == 0) {
@@ -489,6 +484,7 @@ public class Controller implements Initializable {
 
 			}
 		} else {
+			if (container instanceof Ingredient) {
 			Ingredient a = ((Ingredient) container);
 			if (a.getNom().toString().equals("PATATE") & a.getTransformer()) {
 				if (a.getTransformer() == true) {
@@ -508,8 +504,44 @@ public class Controller implements Initializable {
 				System.out.println("seul les patates coupé peuvent être fries");
 			}
 		}
-	}
+			else 
+			{
+				System.out.println("ce que vous avez dans la main n'est même pas un ingrédient");
+				}
+			
+		}
+		}
 
+	
+	public void lavevaisselle(MouseEvent e) {
+		if (container == null) {
+			checkSiIngredientPresentDansMateriel(materielLaveVaisselle);
+			if (LaveVaisselleEnCours != null) {
+				LaveVaisselleEnCours.cancel();
+				LaveVaisselleEnCours.reset();
+				LaveProgress.setProgress(0.0);
+			}
+		} else {
+			Assiette assiette = ((Assiette) container);
+			if (((Assiette) container).getEtatAssiette() == EtatAssiette.SALE) {
+						try {
+							laverProgression(assiette, LaveProgress, 5.0);	
+							materielLaveVaisselle.ajouterObjet(assiette);	
+							viderContainer();
+						// containerDansCuisson.setImage(new
+						// Image(getClass().getResourceAsStream("../image/friteuse.png")));
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+						}
+					 
+				} else {
+					System.out.println("Ceci est déjà propre");
+				}
+			} 
+
+		}
+	
+	
 	public void assembler(MouseEvent event) {
 		if (container == null) {
 			if (materielAssemblage.objetsContenus.size() != 0) {
@@ -812,9 +844,7 @@ public class Controller implements Initializable {
 									}
 								}
 							}
-
 						}
-
 						if (comptoir.getEmplacementClientDansComptoire()[i] != null) {
 							if (i == 0) {
 								labelTimerClient1.setText(String
@@ -834,9 +864,7 @@ public class Controller implements Initializable {
 								comptoir.retirerClient(i);
 							}
 						}
-
 					}
-
 				});
 				try {
 					Thread.sleep(1000);
@@ -918,6 +946,7 @@ public class Controller implements Initializable {
 
 						progress.setStyle("-fx-accent: orange;");
 
+						
 						return null;
 					}
 				};
@@ -927,6 +956,38 @@ public class Controller implements Initializable {
 		CuissonMateriel.start();
 	}
 
+	public void laverProgression(Assiette assiette, ProgressIndicator progress, double temps)
+			throws InterruptedException {
+
+		Service<Void> laveEnCours = new Service<Void>() {
+
+			@Override
+			protected Task<Void> createTask() {
+				return new Task<Void>() {
+					@Override
+					protected Void call() throws Exception {
+						
+						for (int i = 0; i < temps; i++) {
+							if (isCancelled()) {
+								break;
+							}
+							progress.setProgress(progress.getProgress() + (1.0 / temps));
+							progress.setStyle("-fx-accent: green;");
+							Thread.sleep(1000);
+						}
+						
+						System.out.println("Vos assiettes sont propre");
+						assiette.setEtatAssiette(EtatAssiette.PROPRE);
+						
+						return null;
+					}
+				};
+			}
+		};
+		LaveVaisselleEnCours = laveEnCours;
+		LaveVaisselleEnCours.start();
+	}
+	
 	public Service<Void> envoyerUnClient(Client client, ProgressBar progressClient) throws InterruptedException {
 
 		Service<Void> ArriverClient = new Service<Void>() {
