@@ -58,8 +58,17 @@ public class Stock {
      * @param assiette
      * @return true si l'assiette a bien été retirée du stock
      */
-    public boolean recupererAssiette (ArrayList liste, Assiette assiette) {
-        return liste.remove(assiette) ;
-    }
+    //inutile
+//    public boolean recupererAssiette (ArrayList liste, Assiette assiette) {
+//        return liste.remove(assiette) ;
+//    }
+
+	public ArrayList<Assiette> getAssiettesPropres() {
+		return assiettesPropres;
+	}
+
+	public ArrayList<Assiette> getAssiettesSale() {
+		return assiettesSale;
+	}
 	
 }

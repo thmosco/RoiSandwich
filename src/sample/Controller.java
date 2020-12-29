@@ -363,14 +363,21 @@ public class Controller implements Initializable {
 			}
 		}
 	}
-	public void prendreAssiettePropre(MouseEvent e) {
+	public void prendreAssiettePropre() {
 		if (container == null) {
 //			Object image = e.getSource();
 			Object c = Main.niveau1.getCuisine().retirerAssietteDeLaCuisine();
 			mettreDansContainer(c);
-		} else {
-			System.out.println("container non vide");
+		} else if(container instanceof Assiette && ((Assiette)container).getEtatAssiette().equals(EtatAssiette.PROPRE)) {
+			Assiette assiette = (Assiette) container;
+			Main.niveau1.getCuisine().getAssiettes().add(assiette);
+			//MODIFIER ! travailler avec le stock et non pas direct cuisine
+			compteurAssitette.setText(String.valueOf(Main.niveau1.getCuisine().getAssiettes().size()));
+			mettreDansContainer((Assiette) container);
+			viderContainer();
+			
 		}
+		
 	}
 	@FXML
 	public void prendreIngredient(MouseEvent e) {
@@ -800,6 +807,8 @@ public class Controller implements Initializable {
 				Platform.runLater(() -> {
 					tempsEnCours.setText(time);
 //					labelRecetteClient1.setText(String.valueOf(comptoir.getComptoir().get(0).getTmpsAttente()));
+					
+//					System.out.println("nombre de client restant " + Main.niveau1.getClients().size());
 
 					for (int i = 0; i < comptoir.getEmplacementClientDansComptoire().length; i++) {
 						if (Main.niveau1.getClients().size() != 0) {
@@ -813,7 +822,7 @@ public class Controller implements Initializable {
 
 									if (i == 0) {
 										try {
-											client1EnCours = envoyerUnClient(Main.niveau1.getClients().get(0),
+											client1EnCours = envoyerUnClient(comptoir.getEmplacementClientDansComptoire()[i],
 													clientProgress.get(i));
 											labelRecetteClient1.setText(comptoir.getEmplacementClientDansComptoire()[i]
 													.getCommande().getNom().toString());
@@ -824,7 +833,7 @@ public class Controller implements Initializable {
 									}
 									if (i == 1) {
 										try {
-											client2EnCours = envoyerUnClient(Main.niveau1.getClients().get(0),
+											client2EnCours = envoyerUnClient(comptoir.getEmplacementClientDansComptoire()[i],
 													clientProgress.get(i));
 											labelRecetteClient2.setText(comptoir.getEmplacementClientDansComptoire()[i]
 													.getCommande().getNom().toString());
@@ -834,7 +843,7 @@ public class Controller implements Initializable {
 									}
 									if (i == 2) {
 										try {
-											client3EnCours = envoyerUnClient(Main.niveau1.getClients().get(0),
+											client3EnCours = envoyerUnClient(comptoir.getEmplacementClientDansComptoire()[i],
 													clientProgress.get(i));
 											labelRecetteClient3.setText(comptoir.getEmplacementClientDansComptoire()[i]
 													.getCommande().getNom().toString());
@@ -846,22 +855,28 @@ public class Controller implements Initializable {
 							}
 						}
 						if (comptoir.getEmplacementClientDansComptoire()[i] != null) {
-							if (i == 0) {
-								labelTimerClient1.setText(String
-										.valueOf(comptoir.getEmplacementClientDansComptoire()[0].getTmpsAttente()));
-							}
-							if (i == 1) {
-								labelTimerClient2.setText(String
-										.valueOf(comptoir.getEmplacementClientDansComptoire()[1].getTmpsAttente()));
-							}
-							if (i == 2) {
-								labelTimerClient3.setText(String
-										.valueOf(comptoir.getEmplacementClientDansComptoire()[2].getTmpsAttente()));
-							}
 							if (comptoir.getEmplacementClientDansComptoire()[i].getTmpsAttente() == 0) {
 								System.out.println(
 										"client : " + comptoir.getEmplacementClientDansComptoire()[i] + " est parti");
 								comptoir.retirerClient(i);
+								if(i==0) {
+									labelRecetteClient1.setText(null);
+									client1Progress.setVisible(false);
+									client1EnCours.cancel();
+									client1EnCours.reset();
+								}
+								if(i==1) {
+									labelRecetteClient2.setText(null);
+									client2Progress.setVisible(false);
+									client2EnCours.cancel();
+									client2EnCours.reset();
+								}
+								if(i==2) {
+									labelRecetteClient3.setText(null);
+									client3Progress.setVisible(false);
+									client3EnCours.cancel();
+									client3EnCours.reset();
+								}
 							}
 						}
 					}
@@ -1080,5 +1095,27 @@ public class Controller implements Initializable {
 		
 		scoreLabel.setText(String.valueOf(Main.niveau1.getTabScoreArgent()[0]));
 
+	}
+	
+    @FXML
+    private Label compteurPileAssietteSale;
+	
+	public void stockageAssietteSale() {
+		
+		//stocker assiette sale dans la pile d'assiette sale
+		if(container instanceof Assiette && ((Assiette)container).getEtatAssiette().equals(EtatAssiette.SALE)) {
+			Assiette assiette = (Assiette) container;
+			Main.niveau1.getCuisine().getStock().stockerAssiette(assiette);
+			compteurPileAssietteSale.setText(String.valueOf(Main.niveau1.getCuisine().getStock().getAssiettesSale().size()));
+			viderContainer();
+			
+		}
+		//recupérer assiette sale de la pile
+		else if(container==null &&Main.niveau1.getCuisine().getStock().getAssiettesSale().size()!=0) {
+			mettreDansContainer(Main.niveau1.getCuisine().getStock().getAssiettesSale().get(0));
+			Main.niveau1.getCuisine().getStock().getAssiettesSale().remove(0);
+			compteurPileAssietteSale.setText(String.valueOf(Main.niveau1.getCuisine().getStock().getAssiettesSale().size()));
+
+		}
 	}
 }

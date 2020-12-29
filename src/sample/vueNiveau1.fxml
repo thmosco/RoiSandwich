@@ -151,7 +151,7 @@
                                  <image>
                                     <Image url="@../image/assiettesPropres.png" />
                                  </image></ImageView>
-                              <ImageView fitHeight="32.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <ImageView fitHeight="32.0" fitWidth="55.0" onMouseClicked="#stockageAssietteSale" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/assiettesSales.png" />
                                  </image></ImageView>
@@ -160,7 +160,7 @@
                                     <Image url="@../image/plats.png" />
                                  </image></ImageView>
                               <Label fx:id="compteurAssitette" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                              <Label text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <Label fx:id="compteurPileAssietteSale" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                               <Label text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                            </children>
                         </GridPane>
@@ -314,9 +314,6 @@
                         <Label fx:id="labelRecetteClient1" text="Label" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                         <Label fx:id="labelRecetteClient2" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                         <Label fx:id="labelRecetteClient3" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                        <Label fx:id="labelTimerClient1" text="Label" GridPane.rowIndex="1" />
-                        <Label fx:id="labelTimerClient2" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="labelTimerClient3" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </center>
