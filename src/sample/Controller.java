@@ -1132,6 +1132,7 @@ public class Controller implements Initializable {
 	    try {
 	        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("vueMenuNiveau.fxml"));
 	        Parent root1 = (Parent) fxmlLoader.load();
+//	        Parent root1 = FXMLLoader.load(getClass().getResource("vueNiveau1.fxml"));
 	        Stage stage = new Stage();
 	        stage.setScene(new Scene(root1));  
 	        stage.show();

@@ -21,7 +21,7 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage stage) throws Exception{
 
 		niveau1 = new Niveau(1);
 
@@ -30,9 +30,9 @@ public class Main extends Application {
    	
     	Parent root = FXMLLoader.load(getClass().getResource("vueMenuPrincipal.fxml"));
 
-		primaryStage.setTitle("RoiSandwich");
-		primaryStage.setScene(new Scene(root));
-		primaryStage.show();
+    	stage.setTitle("RoiSandwich");
+    	stage.setScene(new Scene(root));
+    	stage.show();
     }
 
     public static void main(String[] args) {
