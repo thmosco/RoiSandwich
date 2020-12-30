@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane prefHeight="569.0" prefWidth="822.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <SplitPane dividerPositions="0.08361204013377926, 0.903010033444816" prefHeight="400.0" prefWidth="600.0">
+      <SplitPane dividerPositions="0.08361204013377926, 0.903010033444816" prefHeight="569.0" prefWidth="822.0">
         <items>
             <SplitPane dividerPositions="0.1917255297679112" orientation="VERTICAL" prefHeight="400.0" prefWidth="47.0" style="-fx-background-color: #000; -fx-border-color: #000;">
               <items>
@@ -271,16 +271,16 @@
                     </SplitPane>
                 </bottom>
                <center>
-                  <GridPane alignment="BOTTOM_CENTER" BorderPane.alignment="CENTER">
+                  <GridPane alignment="BOTTOM_CENTER" prefHeight="355.0" prefWidth="662.0" BorderPane.alignment="CENTER">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints maxHeight="52.4" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="99.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="156.0" minHeight="0.0" prefHeight="156.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="210.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="161.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <ImageView fx:id="client1" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
@@ -299,17 +299,17 @@
                         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.rowIndex="2">
                            <children>
                               <ImageView fx:id="emplacementAssietteClient1" fitHeight="56.0" fitWidth="77.0" layoutX="45.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
-                              <ProgressBar fx:id="client1Progress" layoutX="44.0" layoutY="5.0" prefHeight="18.0" prefWidth="79.0" progress="0.0" />
+                              <ProgressBar fx:id="client1Progress" layoutX="72.0" layoutY="5.0" prefHeight="18.0" prefWidth="79.0" progress="0.0" />
                            </children></Pane>
                         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
                               <ImageView fx:id="emplacementAssietteClient2" fitHeight="56.0" fitWidth="80.0" layoutX="44.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
-                              <ProgressBar fx:id="client2Progress" layoutX="44.0" layoutY="5.0" prefHeight="18.0" prefWidth="79.0" progress="0.0" />
+                              <ProgressBar fx:id="client2Progress" layoutX="72.0" layoutY="5.0" prefHeight="18.0" prefWidth="79.0" progress="0.0" />
                            </children></Pane>
                         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <children>
                               <ImageView fx:id="emplacementAssietteClient3" fitHeight="56.0" fitWidth="81.0" layoutX="43.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
-                              <ProgressBar fx:id="client3Progress" layoutX="43.0" layoutY="5.0" prefHeight="18.0" prefWidth="79.0" progress="0.0" />
+                              <ProgressBar fx:id="client3Progress" layoutX="71.0" layoutY="5.0" prefHeight="18.0" prefWidth="79.0" progress="0.0" />
                            </children></Pane>
                         <Label fx:id="labelRecetteClient1" text="Label" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                         <Label fx:id="labelRecetteClient2" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
@@ -318,7 +318,7 @@
                   </GridPane>
                </center>
             </BorderPane>
-            <SplitPane dividerPositions="0.5, 0.7525252525252525" orientation="VERTICAL" prefHeight="398.0" prefWidth="47.0" style="-fx-background-color: #000; -fx-border-color: #000;">
+            <SplitPane dividerPositions="0.5, 0.5" orientation="VERTICAL" prefHeight="398.0" prefWidth="47.0" style="-fx-background-color: #000; -fx-border-color: #000;">
               <items>
                   <AnchorPane prefHeight="139.0" prefWidth="40.0">
                      <children>

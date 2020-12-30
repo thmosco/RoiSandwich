@@ -380,7 +380,6 @@ public class Controller implements Initializable {
 			compteurAssitette.setText(String.valueOf(Main.niveau1.getCuisine().getAssiettes().size()));
 			mettreDansContainer((Assiette) container);
 			viderContainer();
-
 		}
 
 	}
@@ -432,7 +431,6 @@ public class Controller implements Initializable {
 				}
 			} else {
 				System.out.println("vous ne pouvez pas mettre ceci ici");
-
 			}
 
 		}
@@ -573,7 +571,7 @@ public class Controller implements Initializable {
 				try {
 					laverProgression(assiette, LaveProgress, 5.0);
 					materielLaveVaisselle.ajouterObjet(assiette);
-					((LaveVaisselle)materielLaveVaisselle).nettoyer();
+					((LaveVaisselle) materielLaveVaisselle).nettoyer();
 					viderContainer();
 					// containerDansCuisson.setImage(new
 					// Image(getClass().getResourceAsStream("../image/friteuse.png")));
