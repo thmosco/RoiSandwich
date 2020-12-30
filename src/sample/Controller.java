@@ -573,6 +573,7 @@ public class Controller implements Initializable {
 				try {
 					laverProgression(assiette, LaveProgress, 5.0);
 					materielLaveVaisselle.ajouterObjet(assiette);
+					((LaveVaisselle)materielLaveVaisselle).nettoyer();
 					viderContainer();
 					// containerDansCuisson.setImage(new
 					// Image(getClass().getResourceAsStream("../image/friteuse.png")));
