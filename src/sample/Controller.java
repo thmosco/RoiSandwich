@@ -282,7 +282,8 @@ public class Controller implements Initializable {
 
 					comptoir.retirerClient(0);
 					labelRecetteClient1.setText("");
-					comptoir.getEmplacementAssietteDansComptoire()[0].setEtatAssiette(EtatAssiette.SALE);
+					Assiette assiette = comptoir.getEmplacementAssietteDansComptoire()[0];
+					assiette.setEtatAssiette(EtatAssiette.SALE);
 //				Main.niveau1.getComptoir().ajouterClient(client1EnCours);
 
 					client1EnCours.cancel();
@@ -602,94 +603,135 @@ public class Controller implements Initializable {
 				emplacementAssemblageTomate.setImage(null);
 			}
 		} else if (container instanceof Assiette) {
-			materielAssemblage.ajouterObjet(container);
-			emplacementAssiette
-					.setImage(new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
-			viderContainer();
+			Assiette a = (Assiette) container;
+			if (a.getEtatAssiette().equals(EtatAssiette.SALE)) {
+				System.out.println("l'assiette a déja été utilisé, veuillez la laver");
+			} else {
+
+				materielAssemblage.ajouterObjet(a);
+				a.setEtatAssiette(EtatAssiette.PROPRE);
+				emplacementAssiette.setImage(new Image(getClass().getResourceAsStream(a.getImgAssiette())));
+				// rechercher les ingredients présents dans l'assiette
+				for (int i = 0; i < a.objetsContenus.size(); i++) {
+					Ingredient ing = (Ingredient) a.objetsContenus.get(i);
+					switch (ing.getNom()) {
+					case PATATE:
+						emplacementAssemblagePatate
+								.setImage(new Image(getClass().getResourceAsStream(ing.getImgIngredient())));
+
+						break;
+					case FROMAGE:
+						emplacementAssemblageFromage
+								.setImage(new Image(getClass().getResourceAsStream(ing.getImgIngredient())));
+
+						break;
+					case PAIN:
+						emplacementAssemblagePain
+								.setImage(new Image(getClass().getResourceAsStream(ing.getImgIngredient())));
+
+						break;
+					case OIGNON:
+						emplacementAssemblageOignon
+								.setImage(new Image(getClass().getResourceAsStream(ing.getImgIngredient())));
+
+						break;
+					case SALADE:
+						emplacementAssemblageSalade
+								.setImage(new Image(getClass().getResourceAsStream(ing.getImgIngredient())));
+
+						break;
+					case STEAK_DE_BOEUF:
+						emplacementAssemblageSteak
+								.setImage(new Image(getClass().getResourceAsStream(ing.getImgIngredient())));
+
+						break;
+					case STEAK_DE_POULET:
+						emplacementAssemblageSteak
+								.setImage(new Image(getClass().getResourceAsStream(ing.getImgIngredient())));
+
+						break;
+					case STEAK_DE_SOJA:
+						emplacementAssemblageSteak
+								.setImage(new Image(getClass().getResourceAsStream(ing.getImgIngredient())));
+
+						break;
+					case TOMATE:
+						emplacementAssemblageTomate
+								.setImage(new Image(getClass().getResourceAsStream(ing.getImgIngredient())));
+
+						break;
+					}
+
+				}
+				viderContainer();
+
+			}
+
 //			si le container est un ingredient
 		} else if (container instanceof Ingredient) {
-			//récupere l'assiette contenu dans l'assemblage
+			// récupere l'assiette contenu dans l'assemblage
 			Assiette assiette = (Assiette) materielAssemblage.objetsContenus.get(0);
-			if(assiette.verifierSiIngredientPresentDansAssiette((Ingredient) container)==true) {
+			if (assiette.verifierSiIngredientPresentDansAssiette((Ingredient) container) == true) {
 				System.out.println("ingredient déja présent");
-			}
-			else {
-			//ajoute un ingredient à l'assiette
-			switch (((Ingredient) container).getNom()) {
-			case PATATE:
-				
+			} else {
+				// ajoute un ingredient à l'assiette
+				switch (((Ingredient) container).getNom()) {
+				case PATATE:
 					emplacementAssemblagePatate.setImage(
 							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
 					assiette.ajouterObjet((Ingredient) container);
 					viderContainer();
-			
-				break;
-			case FROMAGE:
-				
+					break;
+				case FROMAGE:
 					emplacementAssemblageFromage.setImage(
 							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
 					assiette.ajouterObjet((Ingredient) container);
 					viderContainer();
-				
-				
-				
-				break;
-			case PAIN:
-				
+					break;
+				case PAIN:
 					emplacementAssemblagePain.setImage(
 							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
 					assiette.ajouterObjet((Ingredient) container);
 					viderContainer();
-		
-				
-				break;
-			case OIGNON:
+					break;
+				case OIGNON:
 					emplacementAssemblageOignon.setImage(
 							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
 					assiette.ajouterObjet((Ingredient) container);
 					viderContainer();
-		
-				
-				break;
-			case SALADE:
+					break;
+				case SALADE:
 					emplacementAssemblageSalade.setImage(
 							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
 					assiette.ajouterObjet((Ingredient) container);
 					viderContainer();
-		
-				
-				break;
-			case STEAK_DE_BOEUF:
+					break;
+				case STEAK_DE_BOEUF:
 					emplacementAssemblageSteak.setImage(
 							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
 					assiette.ajouterObjet((Ingredient) container);
 					viderContainer();
-		
-				break;
-			case STEAK_DE_POULET:
+					break;
+				case STEAK_DE_POULET:
 					emplacementAssemblageSteak.setImage(
 							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
 					assiette.ajouterObjet((Ingredient) container);
 					viderContainer();
-		
-				
-				break;
-			case STEAK_DE_SOJA:
+					break;
+				case STEAK_DE_SOJA:
 					emplacementAssemblageSteak.setImage(
 							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
 					assiette.ajouterObjet((Ingredient) container);
 					viderContainer();
-		
-				break;
-			case TOMATE:
+					break;
+				case TOMATE:
 					emplacementAssemblageTomate.setImage(
 							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
 					assiette.ajouterObjet((Ingredient) container);
 					viderContainer();
-			
-				break;
+					break;
+				}
 			}
-		}
 
 		} else {
 			System.out.println("ca c'est rien y a un probleme dans assembler");

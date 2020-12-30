@@ -102,6 +102,7 @@ public class Assiette extends Materiel {
 	public boolean retirerObjet(Ingredient ingredient) {
 		return this.objetsContenus.remove(ingredient);
 	}
+	
 
 	public boolean verifierSiIngredientPresentDansAssiette(Ingredient ingredient) {
 		boolean estContenu = false;
