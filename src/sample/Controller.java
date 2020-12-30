@@ -394,8 +394,44 @@ public class Controller implements Initializable {
 				String idImage = ((Node) image).getId();
 				Object c = Main.niveau1.getGardeManger().prendreIngredient(Nom.valueOf(idImage));
 				mettreDansContainer(c);
-			} else {
-				System.out.println("Vous avez déjà quelque chose dans votre main");
+			} else if (container instanceof Ingredient){
+				Ingredient i = ((Ingredient)container);
+				if(i.getTransformer()==false && i.getEtat().equals(Etat.CRU)) {
+					Main.niveau1.getGardeManger().mettreIngredient(i.getNom());
+					viderContainer();
+					switch (i.getNom()) {
+					case PATATE:
+						compteurPATATE.setText(String.valueOf(compteur(Nom.PATATE)));
+						break;
+					case FROMAGE:
+						compteurFROMAGE.setText(String.valueOf(compteur(Nom.FROMAGE)));
+						break;
+					case PAIN:
+						compteurPAIN.setText(String.valueOf(compteur(Nom.PAIN)));
+						break;
+					case OIGNON:
+						compteurOIGNON.setText(String.valueOf(compteur(Nom.OIGNON)));
+						break;
+					case SALADE:
+						compteurSALADE.setText(String.valueOf(compteur(Nom.SALADE)));
+						break;
+					case STEAK_DE_BOEUF:
+						compteurSTEAK_DE_BOEUF.setText(String.valueOf(compteur(Nom.STEAK_DE_BOEUF)));
+						break;
+					case STEAK_DE_POULET:
+						compteurSTEAK_DE_POULET.setText(String.valueOf(compteur(Nom.STEAK_DE_POULET)));
+						break;
+					case STEAK_DE_SOJA:
+						compteurSTEAK_DE_SOJA.setText(String.valueOf(compteur(Nom.STEAK_DE_SOJA)));
+						break;
+					case TOMATE:
+						compteurTOMATE.setText(String.valueOf(compteur(Nom.TOMATE)));
+						break;
+					}					
+				}
+			}else {
+				System.out.println("vous ne pouvez pas mettre ceci ici");
+
 			}
 
 		}
