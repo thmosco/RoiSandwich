@@ -101,7 +101,7 @@ public class Niveau {
 			this.nbAssietteMax = 25;
 			this.nbMaxClients = 10;
 			
-			this.tmpsAttente = 45;
+			this.tmpsAttente = 45 ;
 
 			// quantité des ingrédients
 			nbIngredient = 50;
