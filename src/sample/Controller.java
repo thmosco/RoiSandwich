@@ -394,9 +394,9 @@ public class Controller implements Initializable {
 				String idImage = ((Node) image).getId();
 				Object c = Main.niveau1.getGardeManger().prendreIngredient(Nom.valueOf(idImage));
 				mettreDansContainer(c);
-			} else if (container instanceof Ingredient){
-				Ingredient i = ((Ingredient)container);
-				if(i.getTransformer()==false && i.getEtat().equals(Etat.CRU)) {
+			} else if (container instanceof Ingredient) {
+				Ingredient i = ((Ingredient) container);
+				if (i.getTransformer() == false && i.getEtat().equals(Etat.CRU)) {
 					Main.niveau1.getGardeManger().mettreIngredient(i.getNom());
 					viderContainer();
 					switch (i.getNom()) {
@@ -427,9 +427,9 @@ public class Controller implements Initializable {
 					case TOMATE:
 						compteurTOMATE.setText(String.valueOf(compteur(Nom.TOMATE)));
 						break;
-					}					
+					}
 				}
-			}else {
+			} else {
 				System.out.println("vous ne pouvez pas mettre ceci ici");
 
 			}
@@ -606,55 +606,91 @@ public class Controller implements Initializable {
 			emplacementAssiette
 					.setImage(new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
 			viderContainer();
-//			System.out.println("assiette ajouté");
+//			si le container est un ingredient
 		} else if (container instanceof Ingredient) {
+			//récupere l'assiette contenu dans l'assemblage
 			Assiette assiette = (Assiette) materielAssemblage.objetsContenus.get(0);
-			assiette.ajouterObjet((Ingredient) container);
+			if(assiette.verifierSiIngredientPresentDansAssiette((Ingredient) container)==true) {
+				System.out.println("ingredient déja présent");
+			}
+			else {
+			//ajoute un ingredient à l'assiette
 			switch (((Ingredient) container).getNom()) {
 			case PATATE:
-				emplacementAssemblagePatate.setImage(
-						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				
+					emplacementAssemblagePatate.setImage(
+							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					assiette.ajouterObjet((Ingredient) container);
+					viderContainer();
+			
 				break;
 			case FROMAGE:
-				emplacementAssemblageFromage.setImage(
-						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				
+					emplacementAssemblageFromage.setImage(
+							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					assiette.ajouterObjet((Ingredient) container);
+					viderContainer();
+				
+				
+				
 				break;
 			case PAIN:
-				emplacementAssemblagePain.setImage(
-						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+				
+					emplacementAssemblagePain.setImage(
+							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					assiette.ajouterObjet((Ingredient) container);
+					viderContainer();
+		
+				
 				break;
 			case OIGNON:
-				emplacementAssemblageOignon.setImage(
-						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					emplacementAssemblageOignon.setImage(
+							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					assiette.ajouterObjet((Ingredient) container);
+					viderContainer();
+		
+				
 				break;
 			case SALADE:
-				emplacementAssemblageSalade.setImage(
-						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					emplacementAssemblageSalade.setImage(
+							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					assiette.ajouterObjet((Ingredient) container);
+					viderContainer();
+		
+				
 				break;
 			case STEAK_DE_BOEUF:
-				emplacementAssemblageSteak.setImage(
-						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					emplacementAssemblageSteak.setImage(
+							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					assiette.ajouterObjet((Ingredient) container);
+					viderContainer();
+		
 				break;
 			case STEAK_DE_POULET:
-				emplacementAssemblageSteak.setImage(
-						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					emplacementAssemblageSteak.setImage(
+							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					assiette.ajouterObjet((Ingredient) container);
+					viderContainer();
+		
+				
 				break;
 			case STEAK_DE_SOJA:
-				emplacementAssemblageSteak.setImage(
-						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					emplacementAssemblageSteak.setImage(
+							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					assiette.ajouterObjet((Ingredient) container);
+					viderContainer();
+		
 				break;
 			case TOMATE:
-				emplacementAssemblageTomate.setImage(
-						new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					emplacementAssemblageTomate.setImage(
+							new Image(getClass().getResourceAsStream(((Ingredient) container).getImgIngredient())));
+					assiette.ajouterObjet((Ingredient) container);
+					viderContainer();
+			
 				break;
 			}
-//			System.out.println("ingredient ajouté à assiette :");
-//			for (int i = 0; i < assiette.objetsContenus.size(); i++) {
-//				System.out.print(((Ingredient) assiette.objetsContenus.get(i)).getNom() + " , " + "transformé ="
-//						+ ((Ingredient) assiette.objetsContenus.get(i)).getTransformer() + " , état ="
-//						+ ((Ingredient) assiette.objetsContenus.get(i)).getEtat() + " ; ");
-//			}
-			viderContainer();
+		}
+
 		} else {
 			System.out.println("ca c'est rien y a un probleme dans assembler");
 		}
@@ -1162,19 +1198,18 @@ public class Controller implements Initializable {
 
 	@FXML
 	private ImageView btnMenu;
-	
-	
-	public void ouvrirMenu() throws Exception {               
-	    try {
-	        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("vueMenuNiveau.fxml"));
-	        Parent root1 = (Parent) fxmlLoader.load();
+
+	public void ouvrirMenu() throws Exception {
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("vueMenuNiveau.fxml"));
+			Parent root1 = (Parent) fxmlLoader.load();
 //	        Parent root1 = FXMLLoader.load(getClass().getResource("vueNiveau1.fxml"));
-	        Stage stage = new Stage();
-	        stage.setScene(new Scene(root1));  
-	        stage.show();
-	    } catch(Exception e) {
-	        e.printStackTrace();
-	    }
+			Stage stage = new Stage();
+			stage.setScene(new Scene(root1));
+			stage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 }
