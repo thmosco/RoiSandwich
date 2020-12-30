@@ -25,9 +25,10 @@ public class Main extends Application {
 
 		niveau1 = new Niveau(1);
 
-    	Parent root = FXMLLoader.load(getClass().getResource("vueNiveau1.fxml"));
+//    	Parent root = FXMLLoader.load(getClass().getResource("vueNiveau1.fxml"));
     	
-    	niveau1 = new Niveau(1);
+   	
+    	Parent root = FXMLLoader.load(getClass().getResource("vueMenuPrincipal.fxml"));
 
 		primaryStage.setTitle("RoiSandwich");
 		primaryStage.setScene(new Scene(root));

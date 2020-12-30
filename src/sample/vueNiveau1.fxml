@@ -23,7 +23,7 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #000;">
                      <children>
-                        <ImageView fitHeight="38.0" fitWidth="31.0" layoutX="7.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="btnMenu" fitHeight="38.0" fitWidth="31.0" layoutX="7.0" layoutY="21.0" onMouseClicked="#ouvrirMenu" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../image/menu.png" />
                            </image>

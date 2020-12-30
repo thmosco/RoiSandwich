@@ -10,9 +10,12 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -24,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
 import java.io.InputStream;
@@ -115,8 +119,6 @@ public class Controller implements Initializable {
 	@FXML
 	ImageView stock3;
 
-	
-	
 	@FXML
 	ImageView client1;
 	@FXML
@@ -177,12 +179,12 @@ public class Controller implements Initializable {
 
 	@FXML
 	BorderPane lavevaisselle;
-	
+
 	@FXML
 	ProgressIndicator LaveProgress;
-	
+
 	Service<Void> LaveVaisselleEnCours;
-	
+
 	@FXML
 	ImageView garde_manger;
 
@@ -363,22 +365,25 @@ public class Controller implements Initializable {
 			}
 		}
 	}
+
 	public void prendreAssiettePropre() {
 		if (container == null) {
 //			Object image = e.getSource();
 			Object c = Main.niveau1.getCuisine().retirerAssietteDeLaCuisine();
 			mettreDansContainer(c);
-		} else if(container instanceof Assiette && ((Assiette)container).getEtatAssiette().equals(EtatAssiette.PROPRE)) {
+		} else if (container instanceof Assiette
+				&& ((Assiette) container).getEtatAssiette().equals(EtatAssiette.PROPRE)) {
 			Assiette assiette = (Assiette) container;
 			Main.niveau1.getCuisine().getAssiettes().add(assiette);
-			//MODIFIER ! travailler avec le stock et non pas direct cuisine
+			// MODIFIER ! travailler avec le stock et non pas direct cuisine
 			compteurAssitette.setText(String.valueOf(Main.niveau1.getCuisine().getAssiettes().size()));
 			mettreDansContainer((Assiette) container);
 			viderContainer();
-			
+
 		}
-		
+
 	}
+
 	@FXML
 	public void prendreIngredient(MouseEvent e) {
 		if (materielAssemblage.objetsContenus.size() == 0) {
@@ -492,34 +497,31 @@ public class Controller implements Initializable {
 			}
 		} else {
 			if (container instanceof Ingredient) {
-			Ingredient a = ((Ingredient) container);
-			if (a.getNom().toString().equals("PATATE") & a.getTransformer()) {
-				if (a.getTransformer() == true) {
-					if (a.getEtat() == Etat.CRU) {
-						materielFriteuse.ajouterObjet(a);
-						containerDansFriteuse
-								.setImage(new Image(getClass().getResourceAsStream("../image/friteuse_cuisson.png")));
-						viderContainer();
-						frireProgression(a, frireProgress, 5);
+				Ingredient a = ((Ingredient) container);
+				if (a.getNom().toString().equals("PATATE") & a.getTransformer()) {
+					if (a.getTransformer() == true) {
+						if (a.getEtat() == Etat.CRU) {
+							materielFriteuse.ajouterObjet(a);
+							containerDansFriteuse.setImage(
+									new Image(getClass().getResourceAsStream("../image/friteuse_cuisson.png")));
+							viderContainer();
+							frireProgression(a, frireProgress, 5);
+						} else {
+							System.out.println(a.getNom() + " a déja été cuit");
+						}
 					} else {
-						System.out.println(a.getNom() + " a déja été cuit");
+						System.out.println(a.getNom() + " doit etre découpé");
 					}
 				} else {
-					System.out.println(a.getNom() + " doit etre découpé");
+					System.out.println("seul les patates coupé peuvent être fries");
 				}
 			} else {
-				System.out.println("seul les patates coupé peuvent être fries");
-			}
-		}
-			else 
-			{
 				System.out.println("ce que vous avez dans la main n'est même pas un ingrédient");
-				}
-			
-		}
-		}
+			}
 
-	
+		}
+	}
+
 	public void lavevaisselle(MouseEvent e) {
 		if (container == null) {
 			checkSiIngredientPresentDansMateriel(materielLaveVaisselle);
@@ -531,24 +533,23 @@ public class Controller implements Initializable {
 		} else {
 			Assiette assiette = ((Assiette) container);
 			if (((Assiette) container).getEtatAssiette() == EtatAssiette.SALE) {
-						try {
-							laverProgression(assiette, LaveProgress, 5.0);	
-							materielLaveVaisselle.ajouterObjet(assiette);	
-							viderContainer();
-						// containerDansCuisson.setImage(new
-						// Image(getClass().getResourceAsStream("../image/friteuse.png")));
-						} catch (InterruptedException e1) {
-							e1.printStackTrace();
-						}
-					 
-				} else {
-					System.out.println("Ceci est déjà propre");
+				try {
+					laverProgression(assiette, LaveProgress, 5.0);
+					materielLaveVaisselle.ajouterObjet(assiette);
+					viderContainer();
+					// containerDansCuisson.setImage(new
+					// Image(getClass().getResourceAsStream("../image/friteuse.png")));
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
 				}
-			} 
 
+			} else {
+				System.out.println("Ceci est déjà propre");
+			}
 		}
-	
-	
+
+	}
+
 	public void assembler(MouseEvent event) {
 		if (container == null) {
 			if (materielAssemblage.objetsContenus.size() != 0) {
@@ -807,7 +808,7 @@ public class Controller implements Initializable {
 				Platform.runLater(() -> {
 					tempsEnCours.setText(time);
 //					labelRecetteClient1.setText(String.valueOf(comptoir.getComptoir().get(0).getTmpsAttente()));
-					
+
 //					System.out.println("nombre de client restant " + Main.niveau1.getClients().size());
 
 					for (int i = 0; i < comptoir.getEmplacementClientDansComptoire().length; i++) {
@@ -822,7 +823,8 @@ public class Controller implements Initializable {
 
 									if (i == 0) {
 										try {
-											client1EnCours = envoyerUnClient(comptoir.getEmplacementClientDansComptoire()[i],
+											client1EnCours = envoyerUnClient(
+													comptoir.getEmplacementClientDansComptoire()[i],
 													clientProgress.get(i));
 											labelRecetteClient1.setText(comptoir.getEmplacementClientDansComptoire()[i]
 													.getCommande().getNom().toString());
@@ -833,7 +835,8 @@ public class Controller implements Initializable {
 									}
 									if (i == 1) {
 										try {
-											client2EnCours = envoyerUnClient(comptoir.getEmplacementClientDansComptoire()[i],
+											client2EnCours = envoyerUnClient(
+													comptoir.getEmplacementClientDansComptoire()[i],
 													clientProgress.get(i));
 											labelRecetteClient2.setText(comptoir.getEmplacementClientDansComptoire()[i]
 													.getCommande().getNom().toString());
@@ -843,7 +846,8 @@ public class Controller implements Initializable {
 									}
 									if (i == 2) {
 										try {
-											client3EnCours = envoyerUnClient(comptoir.getEmplacementClientDansComptoire()[i],
+											client3EnCours = envoyerUnClient(
+													comptoir.getEmplacementClientDansComptoire()[i],
 													clientProgress.get(i));
 											labelRecetteClient3.setText(comptoir.getEmplacementClientDansComptoire()[i]
 													.getCommande().getNom().toString());
@@ -859,19 +863,19 @@ public class Controller implements Initializable {
 								System.out.println(
 										"client : " + comptoir.getEmplacementClientDansComptoire()[i] + " est parti");
 								comptoir.retirerClient(i);
-								if(i==0) {
+								if (i == 0) {
 									labelRecetteClient1.setText(null);
 									client1Progress.setVisible(false);
 									client1EnCours.cancel();
 									client1EnCours.reset();
 								}
-								if(i==1) {
+								if (i == 1) {
 									labelRecetteClient2.setText(null);
 									client2Progress.setVisible(false);
 									client2EnCours.cancel();
 									client2EnCours.reset();
 								}
-								if(i==2) {
+								if (i == 2) {
 									labelRecetteClient3.setText(null);
 									client3Progress.setVisible(false);
 									client3EnCours.cancel();
@@ -961,7 +965,6 @@ public class Controller implements Initializable {
 
 						progress.setStyle("-fx-accent: orange;");
 
-						
 						return null;
 					}
 				};
@@ -981,7 +984,7 @@ public class Controller implements Initializable {
 				return new Task<Void>() {
 					@Override
 					protected Void call() throws Exception {
-						
+
 						for (int i = 0; i < temps; i++) {
 							if (isCancelled()) {
 								break;
@@ -990,10 +993,10 @@ public class Controller implements Initializable {
 							progress.setStyle("-fx-accent: green;");
 							Thread.sleep(1000);
 						}
-						
+
 						System.out.println("Vos assiettes sont propre");
 						assiette.setEtatAssiette(EtatAssiette.PROPRE);
-						
+
 						return null;
 					}
 				};
@@ -1002,7 +1005,7 @@ public class Controller implements Initializable {
 		LaveVaisselleEnCours = laveEnCours;
 		LaveVaisselleEnCours.start();
 	}
-	
+
 	public Service<Void> envoyerUnClient(Client client, ProgressBar progressClient) throws InterruptedException {
 
 		Service<Void> ArriverClient = new Service<Void>() {
@@ -1092,30 +1095,49 @@ public class Controller implements Initializable {
 
 		// mick 28/12
 		comptoir = Main.niveau1.getComptoir();
-		
+
 		scoreLabel.setText(String.valueOf(Main.niveau1.getTabScoreArgent()[0]));
 
 	}
-	
-    @FXML
-    private Label compteurPileAssietteSale;
-	
+
+	@FXML
+	private Label compteurPileAssietteSale;
+
 	public void stockageAssietteSale() {
-		
-		//stocker assiette sale dans la pile d'assiette sale
-		if(container instanceof Assiette && ((Assiette)container).getEtatAssiette().equals(EtatAssiette.SALE)) {
+
+		// stocker assiette sale dans la pile d'assiette sale
+		if (container instanceof Assiette && ((Assiette) container).getEtatAssiette().equals(EtatAssiette.SALE)) {
 			Assiette assiette = (Assiette) container;
 			Main.niveau1.getCuisine().getStock().stockerAssiette(assiette);
-			compteurPileAssietteSale.setText(String.valueOf(Main.niveau1.getCuisine().getStock().getAssiettesSale().size()));
+			compteurPileAssietteSale
+					.setText(String.valueOf(Main.niveau1.getCuisine().getStock().getAssiettesSale().size()));
 			viderContainer();
-			
+
 		}
-		//recupérer assiette sale de la pile
-		else if(container==null &&Main.niveau1.getCuisine().getStock().getAssiettesSale().size()!=0) {
+		// recupérer assiette sale de la pile
+		else if (container == null && Main.niveau1.getCuisine().getStock().getAssiettesSale().size() != 0) {
 			mettreDansContainer(Main.niveau1.getCuisine().getStock().getAssiettesSale().get(0));
 			Main.niveau1.getCuisine().getStock().getAssiettesSale().remove(0);
-			compteurPileAssietteSale.setText(String.valueOf(Main.niveau1.getCuisine().getStock().getAssiettesSale().size()));
+			compteurPileAssietteSale
+					.setText(String.valueOf(Main.niveau1.getCuisine().getStock().getAssiettesSale().size()));
 
 		}
 	}
+
+	@FXML
+	private ImageView btnMenu;
+	
+	
+	public void ouvrirMenu() throws Exception {               
+	    try {
+	        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("vueMenuNiveau.fxml"));
+	        Parent root1 = (Parent) fxmlLoader.load();
+	        Stage stage = new Stage();
+	        stage.setScene(new Scene(root1));  
+	        stage.show();
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	
 }
