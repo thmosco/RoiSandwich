@@ -854,9 +854,21 @@ public class Controller implements Initializable {
 
 
 
-				if (temps == 0 || nbrClientEnvoye == clientDuNiveau.size()) {
+//				if (temps == 0 || nbrClientEnvoye == clientDuNiveau.size()) {
+//					this.enCours = false;
+//					System.out.println("Fin Du Niveau");
+//				}
+				
+				
+				if (temps == 0 || nbrClientEnvoye == clientDuNiveau.size() && comptoir.getEmplacementClientDansComptoire()[0]==null && comptoir.getEmplacementClientDansComptoire()[1]==null && comptoir.getEmplacementClientDansComptoire()[2]==null) {
 					this.enCours = false;
 					System.out.println("Fin Du Niveau");
+//					try {
+//						ouvrirMenu();
+//					} catch (Exception e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
 				}
 
 
@@ -878,7 +890,7 @@ public class Controller implements Initializable {
 
 									Client client = Main.niveau1.getClients().get(0);
 									comptoir.ajouterClient(client, i);
-									System.out.println("nombre d ingredient du client 1 dans controller runLater " + client.getCommande().ingredients.size());
+//									System.out.println("nombre d ingredient du client 1 dans controller runLater " + client.getCommande().ingredients.size());
 
 
 									Main.niveau1.getClients().remove(0);

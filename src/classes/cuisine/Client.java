@@ -112,7 +112,7 @@ public class Client {
 		}
 		;
 		Iterator it3 = commande.ingredients.entrySet().iterator();
-		System.out.println("nombre d'ingredtion dans client " + commande.ingredients.size());
+//		System.out.println("nombre d'ingredtion dans client " + commande.ingredients.size());
 		
 		while (it3.hasNext()) {
 			Map.Entry pair = (Map.Entry) it3.next();
@@ -121,7 +121,7 @@ public class Client {
 			it3.remove(); // avoids a ConcurrentModificationException
 		}
 
-		System.out.println("taille ingredientRecette dans client " + ingredientRecette.size());
+//		System.out.println("taille ingredientRecette dans client " + ingredientRecette.size());
 
 		for (int i = 0; i < ingredientAssiette.size(); i++) {
 			System.out.println("ingredientAssiette : " + ingredientAssiette.get(i).getNom());

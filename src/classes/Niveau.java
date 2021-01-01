@@ -271,11 +271,18 @@ public class Niveau {
 			
 						// Pour chaque, je pioche une recette al�atoire
 						int recetteAleatoire = (int)(Math.random() * listeRecettes.size());
-						System.out.print(recetteAleatoire);
+//						System.out.print(recetteAleatoire);
 						// définition de la commande propre au client
 						Recette recette = new Recette(this.listeRecettes.get(recetteAleatoire), Recette.Steaks.values()[0]);
+						
+						int lower = tmpsAttente;
+						int higher = (int) (tmpsAttente*1.50);
+
+						int tmpsAttenteRandom = (int)(Math.random() * (higher-lower)) + lower;
+						System.out.println("random = " + tmpsAttenteRandom);
+						
 						// création du client
-						this.clients.add(new Client(tmpsAttente, recette));
+						this.clients.add(new Client(tmpsAttenteRandom, recette));
 		
 				}
 		return true;
