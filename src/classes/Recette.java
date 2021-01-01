@@ -60,12 +60,12 @@ public class Recette {
                 this.ingredients.put(new Ingredient(Ingredient.Nom.PATATE,Etat.CUIT,true), 1);
                 break;
             case MAXI:
-                recetteBurger(2, this.viande);
+                recetteBurger(2, 2, this.viande);
                 break;
+            case SIMPLE:
+                recetteBurger(1, 1, this.viande);
             case MENU:
                 this.ingredients.put(new Ingredient(Ingredient.Nom.PATATE), 1);
-            case SIMPLE:
-                recetteBurger(1, this.viande);
         }
     }
 
@@ -102,13 +102,13 @@ public class Recette {
      * @param nbSteak
      * @param viande
      */
-    private void recetteBurger(int nbSteak, Steaks viande) {
+    private void recetteBurger(int nbSteak, int nbFromage, Steaks viande) {
         // ingrédients de base
         this.ingredients.put(new Ingredient(Ingredient.Nom.SALADE,Etat.CRU,false), 1);
         this.ingredients.put(new Ingredient(Ingredient.Nom.TOMATE,Etat.CRU,true), 1);
         this.ingredients.put(new Ingredient(Ingredient.Nom.OIGNON,Etat.CRU, true), 1);
         this.ingredients.put(new Ingredient(Ingredient.Nom.PAIN), 1);
-        this.ingredients.put(new Ingredient(Ingredient.Nom.FROMAGE), 1);
+        this.ingredients.put(new Ingredient(Ingredient.Nom.FROMAGE), nbFromage);
         // précision du steak
         Ingredient.Nom typeSteak;
         if (viande == Steaks.BOEUF) {
@@ -125,7 +125,7 @@ public class Recette {
         Iterator it = ingredients.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
-            System.out.println("les ingredients attendus sont = "  +((Ingredient)pair.getKey()).getNom() + " etat = " + ((Ingredient)pair.getKey()).getEtat() + " transform� ? " + ((Ingredient)pair.getKey()).getTransformer());
+            System.out.println("les ingredients attendus sont = "  +((Ingredient)pair.getKey()).getNom() + " etat = " + ((Ingredient)pair.getKey()).getEtat() + " transform� ? " + ((Ingredient)pair.getKey()).getTransformer());
             it.remove(); // avoids a ConcurrentModificationException
         }
     }
