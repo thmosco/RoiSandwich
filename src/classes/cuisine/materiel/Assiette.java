@@ -7,14 +7,29 @@ import classes.cuisine.Ingredient.Nom;
 /**
  * Classe enfant de matériel, assiette contenant des ingrédients / un plat
  * 
- * @version 1.0
+ * @version 1.0 & 3.0
  * @author Mickeal PIRRES
+ *
+ * @version 2.0
+ * @author Maïa DA SILVA
  */
 public class Assiette extends Materiel {
 
+	/**
+	 * Etats que peut prendre l'assiette lors d'une partie
+	 */
+	public enum EtatAssiette {
+		PROPRE, SALE, PLAT
+	}
+
+	/**
+	 * Nom du plat contenu dans l'assiette, null si
+	 */
 	private Recette.Noms nomPlat;
 
-//    Mickael ajout de l etat de l'assiette. 
+	/**
+	 * etat de l'assiette
+	 */
 	private EtatAssiette etatAssiette;
 
 	public EtatAssiette getEtatAssiette() {
@@ -25,9 +40,7 @@ public class Assiette extends Materiel {
 		this.etatAssiette = etatAssiette;
 	}
 
-	public enum EtatAssiette {
-		PROPRE, SALE, PLAT
-	}
+
 
 	public String getImgAssiette() {
 		String s = null;
