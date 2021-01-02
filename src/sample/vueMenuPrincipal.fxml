@@ -12,7 +12,9 @@
          <image>
             <Image url="@../image/logo_couleur.png" />
          </image></ImageView>
+
       <Button fx:id="btn1" layoutX="66.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #000;" text="NIVEAU 1" textFill="WHITE">
+
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
