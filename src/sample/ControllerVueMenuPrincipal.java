@@ -23,29 +23,54 @@ public class ControllerVueMenuPrincipal implements Initializable {
 	private Label lbl1, lbl2;
 
 	@FXML
-	private Button btn1, btn2;
+	private Button btn1, btn2, btn3;
 
 	@FXML
-	private void handleButtonAction(ActionEvent event) throws Exception {
-		Stage stage;
-		Parent root;
+	private void buttonNiveau1(ActionEvent event) throws Exception {
+			Stage stage;
+			Parent root;
 
-		if (event.getSource() == btn1) {
+			Main.niveau1 = new Niveau(1);
 			stage = (Stage) btn1.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("vueNiveau1.fxml"));
 
-		} else {
-			stage = (Stage) btn2.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("vueNiveau1.fxml"));
-		}
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+	}
+	
+	@FXML
+	private void buttonNiveau2(ActionEvent event) throws Exception {
+		Stage stage;
+		Parent root;
+
+		Main.niveau1 = new Niveau(2);
+		stage = (Stage) btn2.getScene().getWindow();
+		root = FXMLLoader.load(getClass().getResource("vueNiveau1.fxml"));
+
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	@FXML
+	private void buttonNiveau3(ActionEvent event) throws Exception {
+		Stage stage;
+		Parent root;
+
+		Main.niveau1 = new Niveau(3);
+		stage = (Stage) btn3.getScene().getWindow();
+		root = FXMLLoader.load(getClass().getResource("vueNiveau1.fxml"));
+
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		Main.niveau1 = new Niveau(1);
-		// TODO
+		
+	
 	}
 }
