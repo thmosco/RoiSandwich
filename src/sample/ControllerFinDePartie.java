@@ -22,7 +22,7 @@ public class ControllerFinDePartie implements Initializable {
 	ImageView btnClose;
 	
 	@FXML
-	Label scoreLabel;
+	Label scoreLabel, argentLabel;
 	
 	public void quitterNiveau() throws Exception {
 		try {
@@ -37,7 +37,7 @@ public class ControllerFinDePartie implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		scoreLabel.setText(String.valueOf(Main.niveau1.getTabScoreArgent()[0]));//affiche le score
-		
+		argentLabel.setText(String.valueOf(Main.niveau1.getTabScoreArgent()[1]));//affiche l'argent
 	}
 	
 }

@@ -254,7 +254,7 @@ public class Controller implements Initializable {
 	private Label labelTimerClient3;
 	// =======>
 	@FXML
-	private Label scoreLabel;
+	private Label scoreLabel, argentLabel;
 	
 	private Client client1;
 	private Client client2;
@@ -288,6 +288,7 @@ public class Controller implements Initializable {
 						niveau.setScoreArgent(100, 100);
 						System.out.println("score augmenté");
 						scoreLabel.setText(String.valueOf(niveau.getTabScoreArgent()[0]));
+						argentLabel.setText(String.valueOf(niveau.getTabScoreArgent()[1]));
 					}
 //					System.out.println("verifier assiette : " + comptoir.getEmplacementClientDansComptoire()[0].verifierPlat(a));
 //					comptoir.getEmplacementClientDansComptoire()[0].verifierLePlat(a);
@@ -1195,6 +1196,7 @@ public class Controller implements Initializable {
 		comptoir = niveau.getComptoir();
 
 		scoreLabel.setText(String.valueOf(niveau.getTabScoreArgent()[0]));
+		argentLabel.setText(String.valueOf(niveau.getTabScoreArgent()[1]));
 		
 		
 //		System.out.println("nombre de client dans comptoir client " +comptoir.getEmplacementClientDansComptoire().length);
