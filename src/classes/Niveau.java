@@ -283,7 +283,10 @@ public class Niveau {
 						int recetteAleatoire = (int)(Math.random() * listeRecettes.size());
 //						System.out.print(recetteAleatoire);
 						// définition de la commande propre au client
-						Recette recette = new Recette(this.listeRecettes.get(recetteAleatoire), Recette.Steaks.values()[0]);
+						int viandeAleatoire = (int)(Math.random() * Recette.Steaks.values().length);
+						System.out.println(viandeAleatoire);
+						Recette recette = new Recette(this.listeRecettes.get(recetteAleatoire), Recette.Steaks.values()[viandeAleatoire]);
+						
 						
 						int lower = tmpsAttente;
 						int higher = (int) (tmpsAttente*1.50);
