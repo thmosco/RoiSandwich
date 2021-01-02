@@ -866,11 +866,6 @@ public class Controller implements Initializable {
 		public void run() {
 			while (enCours) {
 
-
-
-			
-
-
 				String time = String.valueOf(temps);
 				temps--;
 				attenteEntreClient--;
@@ -882,7 +877,7 @@ public class Controller implements Initializable {
 						this.enCours = false;
 						System.out.println("Fin Du Niveau");
 						try {
-							ouvrirMenu();
+							affichageScore();
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -1236,14 +1231,13 @@ public class Controller implements Initializable {
 	@FXML
 	private ImageView btnMenu;
 
-	public void ouvrirMenu() throws Exception {
+	public void affichageScore() throws Exception {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("vueMenuNiveau.fxml"));
-			Parent root1 = (Parent) fxmlLoader.load();
+			//FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("vueMenuNiveau.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("vueAffichageScore.fxml"));
 //	        Parent root1 = FXMLLoader.load(getClass().getResource("vueNiveau1.fxml"));
-			Stage stage = new Stage();
-			stage.setScene(new Scene(root1));
-			stage.show();
+			Stage stage = (Stage) btnMenu.getScene().getWindow();
+			stage.setScene(new Scene(root));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
