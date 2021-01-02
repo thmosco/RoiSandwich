@@ -1,6 +1,5 @@
 package classes;
-
-import classes.cuisine.*;
+import classes.cuisine.* ;
 import classes.cuisine.materiel.*;
 
 import java.util.ArrayList;
@@ -8,7 +7,6 @@ import java.util.HashMap;
 
 /**
  * Commentaire de documentation de la classe
- * 
  * @version 1.0
  * @author Maïa DA SILVA
  */
