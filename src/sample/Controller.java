@@ -829,7 +829,7 @@ public class Controller implements Initializable {
 
 	public class tempsDuJeu extends TimerTask {
 
-		private int temps = 180;
+		private int temps = 240;
 		// permet de ne pas envoyer tout les clients en même temps
 		private int attenteEntreClient = 0;
 
