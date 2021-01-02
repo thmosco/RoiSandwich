@@ -1,14 +1,8 @@
 package sample;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,32 +10,19 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
-import java.io.InputStream;
 import java.net.URL;
-import java.sql.Time;
-import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -50,7 +31,6 @@ import java.util.TimerTask;
 
 import classes.cuisine.Ingredient.Etat;
 import classes.cuisine.Ingredient.Nom;
-import classes.*;
 import classes.cuisine.*;
 import classes.cuisine.materiel.*;
 import classes.cuisine.materiel.Assiette.EtatAssiette;
@@ -157,7 +137,7 @@ public class Controller implements Initializable {
 	ImageView containerDansDecoupe;
 
 	@FXML
-	BorderPane plaque_cuisson;
+	BorderPane plaqueCuisson;
 
 	@FXML
 	ImageView containerDansCuisson;
@@ -165,7 +145,7 @@ public class Controller implements Initializable {
 	@FXML
 	ProgressBar cuissonProgress;
 
-	Service<Void> CuissonEnCoursSteak;
+	Service<Void> cuissonEnCoursSteak;
 
 	@FXML
 	BorderPane friteuse;
@@ -173,7 +153,7 @@ public class Controller implements Initializable {
 	@FXML
 	ProgressBar frireProgress;
 
-	Service<Void> FrireEnCours;
+	Service<Void> frireEnCours;
 
 	@FXML
 	private BorderPane assemblage;
@@ -182,7 +162,7 @@ public class Controller implements Initializable {
 	ImageView containerDansFriteuse;
 
 	@FXML
-	BorderPane lavevaisselle;
+	BorderPane laveVaisselle;
 
 	@FXML
 	ProgressIndicator LaveProgress;
@@ -495,9 +475,9 @@ public class Controller implements Initializable {
 	public void cuir(MouseEvent e) {
 		if (container == null) {
 			checkSiIngredientPresentDansMateriel(materielPlaqueDeCuisson);
-			if (CuissonEnCoursSteak != null) {
-				CuissonEnCoursSteak.cancel();
-				CuissonEnCoursSteak.reset();
+			if (cuissonEnCoursSteak != null) {
+				cuissonEnCoursSteak.cancel();
+				cuissonEnCoursSteak.reset();
 				cuissonProgress.setProgress(0.0);
 			}
 		} else {
@@ -528,9 +508,9 @@ public class Controller implements Initializable {
 			System.out.println("ingredient contenu " + materielFriteuse.objetsContenus.size());
 			if (checkSiIngredientPresentDansMateriel(materielFriteuse)) {
 				containerDansFriteuse.setImage(new Image(getClass().getResourceAsStream("../image/friteuse.png")));
-				if (FrireEnCours != null) {
-					FrireEnCours.cancel();
-					FrireEnCours.reset();
+				if (frireEnCours != null) {
+					frireEnCours.cancel();
+					frireEnCours.reset();
 					frireProgress.setProgress(0.0);
 				}
 
@@ -1019,7 +999,7 @@ public class Controller implements Initializable {
 				};
 			}
 		};
-		CuissonEnCoursSteak = CuissonMateriel;
+		cuissonEnCoursSteak = CuissonMateriel;
 		CuissonMateriel.start();
 	}
 
@@ -1053,7 +1033,7 @@ public class Controller implements Initializable {
 				};
 			}
 		};
-		FrireEnCours = CuissonMateriel;
+		frireEnCours = CuissonMateriel;
 		CuissonMateriel.start();
 	}
 
