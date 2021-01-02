@@ -261,7 +261,7 @@ public class Controller implements Initializable {
 	private Client client3;
 
 	
-	//à chacker
+	//à checker
 	public void donnerAssietteClient(MouseEvent e) throws IllegalAccessException {
 //		System.out.println("source donnerassietteclient = " + e.getSource());
 		//si le container n'est pas vide et quand dans ce container il s'agit d'une assiette "Plat"
@@ -688,7 +688,14 @@ public class Controller implements Initializable {
 			// récupere l'assiette contenu dans l'assemblage
 			Assiette assiette = (Assiette) materielAssemblage.objetsContenus.get(0);
 			if (assiette.verifierSiIngredientPresentDansAssiette((Ingredient) container) == true) {
-				System.out.println("ingredient déja présent");
+				if(((Ingredient) container).isSteak() || ((Ingredient)container).getNom().equals(Ingredient.Nom.FROMAGE)){
+					assiette.ajouterObjet((Ingredient) container);
+					assiette.afficher_La_Liste_Des_Objets_Contenus();
+					viderContainer();
+				}
+				else {
+					System.out.println("ingredient déja présent");
+				}
 			} else {
 				// ajoute un ingredient à l'assiette
 				switch (((Ingredient) container).getNom()) {
@@ -753,6 +760,8 @@ public class Controller implements Initializable {
 			System.out.println("ca c'est rien y a un probleme dans assembler");
 		}
 	}
+	
+	
 
 	public boolean checkSiIngredientPresentDansMateriel(Materiel m) {
 		if (m.objetsContenus.isEmpty()) {
@@ -859,11 +868,7 @@ public class Controller implements Initializable {
 
 
 
-				if (temps == 0 || nbrClientEnvoye == clientDuNiveau.size() && comptoir.getEmplacementClientDansComptoire()[0]==null && comptoir.getEmplacementClientDansComptoire()[1]==null && comptoir.getEmplacementClientDansComptoire()[2]==null) {
-					this.enCours = false;
-					System.out.println("Fin Du Niveau");
-
-				}
+			
 
 
 				String time = String.valueOf(temps);
@@ -872,6 +877,17 @@ public class Controller implements Initializable {
 
 				Platform.runLater(() -> {
 					tempsEnCours.setText(time);
+					
+					if (temps == 0 || nbrClientEnvoye == clientDuNiveau.size() && comptoir.getEmplacementClientDansComptoire()[0]==null && comptoir.getEmplacementClientDansComptoire()[1]==null && comptoir.getEmplacementClientDansComptoire()[2]==null) {
+						this.enCours = false;
+						System.out.println("Fin Du Niveau");
+						try {
+							ouvrirMenu();
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
 
 					for (int i = 0; i < comptoir.getEmplacementClientDansComptoire().length; i++) {
 						if (niveau.checker_Si_Liste_Des_Clients_Est_Vide()==false) {
@@ -887,6 +903,8 @@ public class Controller implements Initializable {
 
 									if (i == 0) {
 										try {
+											
+											client.getCommande().afficherIngredientRecette();
 											
 											client1 = comptoir.getEmplacementClientDansComptoire()[0];
 											client1EnCours = envoyerUnClient(
@@ -1247,20 +1265,24 @@ public class Controller implements Initializable {
 //		 hbBoxClient1=new HBox();
 		ArrayList<Image> images;
 		ArrayList<ImageView> imagesView;
-		Client c = client;
+		Client clientTemporaire = client;
 //		System.out.println("nombre ingredient" + c.getCommande().ingredients.size());
-		Iterator it = c.getCommande().ingredients.entrySet().iterator();
+		Iterator it = clientTemporaire.getCommande().ingredients.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry pair = (Map.Entry) it.next();
-			Ingredient ing = (Ingredient) pair.getKey();
-//			System.out.println(ing.getImgIngredient() + " = " + pair.getValue());
-			Image img = new Image(getClass().getResourceAsStream(ing.getImgIngredient()));
-			ImageView imgVw = new ImageView(img);
-			imgVw.setFitWidth(30);
-			imgVw.setPreserveRatio(true);
-			vbox.getChildren().add(imgVw);
-			vbox.setAlignment(Pos.CENTER);
-			vbox.setSpacing(10);
+			int a= (int) pair.getValue();
+			for(int i=0; i<a;i++) {
+				Ingredient ing = (Ingredient) pair.getKey();
+//				System.out.println(ing.getImgIngredient() + " = " + pair.getValue());
+				Image img = new Image(getClass().getResourceAsStream(ing.getImgIngredient()));
+				ImageView imgVw = new ImageView(img);
+				imgVw.setFitWidth(30);
+				imgVw.setPreserveRatio(true);
+				vbox.getChildren().add(imgVw);
+				vbox.setAlignment(Pos.CENTER);
+				vbox.setSpacing(10);
+			}
+			
 //		        vBoxClient1.setBackground(new Background(new BackgroundFill(Color.GREY,null,null)));
 //			it.remove(); // avoids a ConcurrentModificationException
 		}

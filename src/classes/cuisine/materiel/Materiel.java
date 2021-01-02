@@ -84,4 +84,12 @@ public class Materiel {
 			return true;
 		}
 	}
+	
+	
+	public void afficher_La_Liste_Des_Objets_Contenus() {
+		System.out.println("Classe Materiel : liste des objets contenus");
+		for(int i=0; i<objetsContenus.size();i++) {
+			System.out.print(objetsContenus.get(i) + " ; ");
+		}
+	}
 }

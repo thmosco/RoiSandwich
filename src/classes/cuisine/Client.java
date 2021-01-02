@@ -105,20 +105,23 @@ public class Client {
 		ArrayList<Ingredient> ingredientAssiette = new ArrayList<Ingredient>();
 		ArrayList<Ingredient> ingredientRecette = new ArrayList<Ingredient>();
 		boolean estConforme = false;
-		int nbDeConformité = 0;
+		int nbDeConformite = 0;
 		for (int i = 0; i < a.objetsContenus.size(); i++) {
 			Ingredient ing = (Ingredient) a.objetsContenus.get(i);
 			ingredientAssiette.add(ing);
 		}
 		;
-		Iterator it3 = commande.ingredients.entrySet().iterator();
+		Iterator it = commande.ingredients.entrySet().iterator();
 //		System.out.println("nombre d'ingredtion dans client " + commande.ingredients.size());
 		
-		while (it3.hasNext()) {
-			Map.Entry pair = (Map.Entry) it3.next();
+		while (it.hasNext()) {
+			Map.Entry pair = (Map.Entry) it.next();
+			int b= (int) pair.getValue();
+			for(int i=0; i<b;i++) {
 			ingredientRecette.add((Ingredient) pair.getKey());
+			}
 			System.out.println("ingredient ajouté " + pair.getKey());
-			it3.remove(); // avoids a ConcurrentModificationException
+			it.remove(); // avoids a ConcurrentModificationException
 		}
 
 //		System.out.println("taille ingredientRecette dans client " + ingredientRecette.size());
@@ -131,14 +134,14 @@ public class Client {
 				if (IngredientAssietteAChecker.getNom().equals(IngredientRecetteAComparer.getNom())
 						&& IngredientAssietteAChecker.getTransformer() == IngredientRecetteAComparer.getTransformer()
 						&& IngredientAssietteAChecker.getEtat().equals(IngredientRecetteAComparer.getEtat())) {
-					nbDeConformité++;
+					nbDeConformite++;
 				}
 			}
 		}
 
-		System.out.println("nb conformité = " + nbDeConformité);
+		System.out.println("nb conformité = " + nbDeConformite);
 //		System.out.println("taille ingredientRecette dans client " + ingredientRecette.size());
-		if (nbDeConformité == ingredientRecette.size()) {
+		if (nbDeConformite == ingredientRecette.size()) {
 			estConforme = true;
 		}
 		

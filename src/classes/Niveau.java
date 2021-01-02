@@ -289,7 +289,7 @@ public class Niveau {
 						int higher = (int) (tmpsAttente*1.50);
 
 						int tmpsAttenteRandom = (int)(Math.random() * (higher-lower)) + lower;
-						System.out.println("random = " + tmpsAttenteRandom);
+//						System.out.println("random = " + tmpsAttenteRandom);
 						
 						// création du client
 						this.clients.add(new Client(tmpsAttenteRandom, recette));
