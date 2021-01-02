@@ -21,8 +21,9 @@ public class GardeManger {
 	// Variables de classe
 
 	/**
-	 * liste des compteurs des ingrédients : représente le nb d'ingrédient utilisé par le joueur
+	 * liste des compteurs des ingrï¿½dients : reprï¿½sente le nb d'ingrï¿½dient utilisï¿½ par le joueur
 	 */
+
 	private HashMap<Ingredient.Nom, Integer> compteurs = new HashMap<>();
 
 	/**
@@ -32,7 +33,7 @@ public class GardeManger {
 
 	/**
 	 * Constructeur
-	 * @param quantité ingrédient, correspondant au niveau
+	 * @param quantitï¿½ ingrï¿½dient, correspondant au niveau
 	 */
 	public GardeManger(Niveau niveau) {
 		this.niveau = niveau;
@@ -46,11 +47,22 @@ public class GardeManger {
 		int compteur = compteurs.get(ingredient) ;
 		System.out.println(compteur);
 		if (compteur > 0) {
-			// décrémenter le compteur
+			// dï¿½crï¿½menter le compteur
 			compteurs.put(ingredient, compteur-1);
 			return new Ingredient(ingredient);
 		}
 		return null ;
+	}
+	
+	public Ingredient mettreIngredient (Ingredient.Nom ingredient) {
+		int compteur = compteurs.get(ingredient) ;
+		System.out.println(compteur);
+		
+			// dï¿½crï¿½menter le compteur
+			compteurs.put(ingredient, compteur+1);
+			return new Ingredient(ingredient);
+	
+		
 	}
 
 	

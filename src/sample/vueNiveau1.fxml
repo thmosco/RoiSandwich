@@ -13,17 +13,18 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane prefHeight="718.0" prefWidth="1004.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <SplitPane dividerPositions="0.08361204013377926, 0.9247491638795987" prefHeight="400.0" prefWidth="600.0">
+      <SplitPane dividerPositions="0.08361204013377926, 0.903010033444816" prefHeight="718.0" prefWidth="1004.0">
         <items>
             <SplitPane dividerPositions="0.1917255297679112" orientation="VERTICAL" prefHeight="400.0" prefWidth="47.0" style="-fx-background-color: #000; -fx-border-color: #000;">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #000;">
                      <children>
-                        <ImageView fitHeight="38.0" fitWidth="31.0" layoutX="7.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="btnMenu" fitHeight="38.0" fitWidth="31.0" layoutX="24.0" layoutY="51.0" onMouseClicked="#ouvrirMenu" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../image/menu.png" />
                            </image>
@@ -151,7 +152,7 @@
                                  <image>
                                     <Image url="@../image/assiettesPropres.png" />
                                  </image></ImageView>
-                              <ImageView fitHeight="32.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <ImageView fitHeight="32.0" fitWidth="55.0" onMouseClicked="#stockageAssietteSale" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
                                     <Image url="@../image/assiettesSales.png" />
                                  </image></ImageView>
@@ -160,7 +161,7 @@
                                     <Image url="@../image/plats.png" />
                                  </image></ImageView>
                               <Label fx:id="compteurAssitette" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                              <Label text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <Label fx:id="compteurPileAssietteSale" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                               <Label text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                            </children>
                         </GridPane>
@@ -170,7 +171,7 @@
                 <bottom>
                     <SplitPane dividerPositions="0.2372262773722628, 0.5150040551500406, 0.8434712084347121" prefHeight="130.0" prefWidth="495.0" BorderPane.alignment="CENTER">
                     <items>
-                        <BorderPane fx:id="decoupe" onMouseClicked="#decouper" prefHeight="134.0" prefWidth="114.0" style="-fx-background-color: #b8b18d;">
+                        <BorderPane fx:id="decoupe" onMouseClicked="#decouper" prefHeight="116.0" prefWidth="190.0" style="-fx-background-color: #b8b18d;">
                            <bottom>
                               <ProgressBar prefWidth="200.0" progress="0.0" BorderPane.alignment="CENTER" />
                            </bottom>
@@ -203,7 +204,7 @@
                               </BorderPane>
                               <BorderPane fx:id="friteuse" onMouseClicked="#frire" prefHeight="71.0" prefWidth="131.0">
                                  <bottom>
-                                    <ProgressBar prefHeight="17.0" prefWidth="131.0" progress="0.0" BorderPane.alignment="CENTER" />
+                                    <ProgressBar fx:id="frireProgress" prefHeight="17.0" prefWidth="200.0" progress="0.0" BorderPane.alignment="CENTER" />
                                  </bottom>
                                  <center>
                                     <ImageView fx:id="containerDansFriteuse" fitHeight="27.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -249,9 +250,9 @@
                         </SplitPane>
                         <SplitPane dividerPositions="0.6288819875776397" orientation="VERTICAL" prefHeight="58.0" prefWidth="160.0">
                           <items>
-                              <BorderPane prefHeight="77.0" prefWidth="75.0" style="-fx-background-color: #99aabf;">
+                               <BorderPane fx:id="lavevaisselle" onMouseClicked="#lavevaisselle" prefHeight="77.0" prefWidth="75.0" style="-fx-background-color: #99aabf;">
                                  <bottom>
-                                    <ProgressIndicator progress="0.0" BorderPane.alignment="CENTER" />
+                                    <ProgressIndicator fx:id="LaveProgress" progress="0.0" BorderPane.alignment="CENTER" />
                                  </bottom>
                                  <top>
                                     <Pane prefHeight="18.0" prefWidth="100.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
@@ -259,7 +260,7 @@
                               </BorderPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
-                                    <ImageView fx:id="poubelle" fitHeight="38.0" fitWidth="47.0" layoutX="14.0" layoutY="9.0" onMouseClicked="#jeter" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="poubelle" fitHeight="38.0" fitWidth="47.0" layoutX="39.0" layoutY="9.0" onMouseClicked="#jeter" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../image/poubelle.png" />
                                        </image>
@@ -271,16 +272,16 @@
                     </SplitPane>
                 </bottom>
                <center>
-                  <GridPane alignment="BOTTOM_CENTER" BorderPane.alignment="CENTER">
+                  <GridPane alignment="BOTTOM_CENTER" prefHeight="355.0" prefWidth="662.0" BorderPane.alignment="CENTER">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints maxHeight="52.4" minHeight="10.0" prefHeight="18.399998092651366" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="96.40000190734864" minHeight="10.0" prefHeight="71.80000762939451" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="84.39999237060547" minHeight="10.0" prefHeight="67.39999237060547" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="280.0" minHeight="0.0" prefHeight="269.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="210.0" minHeight="10.0" prefHeight="109.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="161.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <ImageView fx:id="client1" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
@@ -298,39 +299,51 @@
                          </image></ImageView>
                         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.rowIndex="2">
                            <children>
-                              <ImageView fx:id="emplacementAssietteClient1" fitHeight="73.0" fitWidth="64.0" layoutX="51.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="emplacementAssietteClient1" fitHeight="56.0" fitWidth="77.0" layoutX="45.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+                              <ProgressBar fx:id="client1Progress" layoutX="97.0" layoutY="5.0" prefHeight="18.0" prefWidth="79.0" progress="0.0" />
                            </children></Pane>
                         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
-                              <ImageView fx:id="emplacementAssietteClient2" fitHeight="73.0" fitWidth="64.0" layoutX="39.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="emplacementAssietteClient2" fitHeight="56.0" fitWidth="80.0" layoutX="44.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
+                              <ProgressBar fx:id="client2Progress" layoutX="97.0" layoutY="5.0" prefHeight="18.0" prefWidth="79.0" progress="0.0" />
                            </children></Pane>
                         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c28729;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <children>
-                              <ImageView fx:id="emplacementAssietteClient3" fitHeight="73.0" fitWidth="64.0" layoutX="60.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="emplacementAssietteClient3" fitHeight="56.0" fitWidth="81.0" layoutX="43.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+                              <ProgressBar fx:id="client3Progress" layoutX="96.0" layoutY="5.0" prefHeight="18.0" prefWidth="79.0" progress="0.0" />
                            </children></Pane>
-                        <Label text="Label" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                        <Label text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Label fx:id="labelRecetteClient1" text="Label" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Label fx:id="labelRecetteClient2" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <Label fx:id="labelRecetteClient3" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                        <VBox fx:id="vBoxClient1" nodeOrientation="LEFT_TO_RIGHT" prefHeight="218.0" prefWidth="272.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <VBox fx:id="vBoxClient2" nodeOrientation="LEFT_TO_RIGHT" prefHeight="218.0" prefWidth="272.0" GridPane.columnIndex="1" />
+                        <VBox fx:id="vBoxClient3" nodeOrientation="LEFT_TO_RIGHT" prefHeight="218.0" prefWidth="272.0" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
                </center>
             </BorderPane>
-            <SplitPane dividerPositions="0.5, 0.7525252525252525" orientation="VERTICAL" prefHeight="398.0" prefWidth="47.0" style="-fx-background-color: #000; -fx-border-color: #000;">
+            <SplitPane dividerPositions="0.5008849557522124, 0.7823008849557522" orientation="VERTICAL" prefHeight="398.0" prefWidth="47.0" style="-fx-background-color: #000; -fx-border-color: #000;">
               <items>
-                  <AnchorPane prefHeight="139.0" prefWidth="40.0">
+                  <AnchorPane prefHeight="439.0" prefWidth="75.0">
                      <children>
-                        <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="1.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="27.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../image/logoFondNoir.png" />
                            </image>
                         </ImageView>
+                        <Label fx:id="tempsEnCours" layoutX="20.0" layoutY="74.0" prefHeight="24.0" prefWidth="53.0" text="temps" textFill="WHITE">
+                           <font>
+                              <Font name="Source Sans Pro" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="scoreLabel" layoutX="32.0" layoutY="130.0" text="Label" textFill="WHITE" />
                      </children>
                   </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: white;">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="135.0" prefWidth="75.0" style="-fx-background-color: white;">
                      <children>
-                        <ImageView fx:id="containerView" fitHeight="56.0" fitWidth="40.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="containerView" fitHeight="56.0" fitWidth="40.0" layoutX="14.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" />
                      </children></AnchorPane>
-                  <Pane prefHeight="136.0" prefWidth="40.0" />
+                  <Pane prefHeight="1.0" prefWidth="75.0" />
               </items>
             </SplitPane>
         </items>

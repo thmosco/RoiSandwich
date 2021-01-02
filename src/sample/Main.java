@@ -21,17 +21,20 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage stage) throws Exception{
+
 
 		niveau1 = new Niveau(1);
 
-    	Parent root = FXMLLoader.load(getClass().getResource("vueNiveau1.fxml"));
-    	
-    	niveau1 = new Niveau(1);
+//    	Parent root = FXMLLoader.load(getClass().getResource("vueNiveau1.fxml"));
 
-		primaryStage.setTitle("RoiSandwich");
-		primaryStage.setScene(new Scene(root));
-		primaryStage.show();
+    	
+   	
+    	Parent root = FXMLLoader.load(getClass().getResource("vueMenuPrincipal.fxml"));
+
+    	stage.setTitle("RoiSandwich");
+    	stage.setScene(new Scene(root));
+    	stage.show();
     }
 
     public static void main(String[] args) {
