@@ -899,7 +899,7 @@ public class Controller implements Initializable {
 									if (i == 0) {
 										try {
 											
-											client.getCommande().afficherIngredientRecette();
+//											client.getCommande().afficherIngredientRecette();
 											
 											client1 = comptoir.getEmplacementClientDansComptoire()[0];
 											client1EnCours = envoyerUnClient(

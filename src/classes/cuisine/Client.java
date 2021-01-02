@@ -124,9 +124,9 @@ public class Client {
 			it.remove(); // avoids a ConcurrentModificationException
 		}
 
-		System.out.println("taille ingredient Recette dans client " + ingredientRecette.size());
+//		System.out.println("taille ingredient Recette dans client " + ingredientRecette.size());
 
-		System.out.println("taille ingredient assiette size : " + ingredientAssiette.size());
+//		System.out.println("taille ingredient assiette size : " + ingredientAssiette.size());
 //		for (int i = 0; i < ingredientAssiette.size(); i++) {
 ////			System.out.println("ingredientAssiette : " + ingredientAssiette.get(i).getNom());
 ////			System.out.println("taille ingredient recette size : " + ingredientRecette.size());
@@ -153,7 +153,7 @@ public class Client {
 				if (IngredientAssietteAChecker.getNom().equals(IngredientRecetteAComparer.getNom())
 						&& IngredientAssietteAChecker.getTransformer() == IngredientRecetteAComparer.getTransformer()
 						&& IngredientAssietteAChecker.getEtat().equals(IngredientRecetteAComparer.getEtat())) {
-					System.out.println(IngredientAssietteAChecker.getNom() + " est conforme");
+//					System.out.println(IngredientAssietteAChecker.getNom() + " est conforme");
 					nbDeConformite++;
 					y=ingredientRecette.size();
 				}
@@ -163,7 +163,7 @@ public class Client {
 			
 		
 
-		System.out.println("nb conformité = " + nbDeConformite);
+//		System.out.println("nb conformité = " + nbDeConformite);
 //		System.out.println("taille ingredientRecette dans client " + ingredientRecette.size());
 		if (nbDeConformite == ingredientRecette.size()) {
 			estConforme = true;
