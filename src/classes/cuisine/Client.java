@@ -120,24 +120,48 @@ public class Client {
 			for(int i=0; i<b;i++) {
 			ingredientRecette.add((Ingredient) pair.getKey());
 			}
-			System.out.println("ingredient ajouté " + pair.getKey());
+//			System.out.println("ingredient ajouté " + pair.getKey());
 			it.remove(); // avoids a ConcurrentModificationException
 		}
 
-//		System.out.println("taille ingredientRecette dans client " + ingredientRecette.size());
+		System.out.println("taille ingredient Recette dans client " + ingredientRecette.size());
 
-		for (int i = 0; i < ingredientAssiette.size(); i++) {
-			System.out.println("ingredientAssiette : " + ingredientAssiette.get(i).getNom());
-			Ingredient IngredientAssietteAChecker = ingredientAssiette.get(i);
+		System.out.println("taille ingredient assiette size : " + ingredientAssiette.size());
+//		for (int i = 0; i < ingredientAssiette.size(); i++) {
+////			System.out.println("ingredientAssiette : " + ingredientAssiette.get(i).getNom());
+////			System.out.println("taille ingredient recette size : " + ingredientRecette.size());
+//			Ingredient IngredientAssietteAChecker = ingredientAssiette.get(i);
+//			for (int y = 0; y < ingredientRecette.size(); y++) {
+//				Ingredient IngredientRecetteAComparer = ingredientRecette.get(y);
+//				
+////				if (IngredientAssietteAChecker.getNom().equals(IngredientRecetteAComparer.getNom())
+////						&& IngredientAssietteAChecker.getTransformer() == IngredientRecetteAComparer.getTransformer()
+////						&& IngredientAssietteAChecker.getEtat().equals(IngredientRecetteAComparer.getEtat())) {
+//				if (IngredientAssietteAChecker.getNom().equals(IngredientRecetteAComparer.getNom())) {
+//					System.out.println(IngredientAssietteAChecker.getNom() + " est conforme");
+//					nbDeConformite++;
+//				}
+//				ingredientAssiette.remove(i);
+//			}
+//		}
+		
+		while(ingredientAssiette.size()>0) {
+			Ingredient IngredientAssietteAChecker = ingredientAssiette.get(0);
 			for (int y = 0; y < ingredientRecette.size(); y++) {
 				Ingredient IngredientRecetteAComparer = ingredientRecette.get(y);
+				
 				if (IngredientAssietteAChecker.getNom().equals(IngredientRecetteAComparer.getNom())
 						&& IngredientAssietteAChecker.getTransformer() == IngredientRecetteAComparer.getTransformer()
 						&& IngredientAssietteAChecker.getEtat().equals(IngredientRecetteAComparer.getEtat())) {
+					System.out.println(IngredientAssietteAChecker.getNom() + " est conforme");
 					nbDeConformite++;
+					y=ingredientRecette.size();
 				}
 			}
+			ingredientAssiette.remove(0);
 		}
+			
+		
 
 		System.out.println("nb conformité = " + nbDeConformite);
 //		System.out.println("taille ingredientRecette dans client " + ingredientRecette.size());
@@ -145,12 +169,12 @@ public class Client {
 			estConforme = true;
 		}
 		
-		System.out.println(" ");
-		for (int i = 0; i < ingredientRecette.size(); i++) {
-			System.out.println("ingredientRecette : " + ingredientRecette.get(i).getNom() + " etat : "
-					+ ingredientRecette.get(i).getEtat() + " transformé : "
-					+ ingredientRecette.get(i).getTransformer());
-		}
+//		System.out.println(" ");
+//		for (int i = 0; i < ingredientRecette.size(); i++) {
+//			System.out.println("ingredientRecette : " + ingredientRecette.get(i).getNom() + " etat : "
+//					+ ingredientRecette.get(i).getEtat() + " transformé : "
+//					+ ingredientRecette.get(i).getTransformer());
+//		}
 		
 		System.out.println("est conforme ? " + estConforme);
 		return estConforme;

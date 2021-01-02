@@ -118,7 +118,7 @@ public class Niveau {
 			this.nbAssietteMax = 9;
 			this.nbMaxClients = 50;
 			
-			this.tmpsAttente = 35;
+			this.tmpsAttente = 100;
 
 			nbIngredient = 100;
 
