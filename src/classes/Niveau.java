@@ -267,6 +267,14 @@ public class Niveau {
 //		return true;
 //	}
 	
+	public boolean checker_Si_Liste_Des_Clients_Est_Vide() {
+		if(clients.size()==0) {
+		return true;
+		}
+		return false;
+		
+	}
+	
 	public boolean creerClients() {
 		// Pour chaque client
 		for (int a = 0; a < this.nbMaxClients; a++) {

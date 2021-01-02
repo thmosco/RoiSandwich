@@ -58,6 +58,7 @@ import classes.cuisine.materiel.Assiette.EtatAssiette;
 public class Controller implements Initializable {
 
 //	
+	private Niveau niveau;
 
 	private Object container;
 
@@ -124,19 +125,19 @@ public class Controller implements Initializable {
 	ImageView stock3;
 
 	@FXML
-	ImageView client1;
+	ImageView imageViewClient1;
 	@FXML
 	ProgressBar client1Progress;
 	Service<Void> client1EnCours;
 
 	@FXML
-	ImageView client2;
+	ImageView imageViewClient2;
 	@FXML
 	ProgressBar client2Progress;
 	Service<Void> client2EnCours;
 
 	@FXML
-	ImageView client3;
+	ImageView imageViewClient3;
 	@FXML
 	ProgressBar client3Progress;
 	Service<Void> client3EnCours;
@@ -254,33 +255,39 @@ public class Controller implements Initializable {
 	// =======>
 	@FXML
 	private Label scoreLabel;
+	
+	private Client client1;
+	private Client client2;
+	private Client client3;
 
 	
 	//à chacker
 	public void donnerAssietteClient(MouseEvent e) throws IllegalAccessException {
 //		System.out.println("source donnerassietteclient = " + e.getSource());
+		//si le container n'est pas vide et quand dans ce container il s'agit d'une assiette "Plat"
 		if ((container != null) && (container instanceof Assiette) && ((Assiette)container).getEtatAssiette().equals(EtatAssiette.PLAT)) {
 			ImageView i = (ImageView) e.getSource();
+			Assiette assietteTemporaire = (Assiette) container;
 			switch (i.getId()) {
-			case "client1":
-				if (comptoir.getEmplacementClientDansComptoire()[0] != null) {			
-					Client client1 = comptoir.getEmplacementClientDansComptoire()[0];
-					System.out.println("taille ingredient client methode donnerassiette " + client1.getCommande().ingredients.size());						
+			case "imageViewClient1":
+				if (client1!=null) {			
+//					Client client1 = comptoir.getEmplacementClientDansComptoire()[0];
+//					System.out.println("taille ingredient client methode donnerassiette " + client1.getCommande().ingredients.size());						
 //					System.out.println("tu as choisis le client 1");
 					emplacementAssietteClient1.setImage(
 							new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
 					comptoir.getEmplacementAssietteDansComptoire()[0] = (Assiette) container;
 //					System.out.println("ingredient ajouté à assiette :");
-					Assiette a = (Assiette) container;
-					for (int z = 0; z < a.objetsContenus.size(); z++) {
-						System.out.println("nom = " + ((Ingredient) a.objetsContenus.get(z)).getNom() + " ; état = "
-								+ ((Ingredient) a.objetsContenus.get(z)).getEtat() + " ; transformé ="
-								+ ((Ingredient) a.objetsContenus.get(z)).getTransformer());
-					}
-					if (comptoir.getEmplacementClientDansComptoire()[0].verifierLePlat(a)) {
-						Main.niveau1.setScoreArgent(100, 100);
+					
+//					for (int z = 0; z < assietteTemporaire.objetsContenus.size(); z++) {
+//						System.out.println("nom = " + ((Ingredient) assietteTemporaire.objetsContenus.get(z)).getNom() + " ; état = "
+//								+ ((Ingredient) assietteTemporaire.objetsContenus.get(z)).getEtat() + " ; transformé ="
+//								+ ((Ingredient) assietteTemporaire.objetsContenus.get(z)).getTransformer());
+//					}
+					if (client1.verifierLePlat(assietteTemporaire)) {
+						niveau.setScoreArgent(100, 100);
 						System.out.println("score augmenté");
-						scoreLabel.setText(String.valueOf(Main.niveau1.getTabScoreArgent()[0]));
+						scoreLabel.setText(String.valueOf(niveau.getTabScoreArgent()[0]));
 					}
 //					System.out.println("verifier assiette : " + comptoir.getEmplacementClientDansComptoire()[0].verifierPlat(a));
 //					comptoir.getEmplacementClientDansComptoire()[0].verifierLePlat(a);
@@ -288,7 +295,7 @@ public class Controller implements Initializable {
 					labelRecetteClient1.setText("");
 					Assiette assiette = comptoir.getEmplacementAssietteDansComptoire()[0];
 					assiette.setEtatAssiette(EtatAssiette.SALE);
-//				Main.niveau1.getComptoir().ajouterClient(client1EnCours);
+//				niveau.getComptoir().ajouterClient(client1EnCours);
 					vBoxClient1.getChildren().clear();
 					client1EnCours.cancel();
 					client1EnCours.reset();
@@ -298,8 +305,8 @@ public class Controller implements Initializable {
 							((Assiette) comptoir.getEmplacementAssietteDansComptoire()[0]).getImgAssiette())));
 					break;
 				}
-			case "client2":
-				if (comptoir.getEmplacementClientDansComptoire()[1] != null) {
+			case "imageViewClient2":
+				if (client2!=null) {
 //					System.out.println("tu as choisis le client 2");
 					emplacementAssietteClient2.setImage(
 							new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
@@ -310,10 +317,10 @@ public class Controller implements Initializable {
 					// client2EnCours = null;
 					comptoir.getEmplacementAssietteDansComptoire()[1] = (Assiette) container;
 //				// faire un un tableau de variable dans la niveau pour voir les clients à table
-					if (comptoir.getEmplacementClientDansComptoire()[1].verifierLePlat((Assiette) container)) {
-						Main.niveau1.setScoreArgent(100, 100);
+					if (client2.verifierLePlat((Assiette) container)) {
+						niveau.setScoreArgent(100, 100);
 						System.out.println("score augmenté");
-						scoreLabel.setText(String.valueOf(Main.niveau1.getTabScoreArgent()[0]));
+						scoreLabel.setText(String.valueOf(niveau.getTabScoreArgent()[0]));
 					}
 //				client2EnCours = null;
 //					comptoir.getEmplacementClientDansComptoire()[1].verifierPlat((Assiette) container);
@@ -326,8 +333,8 @@ public class Controller implements Initializable {
 							((Assiette) comptoir.getEmplacementAssietteDansComptoire()[1]).getImgAssiette())));
 					break;
 				}
-			case "client3":
-				if (comptoir.getEmplacementClientDansComptoire()[2] != null) {
+			case "imageViewClient3":
+				if (client3!=null) {
 					emplacementAssietteClient3.setImage(
 							new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
 					vBoxClient3.getChildren().clear();
@@ -335,10 +342,10 @@ public class Controller implements Initializable {
 					client3EnCours.reset();
 					client3Progress.setVisible(false);
 					comptoir.getEmplacementAssietteDansComptoire()[2] = (Assiette) container;
-					if (comptoir.getEmplacementClientDansComptoire()[2].verifierLePlat((Assiette) container)) {
-						Main.niveau1.setScoreArgent(100, 100);
+					if (client3.verifierLePlat((Assiette) container)) {
+						niveau.setScoreArgent(100, 100);
 						System.out.println("score augmenté");
-						scoreLabel.setText(String.valueOf(Main.niveau1.getTabScoreArgent()[0]));
+						scoreLabel.setText(String.valueOf(niveau.getTabScoreArgent()[0]));
 					}
 					comptoir.retirerClient(2);
 					labelRecetteClient3.setText("");
@@ -352,17 +359,17 @@ public class Controller implements Initializable {
 		} else if (container == null) {
 			ImageView i = (ImageView) e.getSource();
 			switch (i.getId()) {
-			case "client1":
+			case "imageViewClient1":
 				mettreDansContainer(((Assiette) comptoir.getEmplacementAssietteDansComptoire()[0]));
 				comptoir.getEmplacementAssietteDansComptoire()[0] = null;
 				emplacementAssietteClient1.setImage(null);
 				break;
-			case "client2":
+			case "imageViewClient2":
 				mettreDansContainer(((Assiette) comptoir.getEmplacementAssietteDansComptoire()[1]));
 				comptoir.getEmplacementAssietteDansComptoire()[1] = null;
 				emplacementAssietteClient2.setImage(null);
 				break;
-			case "client3":
+			case "imageViewClient3":
 				mettreDansContainer(((Assiette) comptoir.getEmplacementAssietteDansComptoire()[2]));
 				comptoir.getEmplacementAssietteDansComptoire()[2] = null;
 				emplacementAssietteClient3.setImage(null);
@@ -371,17 +378,23 @@ public class Controller implements Initializable {
 		}
 	}
 
+	
+	
+	
+	
+	
+	
 	public void prendreAssiettePropre() {
 		if (container == null) {
 //			Object image = e.getSource();
-			Object c = Main.niveau1.getCuisine().retirerAssietteDeLaCuisine();
+			Object c = niveau.getCuisine().retirerAssietteDeLaCuisine();
 			mettreDansContainer(c);
 		} else if (container instanceof Assiette
 				&& ((Assiette) container).getEtatAssiette().equals(EtatAssiette.PROPRE)) {
 			Assiette assiette = (Assiette) container;
-			Main.niveau1.getCuisine().getAssiettes().add(assiette);
+			niveau.getCuisine().getAssiettes().add(assiette);
 			// MODIFIER ! travailler avec le stock et non pas direct cuisine
-			compteurAssitette.setText(String.valueOf(Main.niveau1.getCuisine().getAssiettes().size()));
+			compteurAssitette.setText(String.valueOf(niveau.getCuisine().getAssiettes().size()));
 			mettreDansContainer((Assiette) container);
 			viderContainer();
 		}
@@ -396,12 +409,12 @@ public class Controller implements Initializable {
 			if (container == null) {
 				Object image = e.getSource();
 				String idImage = ((Node) image).getId();
-				Object c = Main.niveau1.getGardeManger().prendreIngredient(Nom.valueOf(idImage));
+				Object c = niveau.getGardeManger().prendreIngredient(Nom.valueOf(idImage));
 				mettreDansContainer(c);
 			} else if (container instanceof Ingredient) {
 				Ingredient i = ((Ingredient) container);
 				if (i.getTransformer() == false && i.getEtat().equals(Etat.CRU)) {
-					Main.niveau1.getGardeManger().mettreIngredient(i.getNom());
+					niveau.getGardeManger().mettreIngredient(i.getNom());
 					viderContainer();
 					switch (i.getNom()) {
 					case PATATE:
@@ -763,7 +776,7 @@ public class Controller implements Initializable {
 	}
 
 	public int compteur(Nom n) {
-		return Main.niveau1.getGardeManger().getCompteurs().get(n);
+		return niveau.getGardeManger().getCompteurs().get(n);
 	}
 
 	public void mettreDansContainer(Object o) {
@@ -804,7 +817,7 @@ public class Controller implements Initializable {
 		}
 		if (o instanceof Assiette) {
 			container = ((Assiette) o);
-			compteurAssitette.setText(String.valueOf(Main.niveau1.getCuisine().getAssiettes().size()));
+			compteurAssitette.setText(String.valueOf(niveau.getCuisine().getAssiettes().size()));
 			containerView.setImage(new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
 		}
 	}
@@ -822,7 +835,7 @@ public class Controller implements Initializable {
 
 		private int nbrClientEnvoye = 0;
 
-		private ArrayList<Client> clientDuNiveau = Main.niveau1.getClients();
+		private ArrayList<Client> clientDuNiveau = niveau.getClients();
 
 		private boolean enCours = true;
 
@@ -846,21 +859,10 @@ public class Controller implements Initializable {
 
 
 
-//				if (temps == 0 || nbrClientEnvoye == clientDuNiveau.size()) {
-//					this.enCours = false;
-//					System.out.println("Fin Du Niveau");
-//				}
-				
-				
 				if (temps == 0 || nbrClientEnvoye == clientDuNiveau.size() && comptoir.getEmplacementClientDansComptoire()[0]==null && comptoir.getEmplacementClientDansComptoire()[1]==null && comptoir.getEmplacementClientDansComptoire()[2]==null) {
 					this.enCours = false;
 					System.out.println("Fin Du Niveau");
-//					try {
-//						ouvrirMenu();
-//					} catch (Exception e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
+
 				}
 
 
@@ -872,28 +874,25 @@ public class Controller implements Initializable {
 					tempsEnCours.setText(time);
 
 					for (int i = 0; i < comptoir.getEmplacementClientDansComptoire().length; i++) {
-						if (Main.niveau1.getClients().size() != 0) {
-							if (comptoir.getEmplacementAssietteDansComptoire()[i] == null) {
+						if (niveau.checker_Si_Liste_Des_Clients_Est_Vide()==false) {
+							if (comptoir.checker_Si_Une_Assiette_Est_Presente_Dans_Emplacement_Du_Client(i)==false) {
 
-								if (comptoir.getEmplacementClientDansComptoire()[i] == null) {
+								if (comptoir.checker_Si_Un_Client_Est_Assis_Dans_Un_Emplacement(i)==false) {
 
-									
-//									System.out.println(clientProgress.get(i));
-
-									Client client = Main.niveau1.getClients().get(0);
+									Client client = niveau.getClients().get(0);
 									comptoir.ajouterClient(client, i);
-//									System.out.println("nombre d ingredient du client 1 dans controller runLater " + client.getCommande().ingredients.size());
 
 
-									Main.niveau1.getClients().remove(0);
+									niveau.getClients().remove(0);
 
 									if (i == 0) {
 										try {
 											
+											client1 = comptoir.getEmplacementClientDansComptoire()[0];
 											client1EnCours = envoyerUnClient(
-													client,
+													client1,
 													clientProgress.get(i));
-											labelRecetteClient1.setText(client
+											labelRecetteClient1.setText(client1
 													.getCommande().getNom().toString());
 
 											getGalleryView(client, vBoxClient1);
@@ -905,10 +904,11 @@ public class Controller implements Initializable {
 									}
 									if (i == 1) {
 										try {
+											client2 = comptoir.getEmplacementClientDansComptoire()[1];
 											client2EnCours = envoyerUnClient(
-													client,
+													client2,
 													clientProgress.get(i));
-											labelRecetteClient2.setText(comptoir.getEmplacementClientDansComptoire()[i]
+											labelRecetteClient2.setText(client2
 													.getCommande().getNom().toString());
 
 											getGalleryView(client, vBoxClient2);
@@ -919,10 +919,11 @@ public class Controller implements Initializable {
 									}
 									if (i == 2) {
 										try {
+											client3 = comptoir.getEmplacementClientDansComptoire()[2];
 											client3EnCours = envoyerUnClient(
-													client,
+													client3,
 													clientProgress.get(i));
-											labelRecetteClient3.setText(comptoir.getEmplacementClientDansComptoire()[i]
+											labelRecetteClient3.setText(client3
 													.getCommande().getNom().toString());
 
 											getGalleryView(client, vBoxClient3);
@@ -933,12 +934,13 @@ public class Controller implements Initializable {
 								}
 							}
 						}
-						if (comptoir.getEmplacementClientDansComptoire()[i] != null) {
+						if (comptoir.checker_Si_Un_Client_Est_Assis_Dans_Un_Emplacement(i)) {
 							if (comptoir.getEmplacementClientDansComptoire()[i].getTmpsAttente() == 0) {
 								System.out.println(
 										"client : " + comptoir.getEmplacementClientDansComptoire()[i] + " est parti");
 								comptoir.retirerClient(i);
 								if (i == 0) {
+									client1=null;
 									vBoxClient1.getChildren().clear();
 									labelRecetteClient1.setText(null);
 									client1Progress.setVisible(false);
@@ -946,6 +948,7 @@ public class Controller implements Initializable {
 									client1EnCours.reset();
 								}
 								if (i == 1) {
+									client2=null;
 									vBoxClient2.getChildren().clear();
 									labelRecetteClient2.setText(null);
 									client2Progress.setVisible(false);
@@ -953,6 +956,7 @@ public class Controller implements Initializable {
 									client2EnCours.reset();
 								}
 								if (i == 2) {
+									client3=null;
 									vBoxClient3.getChildren().clear();
 									labelRecetteClient3.setText(null);
 									client3Progress.setVisible(false);
@@ -964,10 +968,8 @@ public class Controller implements Initializable {
 					}
 				});
 				try {
-//					System.out.println("nombre de client dans comptoir client " +comptoir.getEmplacementClientDansComptoire().length);
 
 					Thread.sleep(1000);
-//					System.out.println("il reste " + Main.niveau1.getClients().size() + " clients");
 
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -993,7 +995,7 @@ public class Controller implements Initializable {
 								break;
 							}
 							progress.setProgress(progress.getProgress() + (1.0 / temps));
-							progress.setStyle("-fx-accent: green;");
+							progress.setStyle("-fx-accent: orange;");
 							Thread.sleep(1000);
 						}
 						System.out.println("Votre steak est cuit");
@@ -1004,7 +1006,7 @@ public class Controller implements Initializable {
 								break;
 							}
 							progress.setProgress(progress.getProgress() + (1.0 / temps) * 2.0);
-							progress.setStyle("-fx-accent: orange;");
+							progress.setStyle("-fx-accent: green;");
 							Thread.sleep(1000);
 						}
 						ingredient.setEtat(Etat.BRULE);
@@ -1036,14 +1038,14 @@ public class Controller implements Initializable {
 								break;
 							}
 							progress.setProgress(progress.getProgress() + (1.0 / temps));
-							progress.setStyle("-fx-accent: green;");
+							progress.setStyle("-fx-accent: orange;");
 							Thread.sleep(1000);
 						}
 
 						System.out.println("Vos frites sont cuites");
 						ingredient.setEtat(Etat.CUIT);
 
-						progress.setStyle("-fx-accent: orange;");
+						progress.setStyle("-fx-accent: green;");
 
 						return null;
 					}
@@ -1066,15 +1068,16 @@ public class Controller implements Initializable {
 					protected Void call() throws Exception {
 
 						for (int i = 0; i < temps; i++) {
+							Thread.sleep(1000);
 							if (isCancelled()) {
 								break;
 							}
 							progress.setProgress(progress.getProgress() + (1.0 / temps));
 							progress.setStyle("-fx-accent: green;");
-							Thread.sleep(1000);
+							
 						}
 
-						System.out.println("Vos assiettes sont propre");
+						System.out.println("l'assiette sont propre");
 						assiette.setEtatAssiette(EtatAssiette.PROPRE);
 
 						return null;
@@ -1128,10 +1131,12 @@ public class Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		
+		niveau = Main.niveau1;
 
 		// mickael : récupere tous l'adresse de tous les materiels du niveau pour le
 		// controlleur
-		for (Materiel i : Main.niveau1.getMateriel().keySet()) {
+		for (Materiel i : niveau.getMateriel().keySet()) {
 			if (i instanceof Decoupe) {
 				materielDecoupe = i;
 //				System.out.println("ajouté");
@@ -1168,15 +1173,15 @@ public class Controller implements Initializable {
 		compteurSTEAK_DE_SOJA.setText(String.valueOf(compteur(Nom.STEAK_DE_SOJA)));
 		compteurTOMATE.setText(String.valueOf(compteur(Nom.TOMATE)));
 
-		compteurAssitette.setText(String.valueOf(Main.niveau1.getCuisine().getAssiettes().size()));
+		compteurAssitette.setText(String.valueOf(niveau.getCuisine().getAssiettes().size()));
 
 		Timer timer = new Timer(true);
 		timer.schedule(new tempsDuJeu(), 0, 1000);
 
 		// mick 28/12
-		comptoir = Main.niveau1.getComptoir();
+		comptoir = niveau.getComptoir();
 
-		scoreLabel.setText(String.valueOf(Main.niveau1.getTabScoreArgent()[0]));
+		scoreLabel.setText(String.valueOf(niveau.getTabScoreArgent()[0]));
 		
 		
 //		System.out.println("nombre de client dans comptoir client " +comptoir.getEmplacementClientDansComptoire().length);
@@ -1194,18 +1199,18 @@ public class Controller implements Initializable {
 		// elle passe sale !!!!!
 		if (container instanceof Assiette && ((Assiette) container).getEtatAssiette().equals(EtatAssiette.SALE)) {
 			Assiette assiette = (Assiette) container;
-			Main.niveau1.getCuisine().getStock().stockerAssiette(assiette);
+			niveau.getCuisine().getStock().stockerAssiette(assiette);
 			compteurPileAssietteSale
-					.setText(String.valueOf(Main.niveau1.getCuisine().getStock().getAssiettesSale().size()));
+					.setText(String.valueOf(niveau.getCuisine().getStock().getAssiettesSale().size()));
 			viderContainer();
 
 		}
 		// recupérer assiette sale de la pile
-		else if (container == null && Main.niveau1.getCuisine().getStock().getAssiettesSale().size() != 0) {
-			mettreDansContainer(Main.niveau1.getCuisine().getStock().getAssiettesSale().get(0));
-			Main.niveau1.getCuisine().getStock().getAssiettesSale().remove(0);
+		else if (container == null && niveau.getCuisine().getStock().getAssiettesSale().size() != 0) {
+			mettreDansContainer(niveau.getCuisine().getStock().getAssiettesSale().get(0));
+			niveau.getCuisine().getStock().getAssiettesSale().remove(0);
 			compteurPileAssietteSale
-					.setText(String.valueOf(Main.niveau1.getCuisine().getStock().getAssiettesSale().size()));
+					.setText(String.valueOf(niveau.getCuisine().getStock().getAssiettesSale().size()));
 
 		}
 	}

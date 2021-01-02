@@ -284,16 +284,16 @@
                       <RowConstraints maxHeight="161.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="client1" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <ImageView fx:id="imageViewClient1" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <image>
                               <Image url="@../image/client.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="client2" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <ImageView fx:id="imageViewClient2" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <image>
                               <Image url="@../image/client.png" />
                            </image></ImageView>
-                        <ImageView fx:id="client3" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <ImageView fx:id="imageViewClient3" fitHeight="80.0" fitWidth="77.0" onMouseClicked="#donnerAssietteClient" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                          <image>
                              <Image url="@../image/client.png" />
                          </image></ImageView>

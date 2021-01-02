@@ -108,6 +108,25 @@ public class Comptoir {
 	public Client[] getEmplacementClientDansComptoire() {
 		return emplacementClientDansComptoire;
 	}
+	
+	public boolean checker_Si_Une_Assiette_Est_Presente_Dans_Emplacement_Du_Client(int i) {
+		if(emplacementAssietteDansComptoire[i]==null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+		
+	}
+	
+	public boolean checker_Si_Un_Client_Est_Assis_Dans_Un_Emplacement(int i) {
+		if(emplacementClientDansComptoire[i]==null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 
 	
 

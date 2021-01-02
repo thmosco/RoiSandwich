@@ -206,6 +206,10 @@ public class Client {
 		timer.schedule(new start(), 0, this.tmpsAttente);
 	}
 
+	
+	
+	
+	
 	public class start extends TimerTask {
 
 		@Override
