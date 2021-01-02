@@ -1276,7 +1276,7 @@ public class Controller implements Initializable {
 //				System.out.println(ing.getImgIngredient() + " = " + pair.getValue());
 				Image img = new Image(getClass().getResourceAsStream(ing.getImgIngredient()));
 				ImageView imgVw = new ImageView(img);
-				imgVw.setFitWidth(30);
+				imgVw.setFitWidth(50);
 				imgVw.setPreserveRatio(true);
 				vbox.getChildren().add(imgVw);
 				vbox.setAlignment(Pos.CENTER);
