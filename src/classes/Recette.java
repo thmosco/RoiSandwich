@@ -62,10 +62,10 @@ public class Recette {
             case MAXI:
                 recetteBurger(2, 2, this.viande);
                 break;
-            case SIMPLE:
-                recetteBurger(1, 1, this.viande);
             case MENU:
                 this.ingredients.put(new Ingredient(Ingredient.Nom.PATATE), 1);
+            case SIMPLE:
+                recetteBurger(1, 1, this.viande);
         }
     }
 
