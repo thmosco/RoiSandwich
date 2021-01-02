@@ -105,7 +105,7 @@ public class Client {
 		ArrayList<Ingredient> ingredientAssiette = new ArrayList<Ingredient>();
 		ArrayList<Ingredient> ingredientRecette = new ArrayList<Ingredient>();
 		boolean estConforme = false;
-		int nbDeConformite = 0;
+		int nbDeConformité = 0;
 		for (int i = 0; i < a.objetsContenus.size(); i++) {
 			Ingredient ing = (Ingredient) a.objetsContenus.get(i);
 			ingredientAssiette.add(ing);
@@ -131,14 +131,14 @@ public class Client {
 				if (IngredientAssietteAChecker.getNom().equals(IngredientRecetteAComparer.getNom())
 						&& IngredientAssietteAChecker.getTransformer() == IngredientRecetteAComparer.getTransformer()
 						&& IngredientAssietteAChecker.getEtat().equals(IngredientRecetteAComparer.getEtat())) {
-					nbDeConformite++;
+					nbDeConformité++;
 				}
 			}
 		}
 
-		System.out.println("nb conformité = " + nbDeConformite);
+		System.out.println("nb conformité = " + nbDeConformité);
 //		System.out.println("taille ingredientRecette dans client " + ingredientRecette.size());
-		if (nbDeConformite == ingredientRecette.size()) {
+		if (nbDeConformité == ingredientRecette.size()) {
 			estConforme = true;
 		}
 		
