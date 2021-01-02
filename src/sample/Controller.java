@@ -255,43 +255,35 @@ public class Controller implements Initializable {
 	@FXML
 	private Label scoreLabel;
 
+	
+	//à chacker
 	public void donnerAssietteClient(MouseEvent e) throws IllegalAccessException {
 //		System.out.println("source donnerassietteclient = " + e.getSource());
 		if ((container != null) && (container instanceof Assiette) && ((Assiette)container).getEtatAssiette().equals(EtatAssiette.PLAT)) {
 			ImageView i = (ImageView) e.getSource();
 			switch (i.getId()) {
 			case "client1":
-				if (comptoir.getEmplacementClientDansComptoire()[0] != null) {
-					
-					
-					
+				if (comptoir.getEmplacementClientDansComptoire()[0] != null) {			
 					Client client1 = comptoir.getEmplacementClientDansComptoire()[0];
-					System.out.println("taille ingredient client methode donnerassiette " + client1.getCommande().ingredients.size());
-					
-					
-					
+					System.out.println("taille ingredient client methode donnerassiette " + client1.getCommande().ingredients.size());						
 //					System.out.println("tu as choisis le client 1");
 					emplacementAssietteClient1.setImage(
 							new Image(getClass().getResourceAsStream(((Assiette) container).getImgAssiette())));
 					comptoir.getEmplacementAssietteDansComptoire()[0] = (Assiette) container;
 //					System.out.println("ingredient ajouté à assiette :");
-
 					Assiette a = (Assiette) container;
 					for (int z = 0; z < a.objetsContenus.size(); z++) {
 						System.out.println("nom = " + ((Ingredient) a.objetsContenus.get(z)).getNom() + " ; état = "
 								+ ((Ingredient) a.objetsContenus.get(z)).getEtat() + " ; transformé ="
 								+ ((Ingredient) a.objetsContenus.get(z)).getTransformer());
 					}
-
 					if (comptoir.getEmplacementClientDansComptoire()[0].verifierLePlat(a)) {
 						Main.niveau1.setScoreArgent(100, 100);
 						System.out.println("score augmenté");
 						scoreLabel.setText(String.valueOf(Main.niveau1.getTabScoreArgent()[0]));
 					}
 //					System.out.println("verifier assiette : " + comptoir.getEmplacementClientDansComptoire()[0].verifierPlat(a));
-
 //					comptoir.getEmplacementClientDansComptoire()[0].verifierLePlat(a);
-
 					comptoir.retirerClient(0);
 					labelRecetteClient1.setText("");
 					Assiette assiette = comptoir.getEmplacementAssietteDansComptoire()[0];
