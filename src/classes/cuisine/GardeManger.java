@@ -52,6 +52,17 @@ public class GardeManger {
 		}
 		return null ;
 	}
+	
+	public Ingredient mettreIngredient (Ingredient.Nom ingredient) {
+		int compteur = compteurs.get(ingredient) ;
+		System.out.println(compteur);
+		
+			// décrémenter le compteur
+			compteurs.put(ingredient, compteur+1);
+			return new Ingredient(ingredient);
+	
+		
+	}
 
 	
 	//Mickael

@@ -51,6 +51,16 @@ public class Cuisine {
 	 * garde-manger disponible dans la cuisine
 	 */
 	private GardeManger gardeManger;
+	
+	private ArrayList pileAssietteSale = new ArrayList<>();
+
+	public Stock getStock() {
+		return stock;
+	}
+
+	public ArrayList getPileAssietteSale() {
+		return pileAssietteSale;
+	}
 
 	/**
 	 * Constructeur

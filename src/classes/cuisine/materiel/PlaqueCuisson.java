@@ -16,5 +16,7 @@ public class PlaqueCuisson extends MaterielDeCuisson {
     public PlaqueCuisson() {
         super();
     }
+    
+    
 
 }
