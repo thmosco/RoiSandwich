@@ -78,23 +78,23 @@ public class Controller implements Initializable {
 	private Comptoir comptoir;
 
 	@FXML
-	ImageView PATATE;
+	private ImageView PATATE;
 	@FXML
-	ImageView SALADE;
+	private ImageView SALADE;
 	@FXML
-	ImageView TOMATE;
+	private ImageView TOMATE;
 	@FXML
-	ImageView OIGNON;
+	private ImageView OIGNON;
 	@FXML
-	ImageView PAIN;
+	private ImageView PAIN;
 	@FXML
-	ImageView FROMAGE;
+	private ImageView FROMAGE;
 	@FXML
-	ImageView STEAK_DE_SOJA;
+	private ImageView STEAK_DE_SOJA;
 	@FXML
-	ImageView STEAK_DE_POULET;
+	private ImageView STEAK_DE_POULET;
 	@FXML
-	ImageView STEAK_DE_BOEUF;
+	private ImageView STEAK_DE_BOEUF;
 
 	@FXML
 	private ImageView emplacementAssemblagePain;
@@ -118,29 +118,29 @@ public class Controller implements Initializable {
 	private ImageView emplacementAssemblageSteak;
 
 	@FXML
-	ImageView stock1;
+	private ImageView stock1;
 	@FXML
-	ImageView stock2;
+	private ImageView stock2;
 	@FXML
-	ImageView stock3;
+	private ImageView stock3;
 
 	@FXML
-	ImageView imageViewClient1;
+	private ImageView imageViewClient1;
 	@FXML
-	ProgressBar client1Progress;
-	Service<Void> client1EnCours;
+	private ProgressBar client1Progress;
+	private Service<Void> client1EnCours;
 
 	@FXML
-	ImageView imageViewClient2;
+	private ImageView imageViewClient2;
 	@FXML
-	ProgressBar client2Progress;
-	Service<Void> client2EnCours;
+	private ProgressBar client2Progress;
+	private Service<Void> client2EnCours;
 
 	@FXML
-	ImageView imageViewClient3;
+	private ImageView imageViewClient3;
 	@FXML
-	ProgressBar client3Progress;
-	Service<Void> client3EnCours;
+	private ProgressBar client3Progress;
+	private Service<Void> client3EnCours;
 
 	@FXML
 	private ImageView emplacementAssietteClient1;
@@ -152,55 +152,55 @@ public class Controller implements Initializable {
 	private ImageView emplacementAssietteClient3;
 
 	@FXML
-	BorderPane decoupe;
+	private BorderPane decoupe;
 
 	@FXML
-	ImageView containerDansDecoupe;
+	private ImageView containerDansDecoupe;
 
 	@FXML
-	BorderPane plaque_cuisson;
+	private BorderPane plaque_cuisson;
 
 	@FXML
-	ImageView containerDansCuisson;
+	private ImageView containerDansCuisson;
 
 	@FXML
-	ProgressBar cuissonProgress;
+	private ProgressBar cuissonProgress;
 
-	Service<Void> CuissonEnCoursSteak;
-
-	@FXML
-	BorderPane friteuse;
+	private Service<Void> CuissonEnCoursSteak;
 
 	@FXML
-	ProgressBar frireProgress;
+	private BorderPane friteuse;
 
-	Service<Void> FrireEnCours;
+	@FXML
+	private ProgressBar frireProgress;
+
+	private Service<Void> FrireEnCours;
 
 	@FXML
 	private BorderPane assemblage;
 
 	@FXML
-	ImageView containerDansFriteuse;
+	private ImageView containerDansFriteuse;
 
 	@FXML
-	BorderPane lavevaisselle;
+	private BorderPane lavevaisselle;
 
 	@FXML
-	ProgressIndicator LaveProgress;
+	private ProgressIndicator LaveProgress;
 
-	Service<Void> LaveVaisselleEnCours;
-
-	@FXML
-	ImageView garde_manger;
+	private Service<Void> LaveVaisselleEnCours;
 
 	@FXML
-	ImageView poubelle;
+	private ImageView garde_manger;
 
 	@FXML
-	ImageView containerView;
+	private ImageView poubelle;
 
 	@FXML
-	ImageView assiettePropre;
+	private ImageView containerView;
+
+	@FXML
+	private ImageView assiettePropre;
 
 	@FXML
 	private Label compteurPAIN;
@@ -236,7 +236,7 @@ public class Controller implements Initializable {
 	private ImageView emplacementAssiette;
 
 	@FXML
-	Label tempsEnCours;
+	private Label tempsEnCours;
 
 	@FXML
 	private Label labelRecetteClient1;
