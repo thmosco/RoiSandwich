@@ -176,7 +176,7 @@ public class Niveau {
 		
 		this.materiel.put(new LaveVaisselle(), capaciteLaveVaisselle);
 		
-		//créer la liste des clients en fonction des recettes du niveau
+		//crï¿½er la liste des clients en fonction des recettes du niveau
 		this.creerClients();
 		
 		this.gardeManger = new GardeManger(this);
@@ -271,7 +271,7 @@ public class Niveau {
 		// Pour chaque client
 		for (int a = 0; a < this.nbMaxClients; a++) {
 			
-						// Pour chaque, je pioche une recette aléatoire
+						// Pour chaque, je pioche une recette alï¿½atoire
 						int recetteAleatoire = (int)(Math.random() * listeRecettes.size());
 //						System.out.print(recetteAleatoire);
 						// dÃ©finition de la commande propre au client
