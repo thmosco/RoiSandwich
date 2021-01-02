@@ -1248,7 +1248,16 @@ public class Controller implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void quitterNiveau() throws Exception {
+		try {
+			Stage stage = (Stage) btnMenu.getScene().getWindow();
+			Parent root = FXMLLoader.load(getClass().getResource("vueMenuPrincipal.fxml"));
+			stage.setScene(new Scene(root));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	@FXML
 	private VBox vBoxClient1;
 	@FXML

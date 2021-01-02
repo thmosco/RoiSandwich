@@ -45,6 +45,7 @@ public class ControllerVueMenuPrincipal implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		Main.niveau1 = new Niveau(1);
 		// TODO
 	}
 }
