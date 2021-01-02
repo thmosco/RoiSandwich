@@ -230,9 +230,11 @@ public class Niveau {
 	 * @param score
 	 * @param argent
 	 */
+	
+	//modif mickael
 	public void setScoreArgent(int score, int argent) {
-		this.tabScoreArgent[0] = score;
-		this.tabScoreArgent[1] = argent;
+		this.tabScoreArgent[0] = this.tabScoreArgent[0] +score;		
+		this.tabScoreArgent[1] = this.tabScoreArgent[1] +argent;
 	}
 
 	// Méthodes
