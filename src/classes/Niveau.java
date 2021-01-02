@@ -129,7 +129,7 @@ public class Niveau {
 			quantiteDecoupe = 2;
 
 			// ajout d'une nouvelle recette
-			this.listeRecettes.add(Recette.Noms.MAXI);
+			this.listeRecettes.add(Recette.Noms.MENU);
 
 			break;
 		// niveau 3
@@ -150,7 +150,7 @@ public class Niveau {
 			quantiteDecoupe = 2;
 
 			// ajout d'une nouvelle recette
-			this.listeRecettes.add(Recette.Noms.MENU);
+			this.listeRecettes.add(Recette.Noms.MAXI);
 		}
 
 		// définition d'outils associés à leur quantité
