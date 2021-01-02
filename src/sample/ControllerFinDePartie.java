@@ -36,7 +36,8 @@ public class ControllerFinDePartie implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		scoreLabel.setText(String.valueOf(Main.niveau1.getTabScoreArgent()[0]));
+		scoreLabel.setText(String.valueOf(Main.niveau1.getTabScoreArgent()[0]));//affiche le score
+		
 	}
 	
 }

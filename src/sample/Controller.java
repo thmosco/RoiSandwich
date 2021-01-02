@@ -487,7 +487,7 @@ public class Controller implements Initializable {
 //								System.out.println(ingredient.getNom() + " a déja été découpé");
 							}
 						}
-						// sinon cette ingredient n'est pas découbale
+						// sinon cette ingredient n'est pas découpale
 						else {
 //							System.out.println(ingredient.getNom() + " n'est pas découpable");
 						}
